@@ -19,6 +19,8 @@ extension UIColor {
   
   static let darkGrey = UIColor.rgb(red: 74, green: 76, blue: 78)
   
+  static let onixGrey = UIColor.rgb(red: 49, green: 54, blue: 56)
+  
   static let darkRed = UIColor.rgb(red: 143, green: 29, blue: 33)
   
   static let darkGreen = UIColor.rgb(red: 64, green: 122, blue: 82)

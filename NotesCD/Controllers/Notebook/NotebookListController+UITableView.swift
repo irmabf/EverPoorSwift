@@ -10,20 +10,7 @@ import UIKit
 
 extension NotebookListController {
   
-  //MARK:- TableView Header
-  
-  override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    return 50
-  }
-  
-  override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    let view = UIView()
-    view.backgroundColor = .goldenOrange
-    return view
-  }
-  
   //MARK:- TableView DataSource
-  
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
     
@@ -34,12 +21,47 @@ extension NotebookListController {
   }
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 5
+    return 8
   }
   
-  override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+  //MARK:- Header
+  
+  override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    view.backgroundColor = .goldenOrange
     return 50
   }
+  
+  override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    let label = IndentedLabel()
+    
+    let sectionTitle = "Section \(section + 1)"
+    
+    if section == 0 {
+      label.text = "\(sectionTitle) ☑️"
+    } else {
+      label.text = sectionTitle
+    }
+    
+    
+    label.backgroundColor = .goldenOrange
+    label.textColor = .onixGrey
+    label.font = UIFont.boldSystemFont(ofSize: 18)
+    return label
+  }
+  
+//  override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//    var sectionTitle = "Section \(section + 1)"
+//    if (section == 0) {
+//      sectionTitle = "\(sectionTitle) ☑️"
+//    }
+//    return sectionTitle
+//  }
+  
+  //MARK:- Sections
+  override func numberOfSections(in tableView: UITableView) -> Int {
+    return 3
+  }
+
 }
 
 

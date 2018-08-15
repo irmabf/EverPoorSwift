@@ -21,8 +21,7 @@ class NotebookListController: UITableViewController {
     setupUI()
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
   }
-  
-  
+
   fileprivate func setupUI(){
     setupTableViewStyle(tableView: tableView)
     

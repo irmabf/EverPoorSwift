@@ -18,6 +18,8 @@
 		B7406D92212490350074CFE2 /* UINavigationController+style.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7406D8C212490350074CFE2 /* UINavigationController+style.swift */; };
 		B7406D93212490350074CFE2 /* UIView+helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7406D8D212490350074CFE2 /* UIView+helpers.swift */; };
 		B7406D96212490940074CFE2 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7406D95212490940074CFE2 /* CustomNavigationController.swift */; };
+		B76FCEC42124B2A100B7F242 /* Notes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B76FCEC22124B2A100B7F242 /* Notes.xcdatamodeld */; };
+		B76FCEC72124B2DE00B7F242 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76FCEC62124B2DE00B7F242 /* CoreDataManager.swift */; };
 		B780CAFD2124AB0C00BD8EFD /* NotebookListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B780CAFC2124AB0C00BD8EFD /* NotebookListController.swift */; };
 		B780CB032124ACB100BD8EFD /* NotebookListController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B780CB022124ACB100BD8EFD /* NotebookListController+UITableView.swift */; };
 /* End PBXBuildFile section */
@@ -36,6 +38,8 @@
 		B7406D8C212490350074CFE2 /* UINavigationController+style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+style.swift"; sourceTree = "<group>"; };
 		B7406D8D212490350074CFE2 /* UIView+helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+helpers.swift"; sourceTree = "<group>"; };
 		B7406D95212490940074CFE2 /* CustomNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
+		B76FCEC32124B2A100B7F242 /* Notes.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Notes.xcdatamodel; sourceTree = "<group>"; };
+		B76FCEC62124B2DE00B7F242 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		B780CAFC2124AB0C00BD8EFD /* NotebookListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotebookListController.swift; sourceTree = "<group>"; };
 		B780CB022124ACB100BD8EFD /* NotebookListController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotebookListController+UITableView.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,6 +80,7 @@
 				B7406D94212490430074CFE2 /* Utils */,
 				B7406D6F21248ED50074CFE2 /* AppDelegate.swift */,
 				B7406D7B21248ED50074CFE2 /* Info.plist */,
+				B76FCEC52124B2AA00B7F242 /* Model */,
 			);
 			path = NotesCD;
 			sourceTree = "<group>";
@@ -101,6 +106,15 @@
 				B7406D8B212490350074CFE2 /* UView+constraints.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		B76FCEC52124B2AA00B7F242 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B76FCEC22124B2A100B7F242 /* Notes.xcdatamodeld */,
+				B76FCEC62124B2DE00B7F242 /* CoreDataManager.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		B780CAFB2124AAFA00BD8EFD /* Note */ = {
@@ -197,6 +211,8 @@
 				B7406D96212490940074CFE2 /* CustomNavigationController.swift in Sources */,
 				B780CB032124ACB100BD8EFD /* NotebookListController+UITableView.swift in Sources */,
 				B7406D8F212490350074CFE2 /* UIColor+theme.swift in Sources */,
+				B76FCEC72124B2DE00B7F242 /* CoreDataManager.swift in Sources */,
+				B76FCEC42124B2A100B7F242 /* Notes.xcdatamodeld in Sources */,
 				B7406D7221248ED50074CFE2 /* NoteController.swift in Sources */,
 				B7406D7021248ED50074CFE2 /* AppDelegate.swift in Sources */,
 				B7406D93212490350074CFE2 /* UIView+helpers.swift in Sources */,
@@ -377,6 +393,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B76FCEC22124B2A100B7F242 /* Notes.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B76FCEC32124B2A100B7F242 /* Notes.xcdatamodel */,
+			);
+			currentVersion = B76FCEC32124B2A100B7F242 /* Notes.xcdatamodel */;
+			path = Notes.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B7406D6421248ED50074CFE2 /* Project object */;
 }
