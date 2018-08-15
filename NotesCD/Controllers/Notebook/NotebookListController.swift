@@ -46,7 +46,9 @@ class NotebookListController: UITableViewController, NoteControllerDelegate {
     
     let noteBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "icon-note"), style: .plain, target: self, action: #selector(handleLaunchAddNote))
  
-    navigationItem.leftBarButtonItem = notebookBtn
+    let trashBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "trash-can").withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(handleResetNotes))
+   
+    navigationItem.leftBarButtonItems = [trashBtn, notebookBtn]
     navigationItem.rightBarButtonItem = noteBtn
   }
   
@@ -59,6 +61,21 @@ class NotebookListController: UITableViewController, NoteControllerDelegate {
     createNoteController.delegate = self
     let navController = UINavigationController(rootViewController: createNoteController)
     navigationController?.present(navController, animated: true, completion: nil)
+  }
+  
+  @objc fileprivate func handleResetNotes() {
+    print("Trying to reset database")
+
+    CoreDataManager.shared.deleteNotes {
+      var indexPathsToRemove = [IndexPath]()
+      for (index, _) in notes.enumerated() {
+        let indexPath = IndexPath(row: index, section: 0)
+        indexPathsToRemove.append(indexPath)
+      }
+      
+      notes.removeAll()
+      tableView.deleteRows(at: indexPathsToRemove, with: .automatic)
+    }
   }
   
 }

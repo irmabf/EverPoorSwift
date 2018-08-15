@@ -46,7 +46,8 @@ extension NotebookListController {
 //    cell.textLabel?.text = "Notebook List Cell"
     cell.textLabel?.textColor = .darkGrey
     cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-    cell.note = notes[indexPath.row]
+    let note = notes[indexPath.row]
+    cell.note = note
     return cell
   }
   
