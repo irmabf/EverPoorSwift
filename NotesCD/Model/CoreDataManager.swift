@@ -22,4 +22,19 @@ class CoreDataManager {
     return container
   }()
   
+  func fetchNotes() -> [Note] {
+    print("Trying to fetch notes...")
+    
+    let context = persistentContainer.viewContext
+    let fetchRequest = NSFetchRequest<Note>(entityName: "Note")
+    
+    do {
+      let notes = try context.fetch(fetchRequest)
+      return notes
+    } catch let fetchError {
+      print("Failed to fetch notes:", fetchError)
+      return []
+    }
+  }
+  
 }

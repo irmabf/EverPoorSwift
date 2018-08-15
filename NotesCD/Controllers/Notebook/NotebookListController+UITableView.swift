@@ -10,26 +10,14 @@ import UIKit
 
 extension NotebookListController {
   
-  //MARK:- TableView DataSource
-  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
-    
-    cell.textLabel?.text = "Notebook List Cell"
-    cell.textLabel?.textColor = .darkGrey
-    cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-    return cell
+  //MARK:- TableView  Sections
+  override func numberOfSections(in tableView: UITableView) -> Int {
+    return 1
   }
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 8
+    return notes.count
   }
-  
-  //MARK:- Header
-  
-  override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    return 50
-  }
-  
   override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     let label = IndentedLabel()
     
@@ -41,18 +29,27 @@ extension NotebookListController {
       label.text = sectionTitle
     }
     
-    
     label.backgroundColor = .goldenOrange
     label.textColor = .onixGrey
     label.font = UIFont.boldSystemFont(ofSize: 18)
     return label
   }
   
-  //MARK:- Sections
-  override func numberOfSections(in tableView: UITableView) -> Int {
-    return 1
+  override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    return 50
   }
 
+  //MARK:- TableView DataSource
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! NotebookLisCustomCell
+    
+//    cell.textLabel?.text = "Notebook List Cell"
+    cell.textLabel?.textColor = .darkGrey
+    cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+    cell.note = notes[indexPath.row]
+    return cell
+  }
+  
 }
 
 

@@ -22,6 +22,7 @@
 		B76FCEC72124B2DE00B7F242 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76FCEC62124B2DE00B7F242 /* CoreDataManager.swift */; };
 		B76FCEC92124C26B00B7F242 /* NotebookListController+NoteControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76FCEC82124C26B00B7F242 /* NotebookListController+NoteControllerDelegate.swift */; };
 		B76FCECB2124C2BF00B7F242 /* NoteControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76FCECA2124C2BF00B7F242 /* NoteControllerDelegate.swift */; };
+		B76FCED42124CCE800B7F242 /* NotebookListCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76FCED32124CCE800B7F242 /* NotebookListCustomCell.swift */; };
 		B780CAFD2124AB0C00BD8EFD /* NotebookListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B780CAFC2124AB0C00BD8EFD /* NotebookListController.swift */; };
 		B780CB032124ACB100BD8EFD /* NotebookListController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B780CB022124ACB100BD8EFD /* NotebookListController+UITableView.swift */; };
 /* End PBXBuildFile section */
@@ -44,6 +45,7 @@
 		B76FCEC62124B2DE00B7F242 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		B76FCEC82124C26B00B7F242 /* NotebookListController+NoteControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotebookListController+NoteControllerDelegate.swift"; sourceTree = "<group>"; };
 		B76FCECA2124C2BF00B7F242 /* NoteControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteControllerDelegate.swift; sourceTree = "<group>"; };
+		B76FCED32124CCE800B7F242 /* NotebookListCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotebookListCustomCell.swift; sourceTree = "<group>"; };
 		B780CAFC2124AB0C00BD8EFD /* NotebookListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotebookListController.swift; sourceTree = "<group>"; };
 		B780CB022124ACB100BD8EFD /* NotebookListController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotebookListController+UITableView.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -136,6 +138,7 @@
 				B780CAFC2124AB0C00BD8EFD /* NotebookListController.swift */,
 				B780CB022124ACB100BD8EFD /* NotebookListController+UITableView.swift */,
 				B76FCEC82124C26B00B7F242 /* NotebookListController+NoteControllerDelegate.swift */,
+				B76FCED32124CCE800B7F242 /* NotebookListCustomCell.swift */,
 			);
 			path = Notebook;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 				B7406D7021248ED50074CFE2 /* AppDelegate.swift in Sources */,
 				B7406D93212490350074CFE2 /* UIView+helpers.swift in Sources */,
 				B7406D91212490350074CFE2 /* UView+constraints.swift in Sources */,
+				B76FCED42124CCE800B7F242 /* NotebookListCustomCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -189,11 +189,15 @@ class NoteController: UIViewController {
 //    delegate?.didAddNote(note: note)
     
     //If the note property doesnt exist, create a new one, else update it
-    if self.note == nil {
-      createNote()
-    }else{
-      saveNoteChanges()
-    }
+
+    dismiss(animated: true, completion: {
+      if self.note == nil {
+        self.createNote()
+      }else{
+        self.saveNoteChanges()
+      }
+    })
+
   }
   
   

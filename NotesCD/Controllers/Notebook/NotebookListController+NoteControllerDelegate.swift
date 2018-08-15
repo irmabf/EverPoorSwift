@@ -10,6 +10,12 @@ import UIKit
 
 extension NotebookListController {
   func didAddNote(note: Note) {
+    notes.append(note)
     
+//    guard let index =  notes.index(of: note) else { return }
+//    IndexPath(
+//    let indexToInsert = IndexPath(row: index, section: )
+//    tableView.insertRows(at: [indexToInsert], with: .middle)
+    tableView.reloadData()
   }
 }

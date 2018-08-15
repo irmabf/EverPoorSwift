@@ -10,10 +10,17 @@ import UIKit
 
 class NotebookListController: UITableViewController, NoteControllerDelegate {
 
-  
-  
   //MARK:- Model
+  
   var notes = [Note]()
+  
+  // MARK: - Subviews
+  
+  let titleTextLabel: UILabel = {
+    let label = UILabel()
+    label.font = UIFont.systemFont(ofSize: 16)
+    return label
+  }()
   
   //MARK:- Properties
   let cellId = "cellId"
@@ -21,16 +28,19 @@ class NotebookListController: UITableViewController, NoteControllerDelegate {
   //MARK:- Lifecycle
   
   override func viewDidLoad() {
-    
     super.viewDidLoad()
+    navigationController?.navigationBar.prefersLargeTitles = true
+ 
+    notes = CoreDataManager.shared.fetchNotes()
     setupUI()
-    tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
+    tableView.register(NotebookLisCustomCell.self, forCellReuseIdentifier: cellId)
   }
 
   fileprivate func setupUI(){
+    
     setupTableViewStyle(tableView: tableView)
     
-    navigationItem.title = "Notebooks List"
+    navigationItem.title = "EverPoor"
     
     let notebookBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "icon-book"), style: .plain, target: self, action: #selector(handleManageNotebooks))
     
