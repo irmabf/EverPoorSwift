@@ -107,8 +107,9 @@ class NoteController: UIViewController {
     view.backgroundColor = .darkWhite
     
     setupCancelButtonInNavBar()
-    setupAddNoteButtonInNavBar(selector: #selector(handleLaunchAddNote))
-    
+    setupSaveButtonInNavbar(selector: #selector(handleSaveNote))
+ 
+  
   
     let titleStackView = UIStackView(arrangedSubviews: [titleLabel, titleTextField, notebookLabel])
     
@@ -145,19 +146,18 @@ class NoteController: UIViewController {
   }
 
   //MARK:- Actions
+  @objc fileprivate func handleSaveNote(){
+    print("Trying to save note")
+  }
   
-  @objc fileprivate func handleLaunchAddNote() {
-    print("Try to add note")
+  
+  @objc fileprivate func handleSelectLocation() {
+    print("Trying to select location")
   }
   
   @objc fileprivate func handleSelectNotebook(){
     print("Trying to select a notebook")
   }
-  
-  @objc private func handleSelectLocation() {
-    print("Trying to select location...")
-  }
-  
   
 }
 

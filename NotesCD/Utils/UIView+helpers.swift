@@ -21,6 +21,10 @@ extension UIViewController {
     navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icon-add").withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: selector)
   }
   
+  func setupSaveNoteButtonInNavbar(selector: Selector){
+    navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icon-save"), style: .plain, target: self, action: selector)
+  }
+  
   func setupAddNoteButtonInNavBar(selector: Selector) {
     navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icon-note").withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: selector)
   }

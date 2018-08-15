@@ -34,7 +34,7 @@ extension NotebookListController {
   override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     let label = IndentedLabel()
     
-    let sectionTitle = "Section \(section + 1)"
+    let sectionTitle = "Notebook \(section + 1)"
     
     if section == 0 {
       label.text = "\(sectionTitle) ☑️"
@@ -49,17 +49,9 @@ extension NotebookListController {
     return label
   }
   
-//  override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//    var sectionTitle = "Section \(section + 1)"
-//    if (section == 0) {
-//      sectionTitle = "\(sectionTitle) ☑️"
-//    }
-//    return sectionTitle
-//  }
-  
   //MARK:- Sections
   override func numberOfSections(in tableView: UITableView) -> Int {
-    return 3
+    return 1
   }
 
 }

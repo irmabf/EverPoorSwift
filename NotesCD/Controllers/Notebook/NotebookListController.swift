@@ -10,6 +10,9 @@ import UIKit
 
 class NotebookListController: UITableViewController {
   
+  //MARK:- Model
+  var notes = [Note]()
+  
   //MARK:- Properties
   let cellId = "cellId"
   
@@ -28,12 +31,23 @@ class NotebookListController: UITableViewController {
     navigationItem.title = "Notebooks List"
     
     let notebookBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "icon-book"), style: .plain, target: self, action: #selector(handleManageNotebooks))
+    
+    let noteBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "icon-note"), style: .plain, target: self, action: #selector(handleLaunchAddNote))
+ 
     navigationItem.leftBarButtonItem = notebookBtn
+    navigationItem.rightBarButtonItem = noteBtn
   }
   
   @objc fileprivate func handleManageNotebooks() {
     print("Trying to manage notebooks")
   }
+  
+  @objc fileprivate func handleLaunchAddNote() {
+    let createNoteController = NoteController()
+    let navController = UINavigationController(rootViewController: createNoteController)
+    navigationController?.present(navController, animated: true, completion: nil)
+  }
+  
 }
 
 
