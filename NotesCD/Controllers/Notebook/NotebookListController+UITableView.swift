@@ -27,7 +27,6 @@ extension NotebookListController {
   //MARK:- Header
   
   override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    view.backgroundColor = .goldenOrange
     return 50
   }
   

@@ -16,7 +16,7 @@ class CoreDataManager {
     let container = NSPersistentContainer(name: "Notes")
     container.loadPersistentStores { (storeDescription, err) in
       if let error = err {
-        fatalError("Failed to load store: \(error)")
+        fatalError("Failed to load our stores: \(error)")
       }
     }
     return container

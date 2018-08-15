@@ -8,7 +8,9 @@
 
 import UIKit
 
-class NotebookListController: UITableViewController {
+class NotebookListController: UITableViewController, NoteControllerDelegate {
+
+  
   
   //MARK:- Model
   var notes = [Note]()
@@ -44,6 +46,7 @@ class NotebookListController: UITableViewController {
   
   @objc fileprivate func handleLaunchAddNote() {
     let createNoteController = NoteController()
+    createNoteController.delegate = self
     let navController = UINavigationController(rootViewController: createNoteController)
     navigationController?.present(navController, animated: true, completion: nil)
   }

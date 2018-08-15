@@ -7,8 +7,19 @@
 //
 
 import UIKit
+import CoreData
 
 class NoteController: UIViewController {
+  
+  //MARK:- Properties
+  var delegate: NoteControllerDelegate?
+  
+  var note: Note? {
+    
+    didSet {
+      titleTextField.text = note?.title
+    }
+  }
   
   //MARK:- Subviews
   
@@ -144,10 +155,45 @@ class NoteController: UIViewController {
     imageView.anchor(top: textView.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 16, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 100, height: 100)
   
   }
+  
+  //MARK:- Core Data Operations
+  
+  private func createNote() {
+    print("Trying to create note ...")
+    let context = CoreDataManager.shared.persistentContainer.viewContext
+    
+    let newNote = NSEntityDescription.insertNewObject(forEntityName: "Note", into: context)
+    
+    //Get the value from the titleTextField and set it as the newNote property
+    //the newNoteProperty will put the object in the NSEntity waiting for the save
+    newNote.setValue(titleTextField.text, forKey: "title")
+    
+    //Now we save the context and with that the newNote
+    do {
+      try context.save()
+      delegate?.didAddNote(note: newNote as! Note)
+    } catch let createError {
+      print("Failed to create a new note:", createError)
+    }
+  }
+  
+  //TODO
+  private func saveNoteChanges() {
+    print("Trying to save note changes...")
+  }
+  
 
   //MARK:- Actions
   @objc fileprivate func handleSaveNote(){
-    print("Trying to save note")
+//    let note = Note()
+//    delegate?.didAddNote(note: note)
+    
+    //If the note property doesnt exist, create a new one, else update it
+    if self.note == nil {
+      createNote()
+    }else{
+      saveNoteChanges()
+    }
   }
   
   

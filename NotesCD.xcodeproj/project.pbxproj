@@ -20,6 +20,8 @@
 		B7406D96212490940074CFE2 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7406D95212490940074CFE2 /* CustomNavigationController.swift */; };
 		B76FCEC42124B2A100B7F242 /* Notes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B76FCEC22124B2A100B7F242 /* Notes.xcdatamodeld */; };
 		B76FCEC72124B2DE00B7F242 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76FCEC62124B2DE00B7F242 /* CoreDataManager.swift */; };
+		B76FCEC92124C26B00B7F242 /* NotebookListController+NoteControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76FCEC82124C26B00B7F242 /* NotebookListController+NoteControllerDelegate.swift */; };
+		B76FCECB2124C2BF00B7F242 /* NoteControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76FCECA2124C2BF00B7F242 /* NoteControllerDelegate.swift */; };
 		B780CAFD2124AB0C00BD8EFD /* NotebookListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B780CAFC2124AB0C00BD8EFD /* NotebookListController.swift */; };
 		B780CB032124ACB100BD8EFD /* NotebookListController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B780CB022124ACB100BD8EFD /* NotebookListController+UITableView.swift */; };
 /* End PBXBuildFile section */
@@ -40,6 +42,8 @@
 		B7406D95212490940074CFE2 /* CustomNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		B76FCEC32124B2A100B7F242 /* Notes.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Notes.xcdatamodel; sourceTree = "<group>"; };
 		B76FCEC62124B2DE00B7F242 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		B76FCEC82124C26B00B7F242 /* NotebookListController+NoteControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotebookListController+NoteControllerDelegate.swift"; sourceTree = "<group>"; };
+		B76FCECA2124C2BF00B7F242 /* NoteControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteControllerDelegate.swift; sourceTree = "<group>"; };
 		B780CAFC2124AB0C00BD8EFD /* NotebookListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotebookListController.swift; sourceTree = "<group>"; };
 		B780CB022124ACB100BD8EFD /* NotebookListController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotebookListController+UITableView.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -121,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				B7406D7121248ED50074CFE2 /* NoteController.swift */,
+				B76FCECA2124C2BF00B7F242 /* NoteControllerDelegate.swift */,
 			);
 			path = Note;
 			sourceTree = "<group>";
@@ -130,6 +135,7 @@
 			children = (
 				B780CAFC2124AB0C00BD8EFD /* NotebookListController.swift */,
 				B780CB022124ACB100BD8EFD /* NotebookListController+UITableView.swift */,
+				B76FCEC82124C26B00B7F242 /* NotebookListController+NoteControllerDelegate.swift */,
 			);
 			path = Notebook;
 			sourceTree = "<group>";
@@ -209,8 +215,10 @@
 				B780CAFD2124AB0C00BD8EFD /* NotebookListController.swift in Sources */,
 				B7406D8E212490350074CFE2 /* UIColor+rgb.swift in Sources */,
 				B7406D96212490940074CFE2 /* CustomNavigationController.swift in Sources */,
+				B76FCECB2124C2BF00B7F242 /* NoteControllerDelegate.swift in Sources */,
 				B780CB032124ACB100BD8EFD /* NotebookListController+UITableView.swift in Sources */,
 				B7406D8F212490350074CFE2 /* UIColor+theme.swift in Sources */,
+				B76FCEC92124C26B00B7F242 /* NotebookListController+NoteControllerDelegate.swift in Sources */,
 				B76FCEC72124B2DE00B7F242 /* CoreDataManager.swift in Sources */,
 				B76FCEC42124B2A100B7F242 /* Notes.xcdatamodeld in Sources */,
 				B7406D7221248ED50074CFE2 /* NoteController.swift in Sources */,
