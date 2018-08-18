@@ -46,12 +46,14 @@ class NotebookListController: UITableViewController, NoteControllerDelegate {
     
     let notebookBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "icon-book"), style: .plain, target: self, action: #selector(handleCreateNotebook))
     
+    let manageNotebooksBtn = UIBarButtonItem(title: "Manage Nbooks", style: .plain, target: self, action: #selector(handleManageNotebooks))
+    
     let noteBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "icon-note"), style: .plain, target: self, action: #selector(handleLaunchAddNote))
  
     let trashBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "trash-can").withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(handleResetNotes))
    
     navigationItem.leftBarButtonItems = [trashBtn, notebookBtn]
-    navigationItem.rightBarButtonItem = noteBtn
+    navigationItem.rightBarButtonItems = [noteBtn, manageNotebooksBtn]
   }
   
   //MARK:- Actions
@@ -67,6 +69,16 @@ class NotebookListController: UITableViewController, NoteControllerDelegate {
     }
     present(alertController, animated: true, completion: nil)
     
+  }
+  
+  @objc fileprivate func handleManageNotebooks() {
+    let manageNotebooksController = NotebooksViewController()
+    let navController = UINavigationController(rootViewController: manageNotebooksController)
+    navigationController?.present(navController, animated: true, completion: nil)
+//    let createNoteController = NoteController()
+//    createNoteController.delegate = self
+//    let navController = UINavigationController(rootViewController: createNoteController)
+//    navigationController?.present(navController, animated: true, completion: nil)
   }
  
   @objc fileprivate func handleLaunchAddNote() {
