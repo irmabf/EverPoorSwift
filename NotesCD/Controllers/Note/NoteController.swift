@@ -196,8 +196,10 @@ class NoteController: UIViewController {
       }else{
         self.saveNoteChanges()
       }
+     
     })
-
+     //Dismiss
+    navigationController?.popViewController(animated: true)
   }
   
   

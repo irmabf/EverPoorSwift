@@ -35,6 +35,13 @@ extension NotebookListController {
     return label
   }
   
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let note = self.notes[indexPath.row]
+    let noteController = NoteController()
+    noteController.note = note
+    navigationController?.pushViewController(noteController, animated: true)
+  }
+  
   override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     return 50
   }
