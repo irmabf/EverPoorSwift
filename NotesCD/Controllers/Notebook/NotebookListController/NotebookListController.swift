@@ -84,8 +84,8 @@ class NotebookListController: UITableViewController, NoteControllerDelegate {
   @objc fileprivate func handleLaunchAddNote() {
     let createNoteController = NoteController()
     createNoteController.delegate = self
-    let navController = UINavigationController(rootViewController: createNoteController)
-    navigationController?.present(navController, animated: true, completion: nil)
+    navigationController?.pushViewController(createNoteController, animated: true)
+
   }
   
   @objc fileprivate func handleResetNotes() {

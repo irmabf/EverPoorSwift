@@ -39,6 +39,7 @@ extension NotebookListController {
     let note = self.notes[indexPath.row]
     let noteController = NoteController()
     noteController.note = note
+    noteController.delegate = self
     navigationController?.pushViewController(noteController, animated: true)
   }
   

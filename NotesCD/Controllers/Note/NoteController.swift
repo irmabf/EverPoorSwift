@@ -113,11 +113,13 @@ class NoteController: UIViewController {
   
   fileprivate func setupUI() {
     
+    navigationItem.leftBarButtonItem =  UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: self, action: #selector(handleBack))
+    
 //    self.navigationController?.navigationBar.prefersLargeTitles = true
     navigationItem.title = "Create Note"
     view.backgroundColor = .darkWhite
     
-    setupCancelButtonInNavBar()
+//    setupCancelButtonInNavBar()
     setupSaveButtonInNavbar(selector: #selector(handleSaveNote))
  
   
@@ -156,12 +158,18 @@ class NoteController: UIViewController {
   
   }
   
+  @objc fileprivate func handleBack(){
+    navigationController?.popViewController(animated: true)
+  }
+  
   //MARK:- Core Data Operations
+  
   
   private func createNote() {
     print("Trying to create note ...")
     let context = CoreDataManager.shared.persistentContainer.viewContext
     
+    //Sync view with core data model
     let newNote = NSEntityDescription.insertNewObject(forEntityName: "Note", into: context)
     
     //Get the value from the titleTextField and set it as the newNote property
@@ -171,36 +179,45 @@ class NoteController: UIViewController {
     //Now we save the context and with that the newNote
     do {
       try context.save()
-      delegate?.didAddNote(note: newNote as! Note)
+      self.delegate?.didAddNote(note: newNote as! Note)
+      dismiss(animated: true, completion: nil)
     } catch let createError {
       print("Failed to create a new note:", createError)
     }
   }
   
-  //TODO
+  
+  @objc private func handleSaveNote() {
+    // tap on Save button
+    if self.note == nil {
+      createNote()
+    } else {
+      saveNoteChanges()
+    }
+    navigationController?.popViewController(animated: true)
+  }
+  
   private func saveNoteChanges() {
     print("Trying to save note changes...")
+    
+    let context = CoreDataManager.shared.persistentContainer.viewContext
+    //sync view with model
+    note?.title = titleTextField.text
+    
+    //perform save in core data
+    do {
+      try context.save()
+      self.delegate?.didEditNote(note: self.note!)
+    } catch let saveErr {
+      print("Failed to save changes to core data", saveErr)
+    }
   }
   
 
-  //MARK:- Actions
-  @objc fileprivate func handleSaveNote(){
-//    let note = Note()
-//    delegate?.didAddNote(note: note)
-    
-    //If the note property doesnt exist, create a new one, else update it
+  
 
-    dismiss(animated: true, completion: {
-      if self.note == nil {
-        self.createNote()
-      }else{
-        self.saveNoteChanges()
-      }
-     
-    })
-     //Dismiss
-    navigationController?.popViewController(animated: true)
-  }
+  //MARK:- Actions
+  
   
   
   @objc fileprivate func handleSelectLocation() {

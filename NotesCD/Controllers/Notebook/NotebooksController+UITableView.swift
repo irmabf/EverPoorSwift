@@ -12,8 +12,9 @@ extension NotebooksViewController {
   
   //MARK:- TableView EditActions
   override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-    let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (_, indexPath) in
-      
+//    let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { () in
+    
+    let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete", handler: deleteHandler)
       //I need to get the notebook that I am swiping on
       
 //      let notebook = self.notebooks[indexPath.row]
@@ -35,10 +36,12 @@ extension NotebooksViewController {
 //        try context.save()
 //      }catch let deleteErr {
 //        print("Failed to delete notebook:", deleteErr)
-//      }
-    }
+    //      }}
+  
     
     let editAction = UITableViewRowAction(style: .normal, title: "Edit", handler: editHandlerFunction)
+    
+    let moveAction = UITableViewRowAction(style: .normal, title: "Move", handler: moveHandler)
     
     let makeDefaultAction = UITableViewRowAction(style: .default, title: "Default") { (action, indexPath) in
       
@@ -47,9 +50,10 @@ extension NotebooksViewController {
     }
     
     deleteAction.backgroundColor = .darkRed
+    moveAction.backgroundColor = .onixGrey
     editAction.backgroundColor = .darkGreen
     makeDefaultAction.backgroundColor = .creamYellow
-    return [deleteAction, editAction, makeDefaultAction]
+    return [deleteAction, editAction, makeDefaultAction, moveAction]
   }
   
 //  
@@ -119,5 +123,14 @@ extension NotebooksViewController {
   }
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return 5
+  }
+  
+  //MARK:- Row Actions
+  private func deleteHandler(action: UITableViewRowAction, indexPath: IndexPath) {
+    print("Trying to delete note...")
+  }
+  
+  private func moveHandler(action: UITableViewRowAction, indexPath: IndexPath) {
+    print("Trying to move note...")
   }
 }

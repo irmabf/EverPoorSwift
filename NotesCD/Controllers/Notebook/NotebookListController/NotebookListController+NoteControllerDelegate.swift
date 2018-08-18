@@ -12,10 +12,14 @@ extension NotebookListController {
   func didAddNote(note: Note) {
     notes.append(note)
     
-//    guard let index =  notes.index(of: note) else { return }
-//    IndexPath(
-//    let indexToInsert = IndexPath(row: index, section: )
-//    tableView.insertRows(at: [indexToInsert], with: .middle)
     tableView.reloadData()
+  }
+  
+  func didEditNote(note: Note) {
+    print("Trying to update note in notebook list...")
+    
+    let row = notes.index(of: note)
+    let reloadIndexPath = IndexPath(row: row!, section: 0)
+    tableView.reloadRows(at: [reloadIndexPath], with: .middle)
   }
 }

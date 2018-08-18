@@ -13,6 +13,7 @@
 
 protocol NoteControllerDelegate {
   func didAddNote(note: Note)
+  func didEditNote(note: Note)
 }
 
 
