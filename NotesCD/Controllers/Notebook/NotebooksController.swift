@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NotebooksViewController: UITableViewController {
+class NotebooksController: UITableViewController {
   
   //MARK:- Properties
   let cellId = "cellId"

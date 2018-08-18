@@ -35,19 +35,15 @@ extension NotebookListController {
     return label
   }
   
-  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let note = self.notes[indexPath.row]
-    let noteController = NoteController()
-    noteController.note = note
-    noteController.delegate = self
-    navigationController?.pushViewController(noteController, animated: true)
-  }
   
   override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     return 50
   }
+  
+
 
   //MARK:- TableView DataSource
+  
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! NotebookLisCustomCell
     
@@ -57,6 +53,96 @@ extension NotebookListController {
     let note = notes[indexPath.row]
     cell.note = note
     return cell
+  }
+  
+  //MARK:- Row  Selection And Edit Actions
+  
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let note = self.notes[indexPath.row]
+    let noteController = NoteController()
+    noteController.note = note
+    noteController.delegate = self
+    navigationController?.pushViewController(noteController, animated: true)
+  }
+  
+
+  
+  override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+    //    let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { () in
+    
+    let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete", handler: deleteHandler)
+    //I need to get the notebook that I am swiping on
+    
+    //      let notebook = self.notebooks[indexPath.row]
+    //      print("Attempting to delete notebook:", notebook.title ?? "")
+    //
+    //      //Remove the notebook from our tableview
+    //      //1.Pass the indexpath that I passing: indexPath
+    //
+    //      //Remove the item at the specific index or it will crash
+    //      self.notebooks.remove(at: indexPath.row)
+    //      self.tableView.deleteRows(at: [indexPath], with: .automatic)
+    //
+    //      //delete the notebook from core data
+    //      let context = CoreDataManager.shared.persistentContainer.viewContext
+    //
+    //      context.delete(notebook)
+    //
+    //      do{
+    //        try context.save()
+    //      }catch let deleteErr {
+    //        print("Failed to delete notebook:", deleteErr)
+    //      }}
+    
+    
+//    let editAction = UITableViewRowAction(style: .normal, title: "Edit", handler: editHandler)
+    
+    let moveAction = UITableViewRowAction(style: .normal, title: "Move", handler: moveHandler)
+    
+//    let makeDefaultAction = UITableViewRowAction(style: .default, title: "Default") { (action, indexPath) in
+//
+//      //      let notebook = self.notebooks[indexPath.row]
+//      print("Attempting to set the given notebook as default")
+//    }
+    
+    deleteAction.backgroundColor = .darkRed
+    moveAction.backgroundColor = .onixGrey
+//    editAction.backgroundColor = .darkGreen
+//    makeDefaultAction.backgroundColor = .creamYellow
+    return [deleteAction,moveAction]
+  }
+  
+  
+  //MARK:- Row Action Handlers
+  private func editHandler(action: UITableViewRowAction, indexPath: IndexPath) {
+    print("Trying to edit  note...")
+  }
+  
+  private func moveHandler(action: UITableViewRowAction, indexPath: IndexPath) {
+    print("Trying to move note...")
+  }
+  
+  
+  
+  private func deleteHandler(action: UITableViewRowAction, indexPath: IndexPath) {
+    print("Trying to delete note...")
+    let note = self.notes[indexPath.row]
+    
+    // delete note from notebook list
+    notes.remove(at: indexPath.row)
+    tableView.deleteRows(at: [indexPath], with: .automatic)
+    
+    // delete note from Core Data
+    let context = CoreDataManager.shared.persistentContainer.viewContext
+    
+    //delete from the context
+    context.delete(note)
+     // to persist the deletion to core data persistent store
+    do {
+      try context.save()
+    } catch let deleteError {
+      print("Failed to delete note:", deleteError)
+    }
   }
   
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class NotebookListController: UITableViewController, NoteControllerDelegate {
 
@@ -50,13 +51,13 @@ class NotebookListController: UITableViewController, NoteControllerDelegate {
     
     let noteBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "icon-note"), style: .plain, target: self, action: #selector(handleLaunchAddNote))
  
-    let trashBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "trash-can").withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(handleResetNotes))
+    let trashBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "trash-can").withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(handleResetData))
    
     navigationItem.leftBarButtonItems = [trashBtn, notebookBtn]
     navigationItem.rightBarButtonItems = [noteBtn, manageNotebooksBtn]
   }
   
-  //MARK:- Actions
+  //MARK:- Notebook Actions
   
   @objc fileprivate func handleCreateNotebook() {
     print("Trying to manage notebooks")
@@ -72,7 +73,7 @@ class NotebookListController: UITableViewController, NoteControllerDelegate {
   }
   
   @objc fileprivate func handleManageNotebooks() {
-    let manageNotebooksController = NotebooksViewController()
+    let manageNotebooksController = NotebooksController()
     let navController = UINavigationController(rootViewController: manageNotebooksController)
     navigationController?.present(navController, animated: true, completion: nil)
 //    let createNoteController = NoteController()
@@ -80,6 +81,8 @@ class NotebookListController: UITableViewController, NoteControllerDelegate {
 //    let navController = UINavigationController(rootViewController: createNoteController)
 //    navigationController?.present(navController, animated: true, completion: nil)
   }
+  
+  //MARK:- Notes Actions
  
   @objc fileprivate func handleLaunchAddNote() {
     let createNoteController = NoteController()
@@ -88,19 +91,52 @@ class NotebookListController: UITableViewController, NoteControllerDelegate {
 
   }
   
-  @objc fileprivate func handleResetNotes() {
-    print("Trying to reset database")
-
-    CoreDataManager.shared.deleteNotes {
-      var indexPathsToRemove = [IndexPath]()
-      for (index, _) in notes.enumerated() {
-        let indexPath = IndexPath(row: index, section: 0)
-        indexPathsToRemove.append(indexPath)
+//  @objc fileprivate func handleResetNotes() {
+//    print("Trying to reset database")
+//
+//    CoreDataManager.shared.deleteNotes {
+//      var indexPathsToRemove = [IndexPath]()
+//      for (index, _) in notes.enumerated() {
+//        let indexPath = IndexPath(row: index, section: 0)
+//        indexPathsToRemove.append(indexPath)
+//      }
+//
+//      notes.removeAll()
+//      tableView.deleteRows(at: indexPathsToRemove, with: .automatic)
+//    }
+//  }
+  
+  // MARK: - Action handlers
+  
+  @objc private func handleResetData() {
+    print("Trying to reset model...")
+    let alertController = UIAlertController(title: "Reset App", message: "Are you sure you want to loose all your data?", preferredStyle: .alert)
+//    let actionAlert = UIAlertController(title: "Are you sure you want to reset?", message: nil, preferredStyle: .actionSheet)
+    
+    let okAction = UIAlertAction(title: "Yes, delete", style: .default) { (okAction) in
+      CoreDataManager.shared.deleteNotes {
+        var indexPathsToRemove = [IndexPath]()
+        for (index, _) in self.notes.enumerated() {
+          let indexPath = IndexPath(row: index, section: 0)
+          indexPathsToRemove.append(indexPath)
+        }
+        //Remove from core data
+        self.notes.removeAll()
+        //Remove from the view
+        self.tableView.deleteRows(at: indexPathsToRemove, with: .middle)
+        print("Reset performed sucessfully...")
       }
-      
-      notes.removeAll()
-      tableView.deleteRows(at: indexPathsToRemove, with: .automatic)
     }
+    let cancelAction = UIAlertAction(title: "No way", style: .destructive) { (cancelAction) in
+      print("Reset action was canceled...")
+    }
+
+    
+    alertController.addAction(okAction)
+    alertController.addAction(cancelAction)
+    
+   present(alertController, animated: true, completion: nil)
+    
   }
   
 }
