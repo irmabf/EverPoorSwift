@@ -35,6 +35,8 @@ class NotebookListController: UITableViewController, NoteControllerDelegate {
     setupUI()
     tableView.register(NotebookLisCustomCell.self, forCellReuseIdentifier: cellId)
   }
+  
+  //MARK:- SetupUI method
 
   fileprivate func setupUI(){
     
@@ -42,7 +44,7 @@ class NotebookListController: UITableViewController, NoteControllerDelegate {
     
     navigationItem.title = "EverPoor"
     
-    let notebookBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "icon-book"), style: .plain, target: self, action: #selector(handleManageNotebooks))
+    let notebookBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "icon-book"), style: .plain, target: self, action: #selector(handleCreateNotebook))
     
     let noteBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "icon-note"), style: .plain, target: self, action: #selector(handleLaunchAddNote))
  
@@ -52,10 +54,21 @@ class NotebookListController: UITableViewController, NoteControllerDelegate {
     navigationItem.rightBarButtonItem = noteBtn
   }
   
-  @objc fileprivate func handleManageNotebooks() {
-    print("Trying to manage notebooks")
-  }
+  //MARK:- Actions
   
+  @objc fileprivate func handleCreateNotebook() {
+    print("Trying to manage notebooks")
+    
+    let alertController = UIAlertController(title: "Add Notebook", message: "Write the desired title", preferredStyle: .alert)
+    alertController.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
+    alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+    alertController.addTextField { (textField) in
+      textField.placeholder = "Enter title here"
+    }
+    present(alertController, animated: true, completion: nil)
+    
+  }
+ 
   @objc fileprivate func handleLaunchAddNote() {
     let createNoteController = NoteController()
     createNoteController.delegate = self

@@ -8,6 +8,9 @@
 /**
  *Any class that implements this protocol must conform no the didAddNote method.
  **/
+
+//MARK:- NoteControllerDelegate
+
 protocol NoteControllerDelegate {
   func didAddNote(note: Note)
 }
