@@ -49,12 +49,12 @@ class NoteListController: UITableViewController, NoteControllerDelegate {
     
     let noteBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "icon-note"), style: .plain, target: self, action: #selector(handleLaunchAddNote))
  
-    let addNotebookBtn = UIBarButtonItem(title: "Add Notebook", style: .plain, target: self, action: #selector(handleAddNotebook))
+   
     
     let trashBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "trash-can").withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(handleResetData))
    
     navigationItem.leftBarButtonItems = [trashBtn, manageNotebooksBtn]
-    navigationItem.rightBarButtonItems = [noteBtn, addNotebookBtn]
+    navigationItem.rightBarButtonItem = noteBtn
   }
   
   //MARK:- Notebook Actions
@@ -71,6 +71,7 @@ class NoteListController: UITableViewController, NoteControllerDelegate {
     print("Trying to launch add notebook")
     
     let notebookController = NotebookController()
+   
     let navController = UINavigationController(rootViewController: notebookController)
     present(navController, animated: true, completion: nil)
   }

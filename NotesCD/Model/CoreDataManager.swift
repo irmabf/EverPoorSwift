@@ -52,4 +52,27 @@ class CoreDataManager {
     }
   }
   
+  func fetchNotebooks() -> [Notebook] {
+    print("Try to fetch all notebooks")
+    
+    let context = persistentContainer.viewContext
+    
+    let request = NSFetchRequest<Notebook>(entityName: "Notebook")
+    
+    do {
+      let notebooks = try context.fetch(request)
+      return notebooks
+    } catch let fetchErr {
+      print("Failed to fetch notebooks from core data:", fetchErr)
+      return []
+    }
+  }
+  
 }
+
+
+
+
+
+
+

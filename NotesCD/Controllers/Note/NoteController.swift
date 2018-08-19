@@ -199,11 +199,11 @@ class NoteController: UIViewController {
   
   private func saveNoteChanges() {
     print("Trying to save note changes...")
-    
+
     let context = CoreDataManager.shared.persistentContainer.viewContext
     //sync view with model
     note?.title = titleTextField.text
-    
+
     //perform save in core data
     do {
       try context.save()
@@ -213,6 +213,7 @@ class NoteController: UIViewController {
     }
   }
   
+ 
 
   
 

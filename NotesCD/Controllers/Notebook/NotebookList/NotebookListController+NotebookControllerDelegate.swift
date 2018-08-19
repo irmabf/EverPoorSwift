@@ -10,7 +10,9 @@ import UIKit
 
 extension NotebookListController: NotebookControllerDelegate {
   func didAddNotebook(notebook: Notebook) {
+    notebooks.append(notebook)
     
+    tableView.reloadData()
   }
   
   func didEditNotebook(notebook: Notebook) {

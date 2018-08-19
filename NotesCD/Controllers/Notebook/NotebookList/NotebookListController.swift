@@ -15,11 +15,16 @@ class NotebookListController: UITableViewController {
   var notebooks = [Notebook]()
   
   override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    
+    self.notebooks = CoreDataManager.shared.fetchNotebooks()
     
     setupUI()
     navigationController?.navigationBar.prefersLargeTitles = true
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
     setupCancelButtonInNavBar()
+    setupAddNotebookButtonInNavbar(selector: #selector(handleAddNotebook))
   }
   
   //MARK:- Custoy UI Functions
@@ -31,7 +36,12 @@ class NotebookListController: UITableViewController {
   }
   
   //MARK:- Actions
-
+  @objc fileprivate func handleAddNotebook(){
+    let notebookController = NotebookController()
+    notebookController.delegate = self
+    let navController = UINavigationController(rootViewController: notebookController)
+    present(navController, animated: true, completion: nil)
+  }
 
   
 }

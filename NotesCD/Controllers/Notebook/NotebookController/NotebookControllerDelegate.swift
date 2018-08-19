@@ -6,8 +6,7 @@
 //  Copyright © 2018 Irma Blanco. All rights reserved.
 //
 
-import UIKit
-
+import CoreData
 
 protocol NotebookControllerDelegate {
   func didAddNotebook(notebook: Notebook)

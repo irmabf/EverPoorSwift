@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class NotebookController: UIViewController  {
   
@@ -51,16 +52,22 @@ class NotebookController: UIViewController  {
   @objc fileprivate func handleSave() {
     print("Trying to save  notebook")
     
-    let context = CoreDataManager.shared.persistentContainer.viewContext
-    
-    do {
-      try context.save()
-      dismiss(animated: true, completion: {
-        self.delegate?.didAddNotebook(notebook: self.notebook!)
-      })
-    } catch let saveErr {
-      print("Failed to save notebook:", saveErr)
+    if notebook == nil {
+      createNotebook()
+    }else {
+      updateNotebook()
     }
+    
+//    let context = CoreDataManager.shared.persistentContainer.viewContext
+//
+//    do {
+//      try context.save()
+//      dismiss(animated: true, completion: {
+//        self.delegate?.didAddNotebook(notebook: self.notebook!)
+//      })
+//    } catch let saveErr {
+//      print("Failed to save notebook:", saveErr)
+//    }
   }
   
   
@@ -68,12 +75,39 @@ class NotebookController: UIViewController  {
     dismiss(animated: true, completion: nil)
   }
   
-  
-  private func saveNotebookChanges() {
-    print("Trying to save notebook changes")
+  fileprivate func createNotebook(){
+    
+    let context = CoreDataManager.shared.persistentContainer.viewContext
+    
+    let notebook = NSEntityDescription.insertNewObject(forEntityName: "Notebook", into: context)
+    
+    notebook.setValue(titleTextField.text, forKey: "title")
+    
+    do {
+      try context.save()
+      dismiss(animated: true)  {
+        self.delegate?.didAddNotebook(notebook: notebook as! Notebook)
+      }
+    } catch let saveErr {
+      print("Failed to save new notebook to Core Data:", saveErr)
+    }
+    
   }
 
-  
+  fileprivate func updateNotebook(){
+    let context = CoreDataManager.shared.persistentContainer.viewContext
+    
+    notebook?.title = titleTextField.text
+    
+    do {
+      try context.save()
+      dismiss(animated: true) {
+        self.delegate?.didEditNotebook(notebook: self.notebook!)
+      }
+    } catch let updateErr {
+      print("Failed to update notebook:", updateErr)
+    }
+  }
   
   fileprivate func setupUI(){
     view.backgroundColor = .darkWhite
