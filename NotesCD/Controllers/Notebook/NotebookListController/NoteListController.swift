@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class NotebookListController: UITableViewController, NoteControllerDelegate {
+class NoteListController: UITableViewController, NoteControllerDelegate {
 
   //MARK:- Model
   
@@ -34,7 +34,7 @@ class NotebookListController: UITableViewController, NoteControllerDelegate {
  
     notes = CoreDataManager.shared.fetchNotes()
     setupUI()
-    tableView.register(NotebookLisCustomCell.self, forCellReuseIdentifier: cellId)
+    tableView.register(NoteLisCustomCell.self, forCellReuseIdentifier: cellId)
   }
   
   //MARK:- SetupUI method
@@ -44,43 +44,31 @@ class NotebookListController: UITableViewController, NoteControllerDelegate {
     setupTableViewStyle(tableView: tableView)
     
     navigationItem.title = "EverPoor"
-    
-    let notebookBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "icon-book"), style: .plain, target: self, action: #selector(handleCreateNotebook))
-    
-    let manageNotebooksBtn = UIBarButtonItem(title: "Manage Nbooks", style: .plain, target: self, action: #selector(handleManageNotebooks))
+  
+    let manageNotebooksBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "icon-book"), style: .plain, target: self, action: #selector(handleManageNotebooks))
     
     let noteBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "icon-note"), style: .plain, target: self, action: #selector(handleLaunchAddNote))
  
+    let addNotebookBtn = UIBarButtonItem(title: "Add Notebook", style: .plain, target: self, action: #selector(handleAddNotebook))
+    
     let trashBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "trash-can").withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(handleResetData))
    
-    navigationItem.leftBarButtonItems = [trashBtn, notebookBtn]
-    navigationItem.rightBarButtonItems = [noteBtn, manageNotebooksBtn]
+    navigationItem.leftBarButtonItems = [trashBtn, manageNotebooksBtn]
+    navigationItem.rightBarButtonItems = [noteBtn, addNotebookBtn]
   }
   
   //MARK:- Notebook Actions
+
   
-  @objc fileprivate func handleCreateNotebook() {
-    print("Trying to manage notebooks")
-    
-    let alertController = UIAlertController(title: "Add Notebook", message: "Write the desired title", preferredStyle: .alert)
-    alertController.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
-    alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-    alertController.addTextField { (textField) in
-      textField.placeholder = "Enter title here"
-    }
-    present(alertController, animated: true, completion: nil)
-    
-  }
-  
-  @objc fileprivate func handleManageNotebooks() {
-    let manageNotebooksController = NotebooksController()
-    let navController = UINavigationController(rootViewController: manageNotebooksController)
-    navigationController?.present(navController, animated: true, completion: nil)
-//    let createNoteController = NoteController()
-//    createNoteController.delegate = self
-//    let navController = UINavigationController(rootViewController: createNoteController)
+//  @objc fileprivate func handleManageNotebooks2() {
+//    let manageNotebooksController = NotebookListController()
+//    let navController = UINavigationController(rootViewController: manageNotebooksController)
 //    navigationController?.present(navController, animated: true, completion: nil)
-  }
+////    let createNoteController = NoteController()
+////    createNoteController.delegate = self
+////    let navController = UINavigationController(rootViewController: createNoteController)
+////    navigationController?.present(navController, animated: true, completion: nil)
+//  }
   
   //MARK:- Notes Actions
  
@@ -139,6 +127,19 @@ class NotebookListController: UITableViewController, NoteControllerDelegate {
     
   }
   
+  @objc private func handleManageNotebooks() {
+ 
+    print("Trying to manage notebooks...")
+   
+
+    let notebookListController = UINavigationController(rootViewController: NotebookListController())
+    present(notebookListController, animated: true, completion: nil)
+    
+  }
+
+  @objc fileprivate func handleAddNotebook() {
+    print("Trying to add notebook")
+  }
 }
 
 

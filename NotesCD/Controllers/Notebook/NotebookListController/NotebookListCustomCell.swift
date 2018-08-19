@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NotebookLisCustomCell: UITableViewCell {
+class NoteLisCustomCell: UITableViewCell {
   
   // MARK: - Properties
   

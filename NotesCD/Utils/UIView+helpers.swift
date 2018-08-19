@@ -42,6 +42,10 @@ extension UIViewController {
     navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icon-cancel"), style: .plain, target: self, action: #selector(handleCancelModal))
   }
   
+  func setupAddNotebookButtonInNavbar(selector: Selector) {
+    navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icon-add"), style: .plain, target: self, action: selector)
+  }
+  
   
   func setupBackButtonInNavBar() {
     navigationItem.leftBarButtonItem =  UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: self, action: #selector(handleCancelModal))

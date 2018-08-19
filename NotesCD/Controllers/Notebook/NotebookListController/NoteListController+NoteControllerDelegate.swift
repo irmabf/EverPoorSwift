@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension NotebookListController {
+extension NoteListController {
   func didAddNote(note: Note) {
     notes.append(note)
     
@@ -22,4 +22,5 @@ extension NotebookListController {
     let reloadIndexPath = IndexPath(row: row!, section: 0)
     tableView.reloadRows(at: [reloadIndexPath], with: .middle)
   }
+  
 }

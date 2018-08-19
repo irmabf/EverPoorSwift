@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension NotebookListController {
+extension NoteListController {
   
   //MARK:- TableView  Sections
   override func numberOfSections(in tableView: UITableView) -> Int {
@@ -45,7 +45,7 @@ extension NotebookListController {
   //MARK:- TableView DataSource
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! NotebookLisCustomCell
+    let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! NoteLisCustomCell
     
 //    cell.textLabel?.text = "Notebook List Cell"
     cell.textLabel?.textColor = .darkGrey
@@ -70,7 +70,7 @@ extension NotebookListController {
   override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
     //    let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { () in
     
-    let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete", handler: deleteHandler)
+    let deleteNoteAction = UITableViewRowAction(style: .destructive, title: "Delete", handler: deleteNoteHandler)
     //I need to get the notebook that I am swiping on
     
     //      let notebook = self.notebooks[indexPath.row]
@@ -97,7 +97,7 @@ extension NotebookListController {
     
 //    let editAction = UITableViewRowAction(style: .normal, title: "Edit", handler: editHandler)
     
-    let moveAction = UITableViewRowAction(style: .normal, title: "Move", handler: moveHandler)
+    let moveNoteAction = UITableViewRowAction(style: .normal, title: "Move", handler: moveNoteHandler)
     
 //    let makeDefaultAction = UITableViewRowAction(style: .default, title: "Default") { (action, indexPath) in
 //
@@ -105,11 +105,11 @@ extension NotebookListController {
 //      print("Attempting to set the given notebook as default")
 //    }
     
-    deleteAction.backgroundColor = .darkRed
-    moveAction.backgroundColor = .onixGrey
+    deleteNoteAction.backgroundColor = .darkRed
+    moveNoteAction.backgroundColor = .onixGrey
 //    editAction.backgroundColor = .darkGreen
 //    makeDefaultAction.backgroundColor = .creamYellow
-    return [deleteAction,moveAction]
+    return [deleteNoteAction,moveNoteAction]
   }
   
   
@@ -118,13 +118,13 @@ extension NotebookListController {
     print("Trying to edit  note...")
   }
   
-  private func moveHandler(action: UITableViewRowAction, indexPath: IndexPath) {
+  private func moveNoteHandler(action: UITableViewRowAction, indexPath: IndexPath) {
     print("Trying to move note...")
   }
   
   
   
-  private func deleteHandler(action: UITableViewRowAction, indexPath: IndexPath) {
+  private func deleteNoteHandler(action: UITableViewRowAction, indexPath: IndexPath) {
     print("Trying to delete note...")
     let note = self.notes[indexPath.row]
     

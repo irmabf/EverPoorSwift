@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window = UIWindow()
     window?.makeKeyAndVisible()
     
-    let noteController = NotebookListController()
+    let noteController = NoteListController()
     
     let navController = CustomNavigationController(rootViewController: noteController)
     
