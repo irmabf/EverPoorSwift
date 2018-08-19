@@ -21,6 +21,17 @@ extension NotebookListController {
     return cell
   }
   
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let notebookController = NotebookController()
+    let notebook = notebooks[indexPath.row]
+    
+    notebookController.notebook = notebook
+    notebookController.delegate = self
+    
+    let navController = UINavigationController(rootViewController: notebookController)
+    present(navController, animated: true, completion: nil)
+  }
+  
   override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     return 50
   }

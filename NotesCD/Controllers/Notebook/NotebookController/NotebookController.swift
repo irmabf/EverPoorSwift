@@ -15,7 +15,7 @@ class NotebookController: UIViewController  {
   
   var notebook: Notebook? {
     didSet {
-      
+      self.titleTextField.text = notebook?.title
     }
   }
   var delegate: NotebookControllerDelegate?
@@ -28,7 +28,7 @@ class NotebookController: UIViewController  {
     return label
   }()
   
-  let titleTextField: UITextField = {
+  var titleTextField: UITextField = {
     let tf = UITextField()
     tf.placeholder = "Write notebook title"
     tf.tintColor = .darkGrey
