@@ -58,18 +58,22 @@ class NoteListController: UITableViewController, NoteControllerDelegate {
   }
   
   //MARK:- Notebook Actions
-
+  @objc private func handleManageNotebooks() {
+    
+    print("Trying to launch manage notebooks...")
+    
+    let notebookListController = UINavigationController(rootViewController: NotebookListController())
+    present(notebookListController, animated: true, completion: nil)
+    
+  }
   
-//  @objc fileprivate func handleManageNotebooks2() {
-//    let manageNotebooksController = NotebookListController()
-//    let navController = UINavigationController(rootViewController: manageNotebooksController)
-//    navigationController?.present(navController, animated: true, completion: nil)
-////    let createNoteController = NoteController()
-////    createNoteController.delegate = self
-////    let navController = UINavigationController(rootViewController: createNoteController)
-////    navigationController?.present(navController, animated: true, completion: nil)
-//  }
-  
+  @objc fileprivate func handleAddNotebook() {
+    print("Trying to launch add notebook")
+    
+    let notebookController = NotebookController()
+    let navController = UINavigationController(rootViewController: notebookController)
+    present(navController, animated: true, completion: nil)
+  }
   //MARK:- Notes Actions
  
   @objc fileprivate func handleLaunchAddNote() {
@@ -78,21 +82,6 @@ class NoteListController: UITableViewController, NoteControllerDelegate {
     navigationController?.pushViewController(createNoteController, animated: true)
 
   }
-  
-//  @objc fileprivate func handleResetNotes() {
-//    print("Trying to reset database")
-//
-//    CoreDataManager.shared.deleteNotes {
-//      var indexPathsToRemove = [IndexPath]()
-//      for (index, _) in notes.enumerated() {
-//        let indexPath = IndexPath(row: index, section: 0)
-//        indexPathsToRemove.append(indexPath)
-//      }
-//
-//      notes.removeAll()
-//      tableView.deleteRows(at: indexPathsToRemove, with: .automatic)
-//    }
-//  }
   
   // MARK: - Action handlers
   
@@ -125,20 +114,6 @@ class NoteListController: UITableViewController, NoteControllerDelegate {
     
    present(alertController, animated: true, completion: nil)
     
-  }
-  
-  @objc private func handleManageNotebooks() {
- 
-    print("Trying to manage notebooks...")
-   
-
-    let notebookListController = UINavigationController(rootViewController: NotebookListController())
-    present(notebookListController, animated: true, completion: nil)
-    
-  }
-
-  @objc fileprivate func handleAddNotebook() {
-    print("Trying to add notebook")
   }
 }
 
