@@ -92,7 +92,7 @@ class NoteListController: UITableViewController, NoteControllerDelegate {
 //    let actionAlert = UIAlertController(title: "Are you sure you want to reset?", message: nil, preferredStyle: .actionSheet)
     
     let okAction = UIAlertAction(title: "Yes, delete", style: .default) { (okAction) in
-      CoreDataManager.shared.deleteNotes {
+      CoreDataManager.shared.resetCoreData {
         var indexPathsToRemove = [IndexPath]()
         for (index, _) in self.notes.enumerated() {
           let indexPath = IndexPath(row: index, section: 0)

@@ -68,6 +68,21 @@ class CoreDataManager {
     }
   }
   
+  func resetCoreData(completion: CleanAfterReset){
+    let context = persistentContainer.viewContext
+    let batchRequest = NSBatchDeleteRequest(fetchRequest: Notebook.fetchRequest())
+    
+    do {
+      try context.execute(batchRequest)
+      self.deleteNotes {
+        completion()
+      }
+    } catch let resetErr {
+      print("Failed to reset Core Data:", resetErr)
+    }
+    
+  }
+  
 }
 
 
