@@ -176,6 +176,10 @@ class NoteController: UIViewController {
     //the newNoteProperty will put the object in the NSEntity waiting for the save
     newNote.setValue(titleTextField.text, forKey: "title")
     
+    let defaultNotebook = CoreDataManager.shared.getDefaultNotebook()
+    
+    newNote.setValue(defaultNotebook, forKey: "notebook")
+    
     //Now we save the context and with that the newNote
     do {
       try context.save()

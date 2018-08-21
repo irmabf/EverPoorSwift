@@ -16,7 +16,14 @@ extension NotebookListController {
     cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 16)
    
     let notebook = notebooks[indexPath.row]
-    cell.textLabel?.text = notebook.title
+    
+    if let notebookTitle = notebook.title {
+      if notebook.isDefault {
+        cell.textLabel?.text = "\(notebookTitle)"
+      } else {
+        cell.textLabel?.text = notebookTitle
+      }
+    }
     
     return cell
   }
