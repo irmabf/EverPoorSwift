@@ -63,8 +63,12 @@ class NoteListController: UITableViewController, NoteControllerDelegate {
     
     print("Trying to launch manage notebooks...")
     
-    let notebookListController = UINavigationController(rootViewController: NotebookListController())
-    present(notebookListController, animated: true, completion: nil)
+    let notebookListController = NotebookListController()
+    notebookListController.delegate = self
+    notebookListController.notebooks = self.notebooks
+    let navController = UINavigationController(rootViewController: notebookListController)
+    present(navController, animated: true, completion: nil)
+    
     
   }
   
@@ -94,20 +98,8 @@ class NoteListController: UITableViewController, NoteControllerDelegate {
     
     let okAction = UIAlertAction(title: "Yes, delete", style: .default) { (okAction) in
       CoreDataManager.shared.resetCoreData {
-        var indexPathsToRemove = [IndexPath]()
-        
-        for (notebookIndex, notebook) in self.notebooks.enumerated() {
-          let notes = notebook.notes?.allObjects
-          for (noteIndex, _) in (notes?.enumerated())! {
-            let indexPath = IndexPath(row: noteIndex, section: notebookIndex)
-            indexPathsToRemove.append(indexPath)
-          }
-        }
-        //Remove from core data
-        self.notebooks.removeAll()
-        //Remove from the view
-        self.tableView.deleteRows(at: indexPathsToRemove, with: .middle)
-        print("Reset performed sucessfully...")
+        self.notebooks = CoreDataManager.shared.fetchNotebooks()
+        self.tableView.reloadData()
       }
     }
     let cancelAction = UIAlertAction(title: "No way", style: .destructive) { (cancelAction) in

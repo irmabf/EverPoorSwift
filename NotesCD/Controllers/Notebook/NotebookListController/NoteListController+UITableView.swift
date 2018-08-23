@@ -83,16 +83,17 @@ extension NoteListController {
   }
   
   override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-    //    let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { () in
-//    let deleteNoteAction = UITableViewRowAction(style: .destructive, title: "Delete", handler: deleteNoteHandler)
+
+      let deleteNoteAction = UITableViewRowAction(style: .destructive, title: "Delete", handler: deleteNoteHandler)
 
     let moveNoteAction = UITableViewRowAction(style: .normal, title: "Move", handler: moveNoteHandler)
   
     
    
     moveNoteAction.backgroundColor = .onixGrey
+    deleteNoteAction.backgroundColor = .darkRed
 
-    return [moveNoteAction]
+    return [moveNoteAction, deleteNoteAction]
   }
   
   private func moveNoteHandler(action: UITableViewRowAction, indexPath: IndexPath) {
@@ -100,28 +101,26 @@ extension NoteListController {
   }
   
   
-  
-//  private func deleteNoteHandler(action: UITableViewRowAction, indexPath: IndexPath) {
-//    print("Trying to delete note...")
-//    //get the indexpath of the note to delete
-//    let note = getNoteAtIndexPath(indexPath: indexPath)
-//
-//    // delete note from notebook list
-//    tableView.deleteRows(at: [indexPath], with: .automatic)
-//
-//    // delete note from Core Data
-//    let context = CoreDataManager.shared.persistentContainer.viewContext
-//
-//    //delete from the context
-//    context.delete(note)
-//     // to persist the deletion to core data persistent store
-//    do {
-//      try context.save()
-//    } catch let deleteError {
-//      print("Failed to delete note:", deleteError)
-//    }
-//  }
-//
+  private func deleteNoteHandler(action: UITableViewRowAction, indexPath: IndexPath) {
+    print("Trying to delete note...")
+    //get the indexpath of the note to delete
+    let note = getNoteAtIndexPath(indexPath: indexPath)
+
+    // delete note from Core Data
+    let context = CoreDataManager.shared.persistentContainer.viewContext
+
+    //delete from the context
+    context.delete(note)
+     // to persist the deletion to core data persistent store
+    do {
+      try context.save()
+      //delete note from noteboook list
+      tableView.deleteRows(at: [indexPath], with: .left)
+    } catch let deleteError {
+      print("Failed to delete note:", deleteError)
+    }
+  }
+
   fileprivate func getNoteAtIndexPath(indexPath: IndexPath) -> Note {
     //Get section of the given notebook and save it to the notebook variable
     let notebook = notebooks[indexPath.section]
