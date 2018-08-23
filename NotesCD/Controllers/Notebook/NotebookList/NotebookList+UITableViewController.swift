@@ -76,6 +76,10 @@ extension NotebookListController {
   
   private func setAsDefaultHandler(action: UITableViewRowAction, indexPath: IndexPath) {
     print("Trying to set default notebook...")
+    
+    let notebook = notebooks[indexPath.row]
+    CoreDataManager.shared.setDefault(notebook: notebook)
+    tableView.reloadData()
     if let delegate = self.delegate {
       delegate.didChangeNotebookList()
     }

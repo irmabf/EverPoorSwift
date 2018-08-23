@@ -10,10 +10,6 @@ import Foundation
 
 extension NoteListController: NotebookListControllerDelegate {
   func didChangeNotebookList() {
-    notebooks = CoreDataManager.shared.fetchNotebooks()
-    
-    tableView.reloadData()
+   reloadNoteList()
   }
-  
-  
 }

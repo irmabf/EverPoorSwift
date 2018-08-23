@@ -34,6 +34,8 @@ class NoteListController: UITableViewController, NoteControllerDelegate {
  
     notebooks = CoreDataManager.shared.fetchNotebooks()
     
+    sortNotebooks()
+    
     setupUI()
     tableView.register(NoteLisCustomCell.self, forCellReuseIdentifier: cellId)
   }
@@ -65,7 +67,6 @@ class NoteListController: UITableViewController, NoteControllerDelegate {
     
     let notebookListController = NotebookListController()
     notebookListController.delegate = self
-    notebookListController.notebooks = self.notebooks
     let navController = UINavigationController(rootViewController: notebookListController)
     present(navController, animated: true, completion: nil)
     
@@ -98,8 +99,7 @@ class NoteListController: UITableViewController, NoteControllerDelegate {
     
     let okAction = UIAlertAction(title: "Yes, delete", style: .default) { (okAction) in
       CoreDataManager.shared.resetCoreData {
-        self.notebooks = CoreDataManager.shared.fetchNotebooks()
-        self.tableView.reloadData()
+        self.reloadNoteList()
       }
     }
     let cancelAction = UIAlertAction(title: "No way", style: .destructive) { (cancelAction) in
@@ -111,6 +111,37 @@ class NoteListController: UITableViewController, NoteControllerDelegate {
     alertController.addAction(cancelAction)
     
    present(alertController, animated: true, completion: nil)
+    
+  }
+  
+  func reloadNoteList(){
+    notebooks = CoreDataManager.shared.fetchNotebooks()
+    sortNotebooks()
+    tableView.reloadData()
+  }
+  
+  fileprivate func sortNotebooks() {
+    var sortedNotebooks: [Notebook] = self.notebooks
+    
+    let defaultNotebook = CoreDataManager.shared.getDefaultNotebook()
+    let indexOfDefaultNotebook = notebooks.index(of: defaultNotebook)
+    
+    // remove default notebook before sorting
+    sortedNotebooks.remove(at: indexOfDefaultNotebook!)
+    
+    // sort remaining notebooks by title
+    sortedNotebooks.sort { (notebook1, notebook2) -> Bool in
+      if let firstTitle = notebook1.title,
+        let secondTitle = notebook2.title {
+        return firstTitle < secondTitle // ascending order
+      }
+      return false
+    }
+    
+    // insert default notebook back at first position
+    sortedNotebooks.insert(defaultNotebook, at: 0)
+    
+    self.notebooks = sortedNotebooks
     
   }
 }

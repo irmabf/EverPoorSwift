@@ -188,8 +188,8 @@
 				B7F184ED2128CCB700630ADA /* NotebookListController.swift */,
 				B7F184F02128CDBC00630ADA /* NotebookList+UITableViewController.swift */,
 				B76FCED32124CCE800B7F242 /* NotebookListCustomCell.swift */,
-				B7ED7BCB2129CDB3009DC01A /* NotebookListController+NotebookControllerDelegate.swift */,
 				B748CCFB212F195F00D99977 /* NotebookListControllerDelegate.swift */,
+				B7ED7BCB2129CDB3009DC01A /* NotebookListController+NotebookControllerDelegate.swift */,
 			);
 			path = NotebookList;
 			sourceTree = "<group>";
