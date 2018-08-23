@@ -13,7 +13,7 @@ class NoteListController: UITableViewController, NoteControllerDelegate {
 
   //MARK:- Model
   
-  var notes = [Note]()
+  var notebooks = [Notebook]()
   
   // MARK: - Subviews
   
@@ -32,7 +32,8 @@ class NoteListController: UITableViewController, NoteControllerDelegate {
     super.viewDidLoad()
     navigationController?.navigationBar.prefersLargeTitles = true
  
-    notes = CoreDataManager.shared.fetchNotes()
+    notebooks = CoreDataManager.shared.fetchNotebooks()
+    
     setupUI()
     tableView.register(NoteLisCustomCell.self, forCellReuseIdentifier: cellId)
   }
@@ -94,12 +95,16 @@ class NoteListController: UITableViewController, NoteControllerDelegate {
     let okAction = UIAlertAction(title: "Yes, delete", style: .default) { (okAction) in
       CoreDataManager.shared.resetCoreData {
         var indexPathsToRemove = [IndexPath]()
-        for (index, _) in self.notes.enumerated() {
-          let indexPath = IndexPath(row: index, section: 0)
-          indexPathsToRemove.append(indexPath)
+        
+        for (notebookIndex, notebook) in self.notebooks.enumerated() {
+          let notes = notebook.notes?.allObjects
+          for (noteIndex, _) in (notes?.enumerated())! {
+            let indexPath = IndexPath(row: noteIndex, section: notebookIndex)
+            indexPathsToRemove.append(indexPath)
+          }
         }
         //Remove from core data
-        self.notes.removeAll()
+        self.notebooks.removeAll()
         //Remove from the view
         self.tableView.deleteRows(at: indexPathsToRemove, with: .middle)
         print("Reset performed sucessfully...")

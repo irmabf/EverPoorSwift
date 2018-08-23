@@ -10,6 +10,7 @@ import UIKit
 
 extension NotebookListController {
   
+  //MARK:- CellForRow At
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
     cell.textLabel?.textColor = .darkGrey
@@ -28,7 +29,9 @@ extension NotebookListController {
     return cell
   }
   
+  //MARK:- DidSelect
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    
     let notebookController = NotebookController()
     let notebook = notebooks[indexPath.row]
     
@@ -52,6 +55,30 @@ extension NotebookListController {
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return notebooks.count
   
+  }
+  
+  override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+    let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete", handler: deleteNotebookHandler)
+    let setAsDefaultAction = UITableViewRowAction(style: .normal, title: "Default", handler: setAsDefaultHandler)
+    
+    deleteAction.backgroundColor = .darkRed
+    setAsDefaultAction.backgroundColor = .darkGreen
+    
+    return [deleteAction, setAsDefaultAction]
+  }
+  
+  private func deleteNotebookHandler(action: UITableViewRowAction, indexPath: IndexPath) {
+    print("Trying to delete notebook...")
+    if let delegate = self.delegate {
+      delegate.didChangeNotebookList()
+    }
+  }
+  
+  private func setAsDefaultHandler(action: UITableViewRowAction, indexPath: IndexPath) {
+    print("Trying to set default notebook...")
+    if let delegate = self.delegate {
+      delegate.didChangeNotebookList()
+    }
   }
   
 }

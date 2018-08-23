@@ -10,18 +10,21 @@ import UIKit
 
 extension NoteListController {
   func didAddNote(note: Note) {
-    notes.append(note)
-    
     tableView.reloadData()
   }
   
   func didEditNote(note: Note) {
     print("Trying to update note in notebook list...")
     
-    tableView.reloadData()
-//    let row = notes.index(of: note)
-//    let reloadIndexPath = IndexPath(row: row!, section: 0)
-//    tableView.reloadRows(at: [reloadIndexPath], with: .middle)
+    let notebook = note.notebook!
+    let notebookIndex = notebooks.index(of: notebook)
+    let notes = notebook.notes?.allObjects as! [Note]
+    let noteIndex = notes.index(of: note)
+    
+    let reloadIndexPath = IndexPath(row: noteIndex!, section: notebookIndex!)
+    tableView.reloadRows(at: [reloadIndexPath], with: .middle)
+    
+   
   }
   
 }

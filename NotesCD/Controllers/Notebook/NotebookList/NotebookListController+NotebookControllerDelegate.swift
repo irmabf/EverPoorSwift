@@ -11,8 +11,13 @@ import UIKit
 extension NotebookListController: NotebookControllerDelegate {
   func didAddNotebook(notebook: Notebook) {
     notebooks.append(notebook)
-    
     tableView.reloadData()
+    
+    if let delegate = self.delegate {
+      delegate.didChangeNotebookList()
+    }
+    
+    
   }
   
   func didEditNotebook(notebook: Notebook) {
@@ -22,6 +27,10 @@ extension NotebookListController: NotebookControllerDelegate {
     let reloadIndexPath = IndexPath(row: row!, section: 0)
     //Reload the row only at the given reloadIndexPath
     tableView.reloadRows(at: [reloadIndexPath], with: .middle)
+    
+    if let delegate = self.delegate {
+      delegate.didChangeNotebookList()
+    }
   }
 }
 

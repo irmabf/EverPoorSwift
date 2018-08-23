@@ -12,7 +12,10 @@ class NotebookListController: UITableViewController {
   
   // MARK: - Properties
   let cellId = "cellId"
+  
   var notebooks = [Notebook]()
+  
+  var delegate: NotebookListControllerDelegate?
   
   override func viewDidLoad() {
     super.viewDidLoad()
