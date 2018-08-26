@@ -27,6 +27,7 @@
 		B748CD07212F334900D99977 /* MoveNotesController+UIPickerViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B748CD06212F334900D99977 /* MoveNotesController+UIPickerViewDataSource.swift */; };
 		B748CD09212F336D00D99977 /* MoveNotesController+UIPickerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B748CD08212F336D00D99977 /* MoveNotesController+UIPickerViewDelegate.swift */; };
 		B748CD0B2132F78800D99977 /* NotebookListController+DeleteNotebookAndMoveNotesControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B748CD0A2132F78800D99977 /* NotebookListController+DeleteNotebookAndMoveNotesControllerDelegate.swift */; };
+		B748CD0D2133042400D99977 /* NoteListController+MoveNotesControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B748CD0C2133042400D99977 /* NoteListController+MoveNotesControllerDelegate.swift */; };
 		B76FCEC42124B2A100B7F242 /* Notes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B76FCEC22124B2A100B7F242 /* Notes.xcdatamodeld */; };
 		B76FCEC72124B2DE00B7F242 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76FCEC62124B2DE00B7F242 /* CoreDataManager.swift */; };
 		B76FCEC92124C26B00B7F242 /* NoteListController+NoteControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76FCEC82124C26B00B7F242 /* NoteListController+NoteControllerDelegate.swift */; };
@@ -64,6 +65,7 @@
 		B748CD06212F334900D99977 /* MoveNotesController+UIPickerViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoveNotesController+UIPickerViewDataSource.swift"; sourceTree = "<group>"; };
 		B748CD08212F336D00D99977 /* MoveNotesController+UIPickerViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoveNotesController+UIPickerViewDelegate.swift"; sourceTree = "<group>"; };
 		B748CD0A2132F78800D99977 /* NotebookListController+DeleteNotebookAndMoveNotesControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotebookListController+DeleteNotebookAndMoveNotesControllerDelegate.swift"; sourceTree = "<group>"; };
+		B748CD0C2133042400D99977 /* NoteListController+MoveNotesControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteListController+MoveNotesControllerDelegate.swift"; sourceTree = "<group>"; };
 		B76FCEC32124B2A100B7F242 /* Notes.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Notes.xcdatamodel; sourceTree = "<group>"; };
 		B76FCEC62124B2DE00B7F242 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		B76FCEC82124C26B00B7F242 /* NoteListController+NoteControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteListController+NoteControllerDelegate.swift"; sourceTree = "<group>"; };
@@ -142,15 +144,16 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		B748168F21286B46005E7AB3 /* NotebookListController */ = {
+		B748168F21286B46005E7AB3 /* NoteListController */ = {
 			isa = PBXGroup;
 			children = (
 				B780CAFC2124AB0C00BD8EFD /* NoteListController.swift */,
 				B780CB022124ACB100BD8EFD /* NoteListController+UITableView.swift */,
 				B76FCEC82124C26B00B7F242 /* NoteListController+NoteControllerDelegate.swift */,
 				B748CCFD212F1D1300D99977 /* NoteListController+NotebookListControllerDelegate.swift */,
+				B748CD0C2133042400D99977 /* NoteListController+MoveNotesControllerDelegate.swift */,
 			);
-			path = NotebookListController;
+			path = NoteListController;
 			sourceTree = "<group>";
 		};
 		B748CD03212F303F00D99977 /* MoveNotes */ = {
@@ -180,6 +183,7 @@
 			children = (
 				B7406D7121248ED50074CFE2 /* NoteController.swift */,
 				B76FCECA2124C2BF00B7F242 /* NoteControllerDelegate.swift */,
+				B748168F21286B46005E7AB3 /* NoteListController */,
 				B748CD03212F303F00D99977 /* MoveNotes */,
 			);
 			path = Note;
@@ -190,7 +194,6 @@
 			children = (
 				B7ED7BC62129C85A009DC01A /* NotebookController */,
 				B7F184EF2128CCBE00630ADA /* NotebookList */,
-				B748168F21286B46005E7AB3 /* NotebookListController */,
 			);
 			path = Notebook;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 				B7406D8F212490350074CFE2 /* UIColor+theme.swift in Sources */,
 				B748CD05212F307E00D99977 /* MoveNotesController+MoveNotesControllerDelegate.swift in Sources */,
 				B76FCEC92124C26B00B7F242 /* NoteListController+NoteControllerDelegate.swift in Sources */,
+				B748CD0D2133042400D99977 /* NoteListController+MoveNotesControllerDelegate.swift in Sources */,
 				B76FCEC72124B2DE00B7F242 /* CoreDataManager.swift in Sources */,
 				B76FCEC42124B2A100B7F242 /* Notes.xcdatamodeld in Sources */,
 				B7406D7221248ED50074CFE2 /* NoteController.swift in Sources */,
