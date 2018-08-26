@@ -43,21 +43,44 @@ class NoteController: UIViewController {
     return tf
   }()
   
-  let createdDateLabel: UILabel = {
+  lazy var createdDateLabel: UILabel = {
     let label = UILabel()
     label.textColor = .darkOrange
-    label.text = "Created: 01/01/2018"
+    label.text = "Created: mm/dd/yyyy"
     label.font = UIFont.boldSystemFont(ofSize: 16)
+    label.isUserInteractionEnabled = true
+    label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleChangeCreationDate)))
     return label
   }()
   
-  let expirationDateLabel: UILabel = {
+  lazy var expirationDateLabel: UILabel = {
     let label = UILabel()
     label.textColor = .darkOrange
-    label.text = "Expires: 31/12/2018"
+    label.text = "Expires: "
     label.font = UIFont.boldSystemFont(ofSize: 16)
+    label.isUserInteractionEnabled = true
+    label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleChangeExpirationDate)))
     return label
   }()
+  
+  lazy var expirationDateTextField: UITextField = {
+    let tf = UITextField()
+    tf.textColor = .onixGrey
+    tf.placeholder = "Select date"
+    tf.inputView = expirationDatePicker
+    return tf
+  }()
+  
+  lazy var expirationDatePicker: UIDatePicker = {
+    let dp = UIDatePicker()
+    dp.datePickerMode = .date
+    dp.addTarget(self, action: #selector(datePickerValueChanged(datePicker: )), for: .valueChanged)
+    dp.backgroundColor = .creamYellow
+    dp.setValue(UIColor.darkOrange, forKey: "textColor")
+    return dp
+  }()
+  
+  
   
   let textView: UITextView = {
     let textView = UITextView()
@@ -111,6 +134,20 @@ class NoteController: UIViewController {
   
   //MARK:- User interaction and UI functions
   
+  @objc fileprivate func handleChangeCreationDate(){
+    
+  }
+  
+  @objc private func datePickerValueChanged(datePicker: UIDatePicker) {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateStyle = .medium
+    dateFormatter.timeStyle = .none
+    expirationDateTextField.text = dateFormatter.string(from: datePicker.date)
+  }
+  
+  @objc fileprivate func handleChangeExpirationDate(){
+    
+  }
   fileprivate func setupUI() {
     
     navigationItem.leftBarButtonItem =  UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: self, action: #selector(handleBack))
@@ -134,16 +171,25 @@ class NoteController: UIViewController {
     
     titleStackView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 8, width: 0, height: 50)
     
+    let expirationDateStackView = UIStackView(arrangedSubviews: [expirationDateLabel, expirationDateTextField])
     
-    let datesStackView = UIStackView(arrangedSubviews: [createdDateLabel, expirationDateLabel])
+    expirationDateStackView.distribution = .fillProportionally
+    expirationDateStackView.axis = .horizontal
+    expirationDateStackView.spacing = 1
+    
+    view.addSubview(expirationDateStackView)
+    
+    
+    let datesStackView = UIStackView(arrangedSubviews: [createdDateLabel, expirationDateStackView])
     
     datesStackView.distribution = .fillProportionally
     datesStackView.axis = .horizontal
-    datesStackView.spacing = 10
+    datesStackView.spacing = 1
     view.addSubview(datesStackView)
     
     
-    datesStackView.anchor(top: titleStackView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: paddingLeft , paddingBottom: 0, paddingRight: paddingRight, width: 0, height: 50)
+    datesStackView.anchor(top: titleStackView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: paddingLeft , paddingBottom: 0, paddingRight: 8, width: 0, height: 50)
+    
     
     view.addSubview(locationLabel)
     
