@@ -15,8 +15,11 @@ extension CurrentLocationController: CLLocationManagerDelegate  {
   }
   
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-    let newLocation = locations.last
+    guard let newLocation =  locations.last else { return }
     print("didUpdateLocations \(String(describing: newLocation))")
+    
+    location = newLocation
+    updateLabels()
   }
   
 }

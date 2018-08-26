@@ -15,6 +15,7 @@ class CurrentLocationController: UIViewController {
   
   //CLLocationManager gives us the GPS coordinates
   let locationManager = CLLocationManager()
+  var location: CLLocation?
   
   //MARK:- Subviews
   
@@ -26,15 +27,27 @@ class CurrentLocationController: UIViewController {
     return label
   }()
   
+  let latitude: UILabel = {
+    let label = UILabel()
+    label.text = "Latitude:"
+    return label
+  }()
+  
   let latitudeLabel: UILabel = {
     let label = UILabel()
-    label.text = "Latitude: (Latitude goes here)"
+//    label.text = "(Latitude goes here)"
+    return label
+  }()
+  
+  let longitude: UILabel = {
+    let label = UILabel()
+    label.text = "Longitude:"
     return label
   }()
   
   let longitudeLabel: UILabel = {
     let label = UILabel()
-    label.text = "Longitude: (Longitude goes here)"
+//    label.text = "(Longitude goes here)"
     return label
   }()
   
@@ -64,6 +77,7 @@ class CurrentLocationController: UIViewController {
     super.viewDidLoad()
     view.backgroundColor = .white
     setupUI()
+    updateLabels()
   }
   
   //MARK:- Action handlers
@@ -100,20 +114,48 @@ class CurrentLocationController: UIViewController {
     present(alertController, animated: true, completion: nil)
   }
   
+  
   //MARK:- Custom UI Functions
+  
+  func updateLabels() {
+    if let location = location {
+      latitudeLabel.text = String(format: "%.8f",
+                                  location.coordinate.latitude)
+      longitudeLabel.text = String(format: "%.8f",
+                                   location.coordinate.longitude)
+      tagButton.isHidden = false
+      messageLabel.text = ""
+    } else {
+      latitudeLabel.text = ""
+      longitudeLabel.text = ""
+      addressLabel.text = ""
+      tagButton.isHidden = true
+      messageLabel.text = "Tap 'Get My Location' to Start"
+    }
+  }
   
   fileprivate func setupUI() {
     view.addSubview(messageLabel)
     messageLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: view.frame.width, height: 50)
     
-    view.addSubview(latitudeLabel)
-    latitudeLabel.anchor(top: messageLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 50)
+    let latitudeStackView = UIStackView(arrangedSubviews: [latitude, latitudeLabel])
+    latitudeStackView.distribution = .fillProportionally
+    latitudeStackView.axis = .horizontal
+    latitudeStackView.spacing = 10
+    view.addSubview(latitudeStackView)
     
-    view.addSubview(longitudeLabel)
-    longitudeLabel.anchor(top: latitudeLabel.bottomAnchor,left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 50)
+    latitudeStackView.anchor(top: messageLabel.bottomAnchor,left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 50)
     
+    let longitudeStackView = UIStackView(arrangedSubviews: [longitude, longitudeLabel])
+    longitudeStackView.distribution = .fillProportionally
+    longitudeStackView.axis = .horizontal
+    longitudeStackView.spacing = 10
+    view.addSubview(longitudeStackView)
+    
+    longitudeStackView.anchor(top: latitudeStackView.bottomAnchor,left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 50)
+  
     view.addSubview(addressLabel)
-    addressLabel.anchor(top: longitudeLabel.bottomAnchor,left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 50)
+    addressLabel.anchor(top: longitudeStackView.bottomAnchor,left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 50)
     
     view.addSubview(tagButton)
     tagButton.anchor(top: addressLabel.bottomAnchor,left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 50)
