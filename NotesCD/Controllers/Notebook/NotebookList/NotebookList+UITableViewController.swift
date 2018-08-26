@@ -69,11 +69,38 @@ extension NotebookListController {
   
   private func deleteNotebookHandler(action: UITableViewRowAction, indexPath: IndexPath) {
     print("Trying to delete notebook...")
+    
+    let actionAlert = UIAlertController(title: "Do you want move your notes", message: "Select 'OK' if you want to save your notes before deleting the notebook", preferredStyle: .actionSheet)
+    
+    let doMoveAction = UIAlertAction(title: "OK", style: .default) { (okAction) in
+      print("Move the notes before deleting the notebook")
+      
+      let notebookDeleteController = NotebookDeleteController()
+      
+      let navController = UINavigationController(rootViewController: notebookDeleteController)
+      
+      self.present(navController, animated: true, completion: nil)
+      
+    }
+    
+    let doNotMoveAction = UIAlertAction(title: "Delete all the notes", style: .destructive) { (doNoteMoveAction) in
+      print("Delete all the notes")
+    }
+    
+    actionAlert.addAction(doNotMoveAction)
+    actionAlert.addAction(doMoveAction)
+
+
+    
     if let delegate = self.delegate {
       delegate.didChangeNotebookList()
     }
   }
   
+
+  fileprivate func okActionHandler() {
+    print("Trying to delete selected notebook")
+  }
   private func setAsDefaultHandler(action: UITableViewRowAction, indexPath: IndexPath) {
     print("Trying to set default notebook...")
     
