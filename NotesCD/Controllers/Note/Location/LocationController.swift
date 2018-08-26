@@ -51,6 +51,10 @@ class LocationController: UIViewController {
     setupUI()
   }
   
+  override func viewWillDisappear(_ animated: Bool) {
+    navigationController?.isToolbarHidden = false
+  }
+  
   
   func goTo(address: String) {
     

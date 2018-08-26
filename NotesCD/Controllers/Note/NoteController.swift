@@ -131,13 +131,42 @@ class NoteController: UIViewController {
     return tf
   }()
   
+ 
+  
   //MARK:- Lifecycle
  
   override func viewDidLoad() {
     super.viewDidLoad()
     setupUI()
+    setupToolbar()
+    
+    let notificationCenter = NotificationCenter.default
+    notificationCenter.addObserver(self, selector: #selector(handleAdjustForKeyBoard), name: Notification.Name.UIKeyboardWillHide, object: nil)
+    notificationCenter.addObserver(self, selector: #selector(handleAdjustForKeyBoard), name: Notification.Name.UIKeyboardWillChangeFrame, object: nil)
   }
   
+  @objc fileprivate func handleAdjustForKeyBoard(notification: Notification) {
+    let userInfo = notification.userInfo!
+    
+    let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+    let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
+    
+    if notification.name == Notification.Name.UIKeyboardWillHide {
+      textView.contentInset = UIEdgeInsets.zero
+    } else {
+      textView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height, right: 0)
+    }
+    
+    textView.scrollIndicatorInsets = textView.contentInset
+    
+    let selectedRange = textView.selectedRange
+    textView.scrollRangeToVisible(selectedRange)
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    navigationController?.isToolbarHidden = true
+  }
+ 
   override func viewDidLayoutSubviews() {
     // make note's text to run around image view
     var imageArea = view.convert(imageView.frame, to: textView)
@@ -164,7 +193,7 @@ class NoteController: UIViewController {
     
   }
   fileprivate func setupUI() {
-    
+  
     navigationItem.leftBarButtonItem =  UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: self, action: #selector(handleBack))
     
 //    self.navigationController?.navigationBar.prefersLargeTitles = true
@@ -259,7 +288,26 @@ class NoteController: UIViewController {
     }
   }
   
+  fileprivate func setupToolbar() {
+    let bar = UIToolbar()
+    bar.barTintColor = .darkGrey
+    bar.isTranslucent = false
+    let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+    let imageBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "photo-camera-icon").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleTakePicture))
+    let locationBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "location-placeholder").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleSelectLocation))
+    bar.sizeToFit()
+    bar.items = [imageBtn, space,locationBtn]
+    textView.inputAccessoryView = bar
+//    navigationController?.isToolbarHidden = false
+//    navigationController?.toolbar.barTintColor = .darkGrey
+//    navigationController?.toolbar.isTranslucent  = false
+    
+//    setToolbarItems([imageBtn, space, locationBtn], animated: true)
+  }
   
+  @objc fileprivate func handleTakePicture() {
+    print("trying to take a pic")
+  }
   @objc private func handleSaveNote() {
     // tap on Save button
     if self.note == nil {
