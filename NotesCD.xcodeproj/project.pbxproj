@@ -123,7 +123,8 @@
 			isa = PBXGroup;
 			children = (
 				B7406D8521248FBF0074CFE2 /* Controllers */,
-				B76FCEC52124B2AA00B7F242 /* Model */,
+				B76FCEC52124B2AA00B7F242 /* Models */,
+				B748CD212133532700D99977 /* Views */,
 				B7406D94212490430074CFE2 /* Utils */,
 				B7406D6F21248ED50074CFE2 /* AppDelegate.swift */,
 				B7406D7B21248ED50074CFE2 /* Info.plist */,
@@ -136,7 +137,6 @@
 			children = (
 				B780CAFF2124AB1D00BD8EFD /* Notebook */,
 				B780CAFB2124AAFA00BD8EFD /* Note */,
-				B7406D95212490940074CFE2 /* CustomNavigationController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -189,7 +189,15 @@
 			path = Location;
 			sourceTree = "<group>";
 		};
-		B76FCEC52124B2AA00B7F242 /* Model */ = {
+		B748CD212133532700D99977 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B7406D95212490940074CFE2 /* CustomNavigationController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B76FCEC52124B2AA00B7F242 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				B76FCEC22124B2A100B7F242 /* Notes.xcdatamodeld */,
@@ -197,7 +205,7 @@
 				B748CCF7212C66FA00D99977 /* Note+CoreDataManager.swift */,
 				B748CCF9212C6ABE00D99977 /* Notebook+CoreDataManager.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		B780CAFB2124AAFA00BD8EFD /* Note */ = {
