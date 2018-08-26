@@ -60,6 +60,7 @@ extension NotebookListController {
   override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
     let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete", handler: deleteNotebookHandler)
     let setAsDefaultAction = UITableViewRowAction(style: .normal, title: "Default", handler: setAsDefaultHandler)
+ 
     
     deleteAction.backgroundColor = .darkRed
     setAsDefaultAction.backgroundColor = .darkGreen
@@ -77,7 +78,7 @@ extension NotebookListController {
     let doMoveAndDeleteAction = UIAlertAction(title: "Move all notes and delete", style: .default) { (doMoveAndDeleteAction) in
       print("Move the notes before deleting the notebook")
       
-      let notebookDeleteController = NotebookDeleteController()
+      let notebookDeleteController = DeleteNotebookAndMoveNotesController()
       
       let navController = UINavigationController(rootViewController: notebookDeleteController)
       

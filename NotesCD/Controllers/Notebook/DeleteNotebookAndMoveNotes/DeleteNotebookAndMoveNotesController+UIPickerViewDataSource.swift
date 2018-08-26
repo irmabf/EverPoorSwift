@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension NotebookDeleteController: UIPickerViewDataSource {
+extension DeleteNotebookAndMoveNotesController: UIPickerViewDataSource {
   
   func numberOfComponents(in pickerView: UIPickerView) -> Int {
     return 1

@@ -8,11 +8,13 @@
 
 import UIKit
 
-class NotebookDeleteController: UIViewController {
+class DeleteNotebookAndMoveNotesController: UIViewController {
   
   var notebooks: [Notebook]?
   
-  var delegate: NotebookDeleteControllerDelegate?
+  var notes: [Note]?
+  
+  var delegate: DeleteNotebookAndMoveNotesControllerDelegate?
   
    var selectedNotebookRow: Int = 0
   
@@ -25,23 +27,20 @@ class NotebookDeleteController: UIViewController {
     super.viewDidLoad()
     
     notebooks = CoreDataManager.shared.fetchNotebooks()
-    
-    navigationItem.title = "Select Notebook to Delete"
-    
     notebookPicker.dataSource = self
     notebookPicker.delegate = self
-    
-    
-    
+
     setupUI()
   }
   
   fileprivate func setupUI() {
     
     view.backgroundColor = .darkGrey
+    navigationController?.navigationBar.prefersLargeTitles = true
+    navigationItem.title = "Select Notebook"
     
     let cancelBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "icon-cancel").withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(handleCancel))
-    let selectBtn = UIBarButtonItem(title: "Select", style: .plain, target: self, action: #selector(handleSelect))
+    let selectBtn = UIBarButtonItem(title: "Move Notes", style: .plain, target: self, action: #selector(handleMoveNotes))
     view.addSubview(notebookPicker)
     
     navigationItem.leftBarButtonItem = cancelBtn
@@ -54,10 +53,34 @@ class NotebookDeleteController: UIViewController {
     print("Trying to cancel")
     dismiss(animated: true, completion: nil)
   }
-  @objc fileprivate func handleSelect() {
-    print("Trying to select")
-    let notebook = notebooks![selectedNotebookRow]
-    delegate?.didSelectNotebook(notebook: notebook)
+  @objc fileprivate func handleMoveNotes() {
+    print("Trying to move notes")
+    let newNotebook = notebooks![selectedNotebookRow]
+//    delegate?.didSelectNotebook(notebook: newNotebook)
+//    dismiss(animated: true, completion: nil)
+    
+    if let notesToMove = notes {
+      
+      for note in notesToMove {
+        note.notebook = newNotebook
+      }
+      
+      let queue = DispatchQueue(label: "DeleteNotebookAndMoveNotes")
+      let context = CoreDataManager.shared.persistentContainer.viewContext
+      
+      queue.async {
+        do {
+          try context.save()
+          DispatchQueue.main.async {
+            self.delegate?.didMoveNotes(to: newNotebook)
+          }
+          
+        } catch let moveError {
+          print("Failed to move notes:", moveError)
+        }
+      }
+    }
+    
     dismiss(animated: true, completion: nil)
   }
 }

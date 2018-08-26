@@ -71,7 +71,7 @@ extension NoteListController {
   private func moveNoteHandler(action: UITableViewRowAction, indexPath: IndexPath) {
     print("Trying to move note...")
     
-    let notebookDeleteController = NotebookDeleteController()
+    let notebookDeleteController = DeleteNotebookAndMoveNotesController()
     let navController = UINavigationController(rootViewController: notebookDeleteController)
     present(navController, animated: true, completion: nil)
   }
