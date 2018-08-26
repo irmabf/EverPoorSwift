@@ -142,26 +142,6 @@ extension NoteListController {
     
     return label
   }
-
-
-  
-
-  
-  
-
-
-  
-
-  
-  
-
-  
-}
-
-extension UIColor {
-  class var separatorColor: UIColor {
-    return .darkWhite
-  }
 }
 
 

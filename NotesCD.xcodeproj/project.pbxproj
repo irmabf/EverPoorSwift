@@ -32,6 +32,7 @@
 		B748CD142133204200D99977 /* LocationController+MKMapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B748CD132133204200D99977 /* LocationController+MKMapViewDelegate.swift */; };
 		B748CD162133217900D99977 /* LocationController+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B748CD152133217900D99977 /* LocationController+UITextFieldDelegate.swift */; };
 		B748CD1821332ABF00D99977 /* LocationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B748CD1721332ABF00D99977 /* LocationControllerDelegate.swift */; };
+		B748CD1A21332BA900D99977 /* UIColor+SeparatorColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B748CD1921332BA900D99977 /* UIColor+SeparatorColor.swift */; };
 		B76FCEC42124B2A100B7F242 /* Notes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B76FCEC22124B2A100B7F242 /* Notes.xcdatamodeld */; };
 		B76FCEC72124B2DE00B7F242 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76FCEC62124B2DE00B7F242 /* CoreDataManager.swift */; };
 		B76FCEC92124C26B00B7F242 /* NoteListController+NoteControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76FCEC82124C26B00B7F242 /* NoteListController+NoteControllerDelegate.swift */; };
@@ -74,6 +75,7 @@
 		B748CD132133204200D99977 /* LocationController+MKMapViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocationController+MKMapViewDelegate.swift"; sourceTree = "<group>"; };
 		B748CD152133217900D99977 /* LocationController+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocationController+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
 		B748CD1721332ABF00D99977 /* LocationControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationControllerDelegate.swift; sourceTree = "<group>"; };
+		B748CD1921332BA900D99977 /* UIColor+SeparatorColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+SeparatorColor.swift"; sourceTree = "<group>"; };
 		B76FCEC32124B2A100B7F242 /* Notes.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Notes.xcdatamodel; sourceTree = "<group>"; };
 		B76FCEC62124B2DE00B7F242 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		B76FCEC82124C26B00B7F242 /* NoteListController+NoteControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteListController+NoteControllerDelegate.swift"; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 			children = (
 				B7406D88212490350074CFE2 /* UIColor+rgb.swift */,
 				B7406D89212490350074CFE2 /* UIColor+theme.swift */,
+				B748CD1921332BA900D99977 /* UIColor+SeparatorColor.swift */,
 				B7406D8A212490350074CFE2 /* UILabel+IndentedLabel.swift */,
 				B7406D8C212490350074CFE2 /* UINavigationController+style.swift */,
 				B7406D8D212490350074CFE2 /* UIView+helpers.swift */,
@@ -321,6 +324,7 @@
 				B7406D8E212490350074CFE2 /* UIColor+rgb.swift in Sources */,
 				B748CCFA212C6ABE00D99977 /* Notebook+CoreDataManager.swift in Sources */,
 				B7406D96212490940074CFE2 /* CustomNavigationController.swift in Sources */,
+				B748CD1A21332BA900D99977 /* UIColor+SeparatorColor.swift in Sources */,
 				B748CD09212F336D00D99977 /* MoveNotesController+UIPickerViewDelegate.swift in Sources */,
 				B748CCF8212C66FA00D99977 /* Note+CoreDataManager.swift in Sources */,
 				B76FCECB2124C2BF00B7F242 /* NoteControllerDelegate.swift in Sources */,
