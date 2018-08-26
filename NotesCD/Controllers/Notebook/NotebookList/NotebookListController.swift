@@ -19,8 +19,6 @@ class NotebookListController: UITableViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    
     self.notebooks = CoreDataManager.shared.fetchNotebooks()
     
     setupUI()
@@ -35,7 +33,6 @@ class NotebookListController: UITableViewController {
   fileprivate func setupUI() {
     navigationItem.title = "Notebooks"
     setupTableViewStyle(tableView: tableView)
-  
   }
   
   //MARK:- Actions
@@ -45,8 +42,6 @@ class NotebookListController: UITableViewController {
     let navController = UINavigationController(rootViewController: notebookController)
     present(navController, animated: true, completion: nil)
   }
-
-  
 }
 
 

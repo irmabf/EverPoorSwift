@@ -20,7 +20,7 @@ extension NotebookListController {
     
     if let notebookTitle = notebook.title {
       if notebook.isDefault {
-        cell.textLabel?.text = "\(notebookTitle)"
+        cell.textLabel?.text = "\(notebookTitle) (default)"
       } else {
         cell.textLabel?.text = notebookTitle
       }
@@ -91,6 +91,7 @@ extension NotebookListController {
     actionAlert.addAction(doMoveAction)
 
 
+    present(actionAlert, animated: true, completion: nil)
     
     if let delegate = self.delegate {
       delegate.didChangeNotebookList()

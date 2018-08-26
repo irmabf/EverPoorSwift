@@ -16,38 +16,26 @@ extension NoteListController {
   }
   
   
-  override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    
-    let defaultNotebook = CoreDataManager.shared.getDefaultNotebook()
-    
-    if let notebookTitle = defaultNotebook.title {
-      return "\(notebookTitle) Default"
-    }else {
-      return "No title - Default"
-    }
-  }
+//  override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//    
+////    let defaultNotebook = CoreDataManager.shared.getDefaultNotebook()
+//    
+//    //Get notebook
+//    let notebook = notebooks[section]
+//    //if the notebook is the default notebook, set a mark
+//    let defaultMark = notebook.isDefault ? " (default)" : ""
+//    
+//    if let notebookTitle = notebook.title {
+//      return "\(notebookTitle)\(defaultMark)"
+//    }else {
+//      return "Untitled notebook\(defaultMark)"
+//    }
+//  }
   
-  override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    
-    let defaultNotebook = CoreDataManager.shared.getDefaultNotebook()
-    
-    let label = IndentedLabel()
-    label.backgroundColor = .goldenOrange
-    
-    if let notebookTitlte = defaultNotebook.title {
-      label.text = "\(notebookTitlte) Default"
-    }else {
-      label.text = ""
-    }
-    return label
-  }
-
   //MARK:- TableView Number of Sections
   override func numberOfSections(in tableView: UITableView) -> Int {
     return notebooks.count
   }
-  
-  //MARK:- TableView numberOfRowsInSection
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     //If there is any note in the given section, return the number or notes
@@ -72,6 +60,7 @@ extension NoteListController {
     return cell
   }
   
+  
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let note = getNoteAtIndexPath(indexPath: indexPath)
     
@@ -83,16 +72,16 @@ extension NoteListController {
   }
   
   override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-
-      let deleteNoteAction = UITableViewRowAction(style: .destructive, title: "Delete", handler: deleteNoteHandler)
-
-    let moveNoteAction = UITableViewRowAction(style: .normal, title: "Move", handler: moveNoteHandler)
-  
     
-   
+    let deleteNoteAction = UITableViewRowAction(style: .destructive, title: "Delete", handler: deleteNoteHandler)
+    
+    let moveNoteAction = UITableViewRowAction(style: .normal, title: "Move", handler: moveNoteHandler)
+    
+    
+    
     moveNoteAction.backgroundColor = .onixGrey
     deleteNoteAction.backgroundColor = .darkRed
-
+    
     return [moveNoteAction, deleteNoteAction]
   }
   
@@ -100,18 +89,17 @@ extension NoteListController {
     print("Trying to move note...")
   }
   
-  
   private func deleteNoteHandler(action: UITableViewRowAction, indexPath: IndexPath) {
     print("Trying to delete note...")
     //get the indexpath of the note to delete
     let note = getNoteAtIndexPath(indexPath: indexPath)
-
+    
     // delete note from Core Data
     let context = CoreDataManager.shared.persistentContainer.viewContext
-
+    
     //delete from the context
     context.delete(note)
-     // to persist the deletion to core data persistent store
+    // to persist the deletion to core data persistent store
     do {
       try context.save()
       //delete note from noteboook list
@@ -120,7 +108,7 @@ extension NoteListController {
       print("Failed to delete note:", deleteError)
     }
   }
-
+  
   fileprivate func getNoteAtIndexPath(indexPath: IndexPath) -> Note {
     //Get section of the given notebook and save it to the notebook variable
     let notebook = notebooks[indexPath.section]
@@ -132,6 +120,37 @@ extension NoteListController {
     return note
     
   }
+
+  
+  override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    
+    let notebook = notebooks[section]
+    
+    let defaultMark = notebook.isDefault ? " (default)" : ""
+    
+    let label = IndentedLabel()
+    label.backgroundColor = .goldenOrange
+    
+    if let notebookTitle = notebook.title {
+      label.text = "\(notebookTitle)\(defaultMark)"
+    }else {
+      label.text = "Untitled notebook\(defaultMark)"
+    }
+    return label
+  }
+
+
+  
+
+  
+  
+
+
+  
+
+  
+  
+
   
 }
 

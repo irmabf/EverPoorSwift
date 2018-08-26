@@ -57,19 +57,7 @@ class NotebookController: UIViewController  {
     }else {
       updateNotebook()
     }
-    
-//    let context = CoreDataManager.shared.persistentContainer.viewContext
-//
-//    do {
-//      try context.save()
-//      dismiss(animated: true, completion: {
-//        self.delegate?.didAddNotebook(notebook: self.notebook!)
-//      })
-//    } catch let saveErr {
-//      print("Failed to save notebook:", saveErr)
-//    }
   }
-  
   
   @objc fileprivate func handleCancel(){
     dismiss(animated: true, completion: nil)
@@ -91,7 +79,6 @@ class NotebookController: UIViewController  {
     } catch let saveErr {
       print("Failed to save new notebook to Core Data:", saveErr)
     }
-    
   }
 
   fileprivate func updateNotebook(){
@@ -125,6 +112,3 @@ class NotebookController: UIViewController  {
     stackView.anchor(top: goldenOrangeBackgroundView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingBottom: 16, paddingRight: 16, width: 0, height: 50)
   }
 }
-
-
-
