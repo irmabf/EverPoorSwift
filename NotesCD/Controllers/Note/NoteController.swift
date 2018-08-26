@@ -18,6 +18,13 @@ class NoteController: UIViewController {
     
     didSet {
       titleTextField.text = note?.title
+      
+      if let expirationDate = note?.expirationDate {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+        expirationDateTextField.text = dateFormatter.string(from: expirationDate)
+      }
     }
   }
   
@@ -130,6 +137,7 @@ class NoteController: UIViewController {
     imageArea = imageArea.insetBy(dx: -8, dy: 0)
     let path = UIBezierPath(rect: imageArea)
     textView.textContainer.exclusionPaths = [path]
+    
   }
   
   //MARK:- User interaction and UI functions
@@ -221,6 +229,7 @@ class NoteController: UIViewController {
     //Get the value from the titleTextField and set it as the newNote property
     //the newNoteProperty will put the object in the NSEntity waiting for the save
     newNote.setValue(titleTextField.text, forKey: "title")
+    newNote.setValue(expirationDatePicker.date, forKey: "expirationDate")
     
     let defaultNotebook = CoreDataManager.shared.getDefaultNotebook()
     
@@ -253,6 +262,7 @@ class NoteController: UIViewController {
     let context = CoreDataManager.shared.persistentContainer.viewContext
     //sync view with model
     note?.title = titleTextField.text
+    note?.expirationDate = expirationDatePicker.date
 
     //perform save in core data
     do {
