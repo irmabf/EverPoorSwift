@@ -37,7 +37,7 @@
 		B7ED7BCA2129CC1E009DC01A /* NotebookControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7ED7BC92129CC1E009DC01A /* NotebookControllerDelegate.swift */; };
 		B7ED7BCC2129CDB3009DC01A /* NotebookListController+NotebookControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7ED7BCB2129CDB3009DC01A /* NotebookListController+NotebookControllerDelegate.swift */; };
 		B7F184EE2128CCB700630ADA /* NotebookListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F184ED2128CCB700630ADA /* NotebookListController.swift */; };
-		B7F184F12128CDBC00630ADA /* NotebookList+UITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F184F02128CDBC00630ADA /* NotebookList+UITableViewController.swift */; };
+		B7F184F12128CDBC00630ADA /* NotebookListController+UITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F184F02128CDBC00630ADA /* NotebookListController+UITableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,7 +73,7 @@
 		B7ED7BC92129CC1E009DC01A /* NotebookControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotebookControllerDelegate.swift; sourceTree = "<group>"; };
 		B7ED7BCB2129CDB3009DC01A /* NotebookListController+NotebookControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotebookListController+NotebookControllerDelegate.swift"; sourceTree = "<group>"; };
 		B7F184ED2128CCB700630ADA /* NotebookListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotebookListController.swift; sourceTree = "<group>"; };
-		B7F184F02128CDBC00630ADA /* NotebookList+UITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotebookList+UITableViewController.swift"; sourceTree = "<group>"; };
+		B7F184F02128CDBC00630ADA /* NotebookListController+UITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotebookListController+UITableViewController.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,7 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				B7F184ED2128CCB700630ADA /* NotebookListController.swift */,
-				B7F184F02128CDBC00630ADA /* NotebookList+UITableViewController.swift */,
+				B7F184F02128CDBC00630ADA /* NotebookListController+UITableViewController.swift */,
 				B76FCED32124CCE800B7F242 /* NotebookListCustomCell.swift */,
 				B748CCFB212F195F00D99977 /* NotebookListControllerDelegate.swift */,
 				B7ED7BCB2129CDB3009DC01A /* NotebookListController+NotebookControllerDelegate.swift */,
@@ -296,7 +296,7 @@
 				B748CD09212F336D00D99977 /* NotebookDeleteController+UIPickerViewDelegate.swift in Sources */,
 				B748CCF8212C66FA00D99977 /* Note+CoreDataManager.swift in Sources */,
 				B76FCECB2124C2BF00B7F242 /* NoteControllerDelegate.swift in Sources */,
-				B7F184F12128CDBC00630ADA /* NotebookList+UITableViewController.swift in Sources */,
+				B7F184F12128CDBC00630ADA /* NotebookListController+UITableViewController.swift in Sources */,
 				B748CD02212F2E0800D99977 /* NotebookDeleteController.swift in Sources */,
 				B7ED7BCC2129CDB3009DC01A /* NotebookListController+NotebookControllerDelegate.swift in Sources */,
 				B748CCFC212F195F00D99977 /* NotebookListControllerDelegate.swift in Sources */,

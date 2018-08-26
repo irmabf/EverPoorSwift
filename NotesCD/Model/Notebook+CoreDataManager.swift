@@ -91,6 +91,17 @@ extension CoreDataManager {
       print("Failed to delete notebooks:", deleteErr)
     }
   }
+  
+  func deleteSingleNotebook(notebook: Notebook){
+    let context = persistentContainer.viewContext
+    context.delete(notebook)
+    
+    do {
+      try context.save()
+    } catch let delErr {
+      print("Failed to delete single notebook:", delErr)
+    }
+  }
 
 }
 

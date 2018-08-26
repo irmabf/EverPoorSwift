@@ -14,24 +14,7 @@ extension NoteListController {
   override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     return 50
   }
-  
-  
-//  override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//    
-////    let defaultNotebook = CoreDataManager.shared.getDefaultNotebook()
-//    
-//    //Get notebook
-//    let notebook = notebooks[section]
-//    //if the notebook is the default notebook, set a mark
-//    let defaultMark = notebook.isDefault ? " (default)" : ""
-//    
-//    if let notebookTitle = notebook.title {
-//      return "\(notebookTitle)\(defaultMark)"
-//    }else {
-//      return "Untitled notebook\(defaultMark)"
-//    }
-//  }
-  
+
   //MARK:- TableView Number of Sections
   override func numberOfSections(in tableView: UITableView) -> Int {
     return notebooks.count
@@ -87,6 +70,10 @@ extension NoteListController {
   
   private func moveNoteHandler(action: UITableViewRowAction, indexPath: IndexPath) {
     print("Trying to move note...")
+    
+    let notebookDeleteController = NotebookDeleteController()
+    let navController = UINavigationController(rootViewController: notebookDeleteController)
+    present(navController, animated: true, completion: nil)
   }
   
   private func deleteNoteHandler(action: UITableViewRowAction, indexPath: IndexPath) {
