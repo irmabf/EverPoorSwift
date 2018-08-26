@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol DeleteNotebookAndMoveNotesControllerDelegate {
+protocol MoveNotesControllerDelegate {
   func didSelectNotebook(notebook: Notebook)
   func didMoveNotes(to notebook: Notebook)
 }

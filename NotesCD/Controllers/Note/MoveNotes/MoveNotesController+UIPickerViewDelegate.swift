@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension DeleteNotebookAndMoveNotesController: UIPickerViewDelegate {
+extension MoveNotesController: UIPickerViewDelegate {
   
   func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
     return notebooks![row].title

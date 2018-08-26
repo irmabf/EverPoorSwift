@@ -58,23 +58,16 @@ extension NoteListController {
     
     let deleteNoteAction = UITableViewRowAction(style: .destructive, title: "Delete", handler: deleteNoteHandler)
     
-    let moveNoteAction = UITableViewRowAction(style: .normal, title: "Move", handler: moveNoteHandler)
+   
     
     
     
-    moveNoteAction.backgroundColor = .onixGrey
     deleteNoteAction.backgroundColor = .darkRed
     
-    return [moveNoteAction, deleteNoteAction]
+    return [deleteNoteAction]
   }
   
-  private func moveNoteHandler(action: UITableViewRowAction, indexPath: IndexPath) {
-    print("Trying to move note...")
-    
-    let notebookDeleteController = DeleteNotebookAndMoveNotesController()
-    let navController = UINavigationController(rootViewController: notebookDeleteController)
-    present(navController, animated: true, completion: nil)
-  }
+
   
   private func deleteNoteHandler(action: UITableViewRowAction, indexPath: IndexPath) {
     print("Trying to delete note...")

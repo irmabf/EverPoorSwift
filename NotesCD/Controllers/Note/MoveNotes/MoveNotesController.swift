@@ -8,13 +8,13 @@
 
 import UIKit
 
-class DeleteNotebookAndMoveNotesController: UIViewController {
+class MoveNotesController: UIViewController {
   
   var notebooks: [Notebook]?
   
   var notes: [Note]?
   
-  var delegate: DeleteNotebookAndMoveNotesControllerDelegate?
+  var delegate: MoveNotesControllerDelegate?
   
    var selectedNotebookRow: Int = 0
   

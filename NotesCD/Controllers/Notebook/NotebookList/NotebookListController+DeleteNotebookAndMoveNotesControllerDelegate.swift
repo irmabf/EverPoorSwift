@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension NotebookListController: DeleteNotebookAndMoveNotesControllerDelegate {
+extension NotebookListController: MoveNotesControllerDelegate {
   func didSelectNotebook(notebook: Notebook) {
     
   }

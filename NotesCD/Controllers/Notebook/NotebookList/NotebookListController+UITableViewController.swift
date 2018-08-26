@@ -60,75 +60,77 @@ extension NotebookListController {
   override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
     let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete", handler: deleteNotebookHandler)
     let setAsDefaultAction = UITableViewRowAction(style: .normal, title: "Default", handler: setAsDefaultHandler)
+    
+    let moveNotesAction = UITableViewRowAction(style: .default, title: "Move", handler: moveNotesHandler)
  
     
     deleteAction.backgroundColor = .darkRed
+    moveNotesAction.backgroundColor = .creamYellow
     setAsDefaultAction.backgroundColor = .darkGreen
     
-    return [deleteAction, setAsDefaultAction]
+    return [deleteAction, moveNotesAction, setAsDefaultAction]
   }
   
   private func deleteNotebookHandler(action: UITableViewRowAction, indexPath: IndexPath) {
     print("Trying to delete notebook...")
+ 
+    let notebook = self.notebooks[indexPath.row]
     
-    //actionController controller
-    let actionController = UIAlertController(title: "Delete notebook", message: nil, preferredStyle: .actionSheet)
-    
-  
-    let doMoveAndDeleteAction = UIAlertAction(title: "Move all notes and delete", style: .default) { (doMoveAndDeleteAction) in
-      print("Move the notes before deleting the notebook")
+    if notebook.isDefault {
+      print("Cannot delete a default notebook")
       
-      let notebookDeleteController = DeleteNotebookAndMoveNotesController()
+      let alertController = UIAlertController(title: "Alert", message: "You cannot delete a default notebook", preferredStyle: .actionSheet)
       
-      let navController = UINavigationController(rootViewController: notebookDeleteController)
+      let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+      alertController.addAction(okAction)
       
-      self.present(navController, animated: true, completion: nil)
+      present(alertController, animated: true, completion: nil)
+      return
     }
     
-    let doNotMoveAndDeleteAction = UIAlertAction(title: "Delete all the notes", style: .destructive) { (doNotMoveAndDeleteActio) in
-      print("Delete all the notes")
+    let deleteController = UIAlertController(title: "Delete Notebook", message: "Are you sure you want to delete the notebook?", preferredStyle: .actionSheet)
+    
+    let deleteAction = UIAlertAction(title: "Yes, delete", style: .default) { (deleteAction) in
       
-      let notebook = self.notebooks[indexPath.row]
-      
-      if notebook.isDefault {
-        print("Failed to delete default notebook")
-        
-        let alertController = UIAlertController(title: "Alert", message: "You cannot delete a default notebook", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alertController.addAction(okAction)
-        self.present(alertController, animated: true, completion: nil)
-        return
-      }
-      
-      let queue = DispatchQueue(label: "Delete Single Notebook")
-      
+      let queue = DispatchQueue(label: "Delete Notebook Controller")
       queue.async {
         CoreDataManager.shared.deleteSingleNotebook(notebook: notebook)
         DispatchQueue.main.async {
           self.notebooks.remove(at: indexPath.row)
-          self.tableView.deleteRows(at: [indexPath], with: .middle)
+          self.tableView.deleteRows(at: [indexPath], with: .automatic)
           self.delegate?.didChangeNotebookList()
-          
+          if let delegate = self.delegate {
+            delegate.didChangeNotebookList()
+          }
         }
       }
     }
     
-    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (cancelAction) in
-      print("Cancel")
+    let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (cancelAction) in
+      
     }
     
-    actionController.addAction(doNotMoveAndDeleteAction)
-    actionController.addAction(doMoveAndDeleteAction)
-    actionController.addAction(cancelAction)
-
-
-    present(actionController, animated: true, completion: nil)
+    deleteController.addAction(deleteAction)
+    deleteController.addAction(cancelAction)
     
-    if let delegate = self.delegate {
-      delegate.didChangeNotebookList()
-    }
+    present(deleteController, animated: true, completion: nil)
+    
   }
   
+  fileprivate func moveNotesHandler(action: UITableViewRowAction, indexPath: IndexPath) {
+    print("Trying to move notes")
+    
+    let notebook = notebooks[indexPath.row]
+    let notesToMove = notebook.notes?.allObjects
+    
+    if (notesToMove?.count)! > 0 {
+      let moveNotesController = MoveNotesController()
+      moveNotesController.notes = notesToMove as? [Note]
+      moveNotesController.delegate = self
+      let navController = UINavigationController(rootViewController: moveNotesController)
+      present(navController, animated: true, completion: nil)
+    }
+  }
 
   fileprivate func okActionHandler() {
     print("Trying to delete selected notebook")
