@@ -23,6 +23,13 @@ class MoveNotesController: UIViewController {
     return pV
   }()
   
+  let textLabel: UILabel = {
+    let tl = UILabel()
+    tl.text = "Choose the new notebook and Save"
+    tl.textColor = .onixGrey
+    return tl
+  }()
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -35,18 +42,27 @@ class MoveNotesController: UIViewController {
   
   fileprivate func setupUI() {
     
-    view.backgroundColor = .darkGrey
+    view.backgroundColor = .darkWhite
     navigationController?.navigationBar.prefersLargeTitles = true
-    navigationItem.title = "Select Notebook"
-    
+    navigationItem.title = "Move your notes"
+   
     let cancelBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "icon-cancel").withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(handleCancel))
-    let selectBtn = UIBarButtonItem(title: "Move Notes", style: .plain, target: self, action: #selector(handleMoveNotes))
-    view.addSubview(notebookPicker)
+    let selectBtn = UIBarButtonItem(title: "Move and Save", style: .plain, target: self, action: #selector(handleMoveNotes))
     
     navigationItem.leftBarButtonItem = cancelBtn
     navigationItem.rightBarButtonItem = selectBtn
     
-    notebookPicker.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+    let goldenOrangeBackgroundView = setupGoldenOrangeBackgroundView(height: 50)
+    goldenOrangeBackgroundView.addSubview(textLabel)
+    textLabel.anchor(top: goldenOrangeBackgroundView.topAnchor, left: goldenOrangeBackgroundView.leftAnchor, bottom: goldenOrangeBackgroundView.bottomAnchor, right: goldenOrangeBackgroundView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 8, paddingRight: 8, width: 0, height: 0)
+    textLabel.centerXAnchor.constraint(equalTo: goldenOrangeBackgroundView.centerXAnchor).isActive = true
+    
+    view.addSubview(notebookPicker)
+    
+    
+    notebookPicker.anchor(top: goldenOrangeBackgroundView.safeAreaLayoutGuide.bottomAnchor, left: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+    notebookPicker.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+    notebookPicker.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
   }
   
   @objc fileprivate func handleCancel() {
