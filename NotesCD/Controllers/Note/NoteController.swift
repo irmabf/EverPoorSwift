@@ -91,7 +91,7 @@ class NoteController: UIViewController {
   
   let textView: UITextView = {
     let textView = UITextView()
-    textView.text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    textView.text = ""
     textView.backgroundColor = .white
     textView.textColor = .darkGrey
     textView.font = UIFont.boldSystemFont(ofSize: 16)
@@ -115,13 +115,20 @@ class NoteController: UIViewController {
     return label
   }()
   
-  let locationLabel: UILabel = {
+  lazy var locationLabel: UILabel = {
     let label = UILabel()
-    label.text = "No location selected."
-    label.isUserInteractionEnabled = true
-    label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectLocation)))
+    label.text = "Location:"
     label.textColor = .darkOrange
+    label.font = UIFont.boldSystemFont(ofSize: 16)
     return label
+  }()
+  
+  lazy var locationTextField: UITextField = {
+    let tf = UITextField()
+    tf.text = "Cupertino, Santa Clara. EEUU"
+    tf.isUserInteractionEnabled = true
+    tf.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectLocation)))
+    return tf
   }()
   
   //MARK:- Lifecycle
@@ -177,7 +184,7 @@ class NoteController: UIViewController {
     view.addSubview(titleStackView)
     
     
-    titleStackView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 8, width: 0, height: 50)
+    titleStackView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 8, width: 0, height: 40)
     
     let expirationDateStackView = UIStackView(arrangedSubviews: [expirationDateLabel, expirationDateTextField])
     
@@ -196,15 +203,22 @@ class NoteController: UIViewController {
     view.addSubview(datesStackView)
     
     
-    datesStackView.anchor(top: titleStackView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: paddingLeft , paddingBottom: 0, paddingRight: 8, width: 0, height: 50)
+    datesStackView.anchor(top: titleStackView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: paddingLeft , paddingBottom: 0, paddingRight: 8, width: 0, height: 40)
     
     
-    view.addSubview(locationLabel)
+    let locationStackView = UIStackView(arrangedSubviews: [locationLabel, locationTextField])
     
-    locationLabel.anchor(top: datesStackView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: paddingLeft, paddingBottom: 0, paddingRight: paddingRight, width: 0, height: 50)
+    locationStackView.distribution = .fillProportionally
+    locationStackView.axis = .horizontal
+    locationStackView.spacing = 1
     
+    view.addSubview(locationStackView)
+   
+    locationStackView.anchor(top: datesStackView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: paddingLeft, paddingBottom: 8, paddingRight: paddingRight, width: 0, height: 40)
+
     view.addSubview(textView)
-    textView.anchor(top: locationLabel.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+    
+    textView.anchor(top: locationStackView.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
     
     view.addSubview(imageView)
     
@@ -283,6 +297,12 @@ class NoteController: UIViewController {
   
   @objc fileprivate func handleSelectLocation() {
     print("Trying to select location")
+    
+    let locationController = LocationController()
+    
+    locationController.title = "Select location"
+    locationController.address = locationTextField.text
+    navigationController?.pushViewController(locationController, animated: true)
   }
   
   @objc fileprivate func handleSelectNotebook(){

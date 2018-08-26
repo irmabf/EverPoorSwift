@@ -10,6 +10,8 @@ import UIKit
 
 extension NoteListController {
   
+ 
+
   //MARK:- TableView  Section Header
   override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     return 50
@@ -123,7 +125,7 @@ extension NoteListController {
     
     let notebook = notebooks[section]
     
-    let defaultMark = notebook.isDefault ? " (default)" : ""
+    let defaultMark = notebook.isDefault ? " ✅" : ""
     
     let label = IndentedLabel()
     label.backgroundColor = .goldenOrange
@@ -133,6 +135,11 @@ extension NoteListController {
     }else {
       label.text = "Untitled notebook\(defaultMark)"
     }
+    
+    let separatorView = UIView(frame: CGRect(x: tableView.separatorInset.left, y: label.frame.height, width: tableView.frame.width - tableView.separatorInset.right, height: 0.5))
+    separatorView.backgroundColor = .separatorColor
+    label.addSubview(separatorView)
+    
     return label
   }
 
@@ -151,6 +158,11 @@ extension NoteListController {
   
 }
 
+extension UIColor {
+  class var separatorColor: UIColor {
+    return .darkWhite
+  }
+}
 
 
 

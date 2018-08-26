@@ -47,10 +47,12 @@ class MoveNotesController: UIViewController {
     navigationItem.title = "Move your notes"
    
     let cancelBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "icon-cancel").withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(handleCancel))
-    let selectBtn = UIBarButtonItem(title: "Move and Save", style: .plain, target: self, action: #selector(handleMoveNotes))
+
+    let moveAndSaveBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "icon-save"), style: .plain, target: self, action: #selector(handleMoveNotes))
+    
     
     navigationItem.leftBarButtonItem = cancelBtn
-    navigationItem.rightBarButtonItem = selectBtn
+    navigationItem.rightBarButtonItem = moveAndSaveBtn
     
     let goldenOrangeBackgroundView = setupGoldenOrangeBackgroundView(height: 50)
     goldenOrangeBackgroundView.addSubview(textLabel)

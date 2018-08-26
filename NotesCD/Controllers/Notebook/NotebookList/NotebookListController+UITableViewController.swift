@@ -10,6 +10,7 @@ import UIKit
 
 extension NotebookListController {
   
+  
   //MARK:- CellForRow At
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
@@ -20,7 +21,7 @@ extension NotebookListController {
     
     if let notebookTitle = notebook.title {
       if notebook.isDefault {
-        cell.textLabel?.text = "\(notebookTitle) (default)"
+        cell.textLabel?.text = "\(notebookTitle) ✅"
       } else {
         cell.textLabel?.text = notebookTitle
       }
