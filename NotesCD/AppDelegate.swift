@@ -30,14 +30,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window = UIWindow()
     window?.makeKeyAndVisible()
     
-//    let noteController = NoteListController()
-//
-//    let navController = CustomNavigationController(rootViewController: noteController)
-    
-//    window?.rootViewController  = navController
-    
-    let currentLocation = CurrentLocationController()
-    let navController = CustomNavigationController(rootViewController: currentLocation)
+    let noteController = NoteListController()
+
+    let navController = CustomNavigationController(rootViewController: noteController)
+
     window?.rootViewController = navController
     
     return true
