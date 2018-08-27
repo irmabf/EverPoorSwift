@@ -69,6 +69,7 @@ class NoteController: UIViewController {
   let latitudeLabel: UILabel = {
     let label = UILabel()
     label.textColor = .darkOrange
+    label.textColor = .onixGrey
     label.font = UIFont.boldSystemFont(ofSize: 16)
     //    label.text = "(Latitude goes here)"
     return label
@@ -84,7 +85,7 @@ class NoteController: UIViewController {
   
   let longitudeLabel: UILabel = {
     let label = UILabel()
-    label.textColor = .darkOrange
+    label.textColor = .onixGrey
     label.font = UIFont.boldSystemFont(ofSize: 16)
     //    label.text = "(Longitude goes here)"
     return label
@@ -92,22 +93,13 @@ class NoteController: UIViewController {
   
   let addressLabel: UILabel = {
     let label = UILabel()
-    label.text = "Some address"
     label.font = UIFont.boldSystemFont(ofSize: 16)
+    label.textColor = .onixGrey
     label.textColor = .darkOrange
     label.numberOfLines = 0
     return label
   }()
   
-  let tagButton: UIButton = {
-    let btn = UIButton()
-    btn.backgroundColor = .darkRed
-    btn.setTitle("Tag Location", for: .normal)
-    btn.setTitleColor(.darkWhite, for: .normal)
-    btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-    btn.addTarget(self, action: #selector(handleGoToLocationsDetail), for: .touchUpInside)
-    return btn
-  }()
   let getButton: UIButton = {
     let btn = UIButton()
     btn.setTitleColor(.darkWhite, for: .normal)
@@ -119,7 +111,6 @@ class NoteController: UIViewController {
     return btn
   }()
 
-  
   let paddingLeft: CGFloat  = 16
   let paddingRight: CGFloat = 16
   let paddingBottom: CGFloat = 0
@@ -328,7 +319,7 @@ class NoteController: UIViewController {
     longitudeStackView.anchor(top: latitudeStackView.bottomAnchor,left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 40)
     
     view.addSubview(addressLabel)
-    addressLabel.anchor(top: longitudeStackView.bottomAnchor,left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 40)
+    addressLabel.anchor(top: longitudeStackView.bottomAnchor,left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 8, paddingRight: 16, width: 0, height: 40)
     addressLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
     
     
@@ -476,7 +467,7 @@ class NoteController: UIViewController {
                                   location.coordinate.latitude)
       longitudeLabel.text = String(format: "%.8f",
                                    location.coordinate.longitude)
-      tagButton.isHidden = false
+     
       messageLabel.text = ""
       
       if let placemark = placemark {
@@ -493,7 +484,7 @@ class NoteController: UIViewController {
       latitudeLabel.text = ""
       longitudeLabel.text = ""
       addressLabel.text = ""
-      tagButton.isHidden = true
+     
      
      let statusMessage: String
       if let error = lastLocationError as NSError? {
@@ -508,8 +499,8 @@ class NoteController: UIViewController {
       } else if updatingLocation {
         statusMessage = "Searching current location..."
       } else {
-//        statusMessage = "Tap 'Get My Location' to Start"
-        statusMessage = ""
+
+        statusMessage = "Tap Get Location to play with the Location"
       }
       messageLabel.text = statusMessage
     }
