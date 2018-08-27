@@ -11,6 +11,8 @@
 		B71845E221347B06004D2A02 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71845E121347B06004D2A02 /* MapController.swift */; };
 		B71845E5213493F1004D2A02 /* MapController+MKMapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71845E4213493F1004D2A02 /* MapController+MKMapViewDelegate.swift */; };
 		B71845EB2134A7EF004D2A02 /* NoteController+helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71845EA2134A7EF004D2A02 /* NoteController+helpers.swift */; };
+		B71845ED2134B548004D2A02 /* NoteController+UIImagePickerConrollerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71845EC2134B548004D2A02 /* NoteController+UIImagePickerConrollerDelegate.swift */; };
+		B71845EF2134B5BE004D2A02 /* NoteController+UINavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71845EE2134B5BE004D2A02 /* NoteController+UINavigationControllerDelegate.swift */; };
 		B7406D7021248ED50074CFE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7406D6F21248ED50074CFE2 /* AppDelegate.swift */; };
 		B7406D7221248ED50074CFE2 /* NoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7406D7121248ED50074CFE2 /* NoteController.swift */; };
 		B7406D8221248EF50074CFE2 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7406D8121248EF50074CFE2 /* Launch Screen.storyboard */; };
@@ -58,6 +60,8 @@
 		B71845E121347B06004D2A02 /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
 		B71845E4213493F1004D2A02 /* MapController+MKMapViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapController+MKMapViewDelegate.swift"; sourceTree = "<group>"; };
 		B71845EA2134A7EF004D2A02 /* NoteController+helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteController+helpers.swift"; sourceTree = "<group>"; };
+		B71845EC2134B548004D2A02 /* NoteController+UIImagePickerConrollerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteController+UIImagePickerConrollerDelegate.swift"; sourceTree = "<group>"; };
+		B71845EE2134B5BE004D2A02 /* NoteController+UINavigationControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteController+UINavigationControllerDelegate.swift"; sourceTree = "<group>"; };
 		B7406D6C21248ED50074CFE2 /* NotesCD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotesCD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7406D6F21248ED50074CFE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B7406D7121248ED50074CFE2 /* NoteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteController.swift; sourceTree = "<group>"; };
@@ -237,6 +241,8 @@
 				B7406D7121248ED50074CFE2 /* NoteController.swift */,
 				B76FCECA2124C2BF00B7F242 /* NoteControllerDelegate.swift */,
 				B71845DF21347879004D2A02 /* NoteController+CLLocationManagerDelegate.swift */,
+				B71845EC2134B548004D2A02 /* NoteController+UIImagePickerConrollerDelegate.swift */,
+				B71845EE2134B5BE004D2A02 /* NoteController+UINavigationControllerDelegate.swift */,
 				B71845EA2134A7EF004D2A02 /* NoteController+helpers.swift */,
 				B748168F21286B46005E7AB3 /* NoteListController */,
 				B748CD03212F303F00D99977 /* MoveNotes */,
@@ -355,6 +361,7 @@
 				B748CD162133217900D99977 /* LocationController+UITextFieldDelegate.swift in Sources */,
 				B780CAFD2124AB0C00BD8EFD /* NoteListController.swift in Sources */,
 				B7ED7BC52129C852009DC01A /* NotebookController.swift in Sources */,
+				B71845EF2134B5BE004D2A02 /* NoteController+UINavigationControllerDelegate.swift in Sources */,
 				B71845E221347B06004D2A02 /* MapController.swift in Sources */,
 				B7406D8E212490350074CFE2 /* UIColor+rgb.swift in Sources */,
 				B748CCFA212C6ABE00D99977 /* Notebook+CoreDataManager.swift in Sources */,
@@ -370,6 +377,7 @@
 				B748CD25213362EB00D99977 /* CurrentLocation+CLLocationManagerDelegate .swift in Sources */,
 				B748CD0F2133116A00D99977 /* LocationController.swift in Sources */,
 				B748CCFC212F195F00D99977 /* NotebookListControllerDelegate.swift in Sources */,
+				B71845ED2134B548004D2A02 /* NoteController+UIImagePickerConrollerDelegate.swift in Sources */,
 				B780CB032124ACB100BD8EFD /* NoteListController+UITableView.swift in Sources */,
 				B748CD232133573D00D99977 /* CurrentLocationController.swift in Sources */,
 				B7406D8F212490350074CFE2 /* UIColor+theme.swift in Sources */,

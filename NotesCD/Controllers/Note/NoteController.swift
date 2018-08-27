@@ -19,15 +19,18 @@ class NoteController: UIViewController {
   var updatingLocation = false
   var lastLocationError: Error?
   
-  //Reverse geocoding
+  //MARK:- Reverse Geocoding
   let geocoder = CLGeocoder()
   var placemark: CLPlacemark?
   var performingReverseGeocoding = false
   var lastGeocodingError: Error?
   
-  //Images
-  var images = [Image]()
-  
+  //MARK:- Paddings
+  let paddingLeft: CGFloat  = 16
+  let paddingRight: CGFloat = 16
+  let paddingBottom: CGFloat = 0
+  let paddingTop: CGFloat  = 8
+
   var note: Note? {
     
     didSet {
@@ -50,11 +53,6 @@ class NoteController: UIViewController {
       if let noteText = note?.text {
         self.textView.text = noteText
       }
-      
-      if let noteImages = note?.images {
-        self.images = noteImages.allObjects as! [Image]
-      }
-     
     }
   }
   
@@ -120,11 +118,6 @@ class NoteController: UIViewController {
     btn.addTarget(self, action: #selector(handleGetLocation), for: .touchUpInside)
     return btn
   }()
-
-  let paddingLeft: CGFloat  = 16
-  let paddingRight: CGFloat = 16
-  let paddingBottom: CGFloat = 0
-  let paddingTop: CGFloat  = 8
   
   let titleLabel: UILabel = {
     let label = UILabel()
@@ -187,9 +180,6 @@ class NoteController: UIViewController {
     return dp
   }()
   
-
-  
-  
   let textView: UITextView = {
     let textView = UITextView()
     textView.backgroundColor = .white
@@ -198,10 +188,11 @@ class NoteController: UIViewController {
     return textView
   }()
   
-  let imageView: UIImageView = {
-    let iv = UIImageView(image: #imageLiteral(resourceName: "placeholder").withRenderingMode(.alwaysOriginal))
+  var imageView: UIImageView = {
+    let iv = UIImageView()
+    iv.image = #imageLiteral(resourceName: "placeholder")
     iv.contentMode = .scaleAspectFill
-    iv.clipsToBounds = true
+    iv.translatesAutoresizingMaskIntoConstraints = false
     return iv
   }()
   
@@ -215,14 +206,16 @@ class NoteController: UIViewController {
     return label
   }()
   
-  //MARK:- Location Subviews
-  
-
   //MARK:- Lifecycle
  
   override func viewDidLoad() {
     super.viewDidLoad()
     setupUI()
+    
+    let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleCloseKeyboard))
+    view.addGestureRecognizer(swipeGesture)
+    
+
     textView.becomeFirstResponder()
     setupToolbar()
     updateLabels()
@@ -282,7 +275,7 @@ class NoteController: UIViewController {
   }
   
   @objc fileprivate func handleChangeExpirationDate(){
-    
+    print("Trying to change expiration date")
   }
   
   @objc fileprivate func handleChangeLocationData() {
@@ -290,13 +283,9 @@ class NoteController: UIViewController {
   }
   fileprivate func setupUI() {
   
-    
     navigationItem.leftBarButtonItem =  UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: self, action: #selector(handleBack))
-//    self.navigationController?.navigationBar.prefersLargeTitles = true
     navigationItem.title = "Create Note"
     view.backgroundColor = .darkWhite
-    
-//    setupCancelButtonInNavBar()
     setupSaveButtonInNavbar(selector: #selector(handleSaveNote))
     
     
@@ -357,22 +346,12 @@ class NoteController: UIViewController {
     datesStackView.anchor(top: titleStackView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: paddingLeft , paddingBottom: 0, paddingRight: 8, width: 0, height: 40)
     
     
-   
-//    let locationStackView = UIStackView(arrangedSubviews: [locationLabel, locationTextField])
-//
-//
-//    locationStackView.distribution = .fillProportionally
-//    locationStackView.axis = .horizontal
-//    locationStackView.spacing = 1
-//
-//    view.addSubview(locationStackView)
-//
-//    locationStackView.anchor(top: datesStackView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: paddingLeft, paddingBottom: 8, paddingRight: paddingRight, width: 0, height: 40)
-//
+
     view.addSubview(textView)
     
     textView.anchor(top: datesStackView.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
     
+
     view.addSubview(imageView)
     
     imageView.anchor(top: textView.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 16, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 100, height: 100)
@@ -386,7 +365,6 @@ class NoteController: UIViewController {
   
   //MARK:- Core Data Operations
   
-  
   private func createNote() {
     print("Trying to create note ...")
     let context = CoreDataManager.shared.persistentContainer.viewContext
@@ -399,7 +377,7 @@ class NoteController: UIViewController {
     newNote.setValue(Date(), forKey: "creationDate")
     newNote.setValue(self.expirationDatePicker.date, forKey: "expirationDate")
     newNote.setValue(self.textView.text, forKey: "text")
-
+ 
     let defaultNotebook = CoreDataManager.shared.getDefaultNotebook()
 
     newNote.setValue(defaultNotebook, forKey: "notebook")
@@ -423,21 +401,14 @@ class NoteController: UIViewController {
     bar.barTintColor = .darkGrey
     bar.isTranslucent = false
     let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-    let imageBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "photo-camera-icon").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleTakePicture))
+    let imageBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "photo-camera-icon").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleGetPicture))
     let locationBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "location-placeholder").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleSelectLocation))
     bar.sizeToFit()
     bar.items = [imageBtn, space,locationBtn]
     textView.inputAccessoryView = bar
-//    navigationController?.isToolbarHidden = false
-//    navigationController?.toolbar.barTintColor = .darkGrey
-//    navigationController?.toolbar.isTranslucent  = false
-    
-//    setToolbarItems([imageBtn, space, locationBtn], animated: true)
   }
   
-  @objc fileprivate func handleTakePicture() {
-    print("trying to take a pic")
-  }
+
   @objc private func handleSaveNote() {
     // tap on Save button
     if self.note == nil {
@@ -551,9 +522,6 @@ class NoteController: UIViewController {
   
 
   //MARK:- Actions
-  
-  
-  
   @objc fileprivate func handleSelectLocation() {
     print("Trying to select location")
     
@@ -599,6 +567,43 @@ class NoteController: UIViewController {
   
   @objc fileprivate func handleGoToLocationsDetail() {
     print("Trying to go to locations")
+  }
+  
+  @objc fileprivate func handleCloseKeyboard() {
+    if titleTextField.isFirstResponder {
+      titleTextField.resignFirstResponder()
+    }
+    if textView.isFirstResponder {
+      textView.resignFirstResponder()
+    }
+  }
+  
+  @objc private func handleGetPicture() {
+    print("Trying to get picture...")
+    
+    let imagePicker = UIImagePickerController()
+    imagePicker.delegate = self
+    
+    let actionSheetAlert = UIAlertController(title: NSLocalizedString("Add photo", comment: "Add photo"), message: nil, preferredStyle: .actionSheet)
+    
+    let useCamera = UIAlertAction(title: "Camera", style: .default) { (alertAction) in
+      imagePicker.sourceType = .camera
+      self.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    let usePhotoLibrary = UIAlertAction(title: "Photo Library", style: .default) { (alertAction) in
+      
+      imagePicker.sourceType = .photoLibrary
+      self.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    let cancel = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
+    
+    actionSheetAlert.addAction(useCamera)
+    actionSheetAlert.addAction(usePhotoLibrary)
+    actionSheetAlert.addAction(cancel)
+    
+    present(actionSheetAlert, animated: true, completion: nil)
   }
   
 }

@@ -10,6 +10,16 @@ import UIKit
 import CoreLocation
 
 extension NoteController {
+  
+  func newImageView(with image: UIImage) -> UIImageView {
+    let imageView = UIImageView()
+    imageView.clipsToBounds = true
+    imageView.contentMode = .scaleAspectFill
+    imageView.image = image
+    imageView.translatesAutoresizingMaskIntoConstraints = false
+    return imageView
+  }
+  
   func string(from placemark: CLPlacemark) -> String {
     // 1
     var line1 = ""
