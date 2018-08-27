@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TagLocationController: UITableViewController {
+class LocationsDetailController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     

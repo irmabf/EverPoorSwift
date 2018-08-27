@@ -16,7 +16,7 @@ class LocationTabBarController: UITabBarController {
     let locationController = templateNavController(unselectedImage: #imageLiteral(resourceName: "map-unselected"), selectedImage: #imageLiteral(resourceName: "map-selected"), rootViewController: CurrentLocationController())
     
     
-    let tagLocationController = templateNavController(unselectedImage: #imageLiteral(resourceName: "tag-unselected"), selectedImage: #imageLiteral(resourceName: "tag-selected"), rootViewController: TagLocationController())
+    let tagLocationController = templateNavController(unselectedImage: #imageLiteral(resourceName: "tag-unselected"), selectedImage: #imageLiteral(resourceName: "tag-selected"), rootViewController: LocationsDetailController())
     //search
     
   
