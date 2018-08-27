@@ -36,9 +36,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 //    window?.rootViewController  = navController
     
-    let currentLocation = CurrentLocationController()
-    let navController = CustomNavigationController(rootViewController: currentLocation)
-    window?.rootViewController = navController
+//    let currentLocation = CurrentLocationController()
+//    let navController = CustomNavigationController(rootViewController: currentLocation)
+//    window?.rootViewController = navController
+ 
+    window?.rootViewController = LocationTabBarController()
     
     return true
   }

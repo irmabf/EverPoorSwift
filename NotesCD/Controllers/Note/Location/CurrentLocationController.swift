@@ -24,6 +24,8 @@ class CurrentLocationController: UIViewController {
   var performingReverseGeocoding = false
   var lastGeocodingError: Error?
   
+  var timer: Timer?
+  
   //MARK:- Subviews
   
   let messageLabel: UILabel = {
@@ -117,6 +119,15 @@ class CurrentLocationController: UIViewController {
     updateLabels()
   }
   
+  @objc fileprivate func handleDidTimeOut() {
+    print("Time out")
+    if location == nil {
+      stopLocationManager()
+      lastLocationError = NSError(domain: "MyLocationsErrorDomain", code: 1, userInfo: nil)
+      updateLabels()
+    }
+  }
+  
   //MARK:- Location Helpers
   func showLocationServicesDenied()  {
     let alertController = UIAlertController(title: "Location Services Disabled", message: "Please enable location services for this app in settings.", preferredStyle: .alert)
@@ -143,6 +154,10 @@ class CurrentLocationController: UIViewController {
       locationManager.stopUpdatingLocation()
       locationManager.delegate = nil
       updatingLocation = false
+      
+      if let timer = timer {
+        timer.invalidate()
+      }
     }
   }
   
@@ -153,7 +168,8 @@ class CurrentLocationController: UIViewController {
       kCLLocationAccuracyNearestTenMeters
       locationManager.startUpdatingLocation()
       updatingLocation = true
-    }
+      
+      timer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(handleDidTimeOut), userInfo: nil, repeats: false)    }
   }
   
   //MARK:- Custom UI Functions

@@ -6,4 +6,13 @@
 //  Copyright © 2018 Irma Blanco. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class TagLocationController: UITableViewController {
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    view.backgroundColor = .darkWhite
+    navigationItem.title = "Tag new location"
+  }
+}

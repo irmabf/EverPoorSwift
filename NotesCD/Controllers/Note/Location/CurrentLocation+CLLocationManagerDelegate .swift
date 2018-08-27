@@ -24,28 +24,28 @@ extension CurrentLocationController: CLLocationManagerDelegate  {
   }
   
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-    guard let newLocation =  locations.last else { return }
-    print("didUpdateLocations \(String(describing: newLocation))")
-    
-     // 1
-    //  Cached result.
+    let newLocation = locations.last!
+    print("didUpdateLocations \(newLocation)")
     
     if newLocation.timestamp.timeIntervalSinceNow < -5 {
       return
     }
-     // 2
     if newLocation.horizontalAccuracy < 0 {
       return
     }
-     // 3
+    var distance = CLLocationDistance(Double.greatestFiniteMagnitude)
+    if let location = location {
+      distance = newLocation.distance(from: location)
+    }
     if location == nil || location!.horizontalAccuracy > newLocation.horizontalAccuracy {
-       // 4
       lastLocationError = nil
       location = newLocation
-       // 5
       if newLocation.horizontalAccuracy <= locationManager.desiredAccuracy {
-        print("**We are done!**")
+        print("*** We're done!")
         stopLocationManager()
+        if distance > 0 {
+          performingReverseGeocoding = false
+        }
       }
       updateLabels()
       if !performingReverseGeocoding {
@@ -65,7 +65,13 @@ extension CurrentLocationController: CLLocationManagerDelegate  {
           self.performingReverseGeocoding = false
           self.updateLabels()
         })
-        
+      }
+    } else if distance < 1 {
+      let timeInterval = newLocation.timestamp.timeIntervalSince(location!.timestamp)
+      if timeInterval > 10 {
+        print("*** Force done!")
+        stopLocationManager()
+        updateLabels()
       }
     }
   }
