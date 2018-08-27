@@ -19,10 +19,17 @@ class NoteController: UIViewController {
     didSet {
       titleTextField.text = note?.title
       
+      let notebookTitle = note?.notebook?.title!
+      notebookLabel.text = notebookTitle
+      
+      let dateFormatter = DateFormatter()
+      dateFormatter.dateStyle = .medium
+      dateFormatter.timeStyle = .none
+      
+      let creationDate = note?.creationDate!
+      creationDateLabel.text = "Created: \(dateFormatter.string(from: creationDate!))"
+      
       if let expirationDate = note?.expirationDate {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .none
         expirationDateTextField.text = dateFormatter.string(from: expirationDate)
       }
     }
@@ -50,13 +57,21 @@ class NoteController: UIViewController {
     return tf
   }()
   
-  lazy var createdDateLabel: UILabel = {
+  lazy var creationDateLabel: UILabel = {
     let label = UILabel()
+    
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateStyle = .medium
+    dateFormatter.timeStyle = .none
+    
+    label.text = "Created:"
+    
     label.textColor = .darkOrange
-    label.text = "Created: mm/dd/yyyy"
     label.font = UIFont.boldSystemFont(ofSize: 16)
+    
     label.isUserInteractionEnabled = true
     label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleChangeCreationDate)))
+    
     return label
   }()
   
@@ -224,7 +239,7 @@ class NoteController: UIViewController {
     view.addSubview(expirationDateStackView)
     
     
-    let datesStackView = UIStackView(arrangedSubviews: [createdDateLabel, expirationDateStackView])
+    let datesStackView = UIStackView(arrangedSubviews: [creationDateLabel, expirationDateStackView])
     
     datesStackView.distribution = .fillProportionally
     datesStackView.axis = .horizontal
@@ -271,13 +286,21 @@ class NoteController: UIViewController {
     
     //Get the value from the titleTextField and set it as the newNote property
     //the newNoteProperty will put the object in the NSEntity waiting for the save
-    newNote.setValue(titleTextField.text, forKey: "title")
-    newNote.setValue(expirationDatePicker.date, forKey: "expirationDate")
+//    newNote.setValue(titleTextField.text, forKey: "title")
+//    newNote.setValue(expirationDatePicker.date, forKey: "expirationDate")
+    newNote.setValue(self.titleTextField.text, forKey: "title")
+    newNote.setValue(Date(), forKey: "creationDate")
     
+    newNote.setValue(self.expirationDatePicker.date, forKey: "expirationDate")
+    
+
     let defaultNotebook = CoreDataManager.shared.getDefaultNotebook()
-    
+
     newNote.setValue(defaultNotebook, forKey: "notebook")
     
+    note?.title = self.titleTextField.text
+    note?.expirationDate = self.expirationDatePicker.date
+   
     //Now we save the context and with that the newNote
     do {
       try context.save()
