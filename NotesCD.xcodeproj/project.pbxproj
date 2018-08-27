@@ -37,6 +37,9 @@
 		B748CD25213362EB00D99977 /* CurrentLocation+CLLocationManagerDelegate .swift in Sources */ = {isa = PBXBuildFile; fileRef = B748CD24213362EB00D99977 /* CurrentLocation+CLLocationManagerDelegate .swift */; };
 		B748CD2721337F6300D99977 /* LocationTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B748CD2621337F6300D99977 /* LocationTabBarController.swift */; };
 		B748CD292133811600D99977 /* LocationsDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B748CD282133811600D99977 /* LocationsDetailController.swift */; };
+		B748CD2B2133AA7F00D99977 /* LocationDetailController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B748CD2A2133AA7F00D99977 /* LocationDetailController+UITableView.swift */; };
+		B748CD3421343F4200D99977 /* UIViewController+wrappedInNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B748CD3321343F4200D99977 /* UIViewController+wrappedInNavigation.swift */; };
+		B748CD372134496500D99977 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B748CD362134496500D99977 /* MainTabBarController.swift */; };
 		B76FCEC42124B2A100B7F242 /* Notes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B76FCEC22124B2A100B7F242 /* Notes.xcdatamodeld */; };
 		B76FCEC72124B2DE00B7F242 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76FCEC62124B2DE00B7F242 /* CoreDataManager.swift */; };
 		B76FCEC92124C26B00B7F242 /* NoteListController+NoteControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76FCEC82124C26B00B7F242 /* NoteListController+NoteControllerDelegate.swift */; };
@@ -84,6 +87,9 @@
 		B748CD24213362EB00D99977 /* CurrentLocation+CLLocationManagerDelegate .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CurrentLocation+CLLocationManagerDelegate .swift"; sourceTree = "<group>"; };
 		B748CD2621337F6300D99977 /* LocationTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTabBarController.swift; sourceTree = "<group>"; };
 		B748CD282133811600D99977 /* LocationsDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsDetailController.swift; sourceTree = "<group>"; };
+		B748CD2A2133AA7F00D99977 /* LocationDetailController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocationDetailController+UITableView.swift"; sourceTree = "<group>"; };
+		B748CD3321343F4200D99977 /* UIViewController+wrappedInNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+wrappedInNavigation.swift"; sourceTree = "<group>"; };
+		B748CD362134496500D99977 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		B76FCEC32124B2A100B7F242 /* Notes.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Notes.xcdatamodel; sourceTree = "<group>"; };
 		B76FCEC62124B2DE00B7F242 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		B76FCEC82124C26B00B7F242 /* NoteListController+NoteControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteListController+NoteControllerDelegate.swift"; sourceTree = "<group>"; };
@@ -159,6 +165,7 @@
 				B7406D8C212490350074CFE2 /* UINavigationController+style.swift */,
 				B7406D8D212490350074CFE2 /* UIView+helpers.swift */,
 				B7406D8B212490350074CFE2 /* UView+constraints.swift */,
+				B748CD3321343F4200D99977 /* UIViewController+wrappedInNavigation.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -193,10 +200,7 @@
 				B748CD132133204200D99977 /* LocationController+MKMapViewDelegate.swift */,
 				B748CD152133217900D99977 /* LocationController+UITextFieldDelegate.swift */,
 				B748CD1721332ABF00D99977 /* LocationControllerDelegate.swift */,
-				B748CD222133573D00D99977 /* CurrentLocationController.swift */,
-				B748CD24213362EB00D99977 /* CurrentLocation+CLLocationManagerDelegate .swift */,
-				B748CD2621337F6300D99977 /* LocationTabBarController.swift */,
-				B748CD282133811600D99977 /* LocationsDetailController.swift */,
+				B748CD352134491300D99977 /* ExperimentLocations */,
 			);
 			path = Location;
 			sourceTree = "<group>";
@@ -207,6 +211,19 @@
 				B7406D95212490940074CFE2 /* CustomNavigationController.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		B748CD352134491300D99977 /* ExperimentLocations */ = {
+			isa = PBXGroup;
+			children = (
+				B748CD222133573D00D99977 /* CurrentLocationController.swift */,
+				B748CD24213362EB00D99977 /* CurrentLocation+CLLocationManagerDelegate .swift */,
+				B748CD2621337F6300D99977 /* LocationTabBarController.swift */,
+				B748CD2A2133AA7F00D99977 /* LocationDetailController+UITableView.swift */,
+				B748CD282133811600D99977 /* LocationsDetailController.swift */,
+				B748CD362134496500D99977 /* MainTabBarController.swift */,
+			);
+			path = ExperimentLocations;
 			sourceTree = "<group>";
 		};
 		B76FCEC52124B2AA00B7F242 /* Models */ = {
@@ -351,6 +368,7 @@
 				B748CD292133811600D99977 /* LocationsDetailController.swift in Sources */,
 				B7F184F12128CDBC00630ADA /* NotebookListController+UITableViewController.swift in Sources */,
 				B748CD02212F2E0800D99977 /* MoveNotesController.swift in Sources */,
+				B748CD372134496500D99977 /* MainTabBarController.swift in Sources */,
 				B7ED7BCC2129CDB3009DC01A /* NotebookListController+NotebookControllerDelegate.swift in Sources */,
 				B748CD25213362EB00D99977 /* CurrentLocation+CLLocationManagerDelegate .swift in Sources */,
 				B748CD0F2133116A00D99977 /* LocationController.swift in Sources */,
@@ -359,8 +377,10 @@
 				B748CD232133573D00D99977 /* CurrentLocationController.swift in Sources */,
 				B7406D8F212490350074CFE2 /* UIColor+theme.swift in Sources */,
 				B748CD05212F307E00D99977 /* MoveNotesController+MoveNotesControllerDelegate.swift in Sources */,
+				B748CD3421343F4200D99977 /* UIViewController+wrappedInNavigation.swift in Sources */,
 				B76FCEC92124C26B00B7F242 /* NoteListController+NoteControllerDelegate.swift in Sources */,
 				B748CD0D2133042400D99977 /* NoteListController+MoveNotesControllerDelegate.swift in Sources */,
+				B748CD2B2133AA7F00D99977 /* LocationDetailController+UITableView.swift in Sources */,
 				B76FCEC72124B2DE00B7F242 /* CoreDataManager.swift in Sources */,
 				B76FCEC42124B2A100B7F242 /* Notes.xcdatamodeld in Sources */,
 				B7406D7221248ED50074CFE2 /* NoteController.swift in Sources */,
