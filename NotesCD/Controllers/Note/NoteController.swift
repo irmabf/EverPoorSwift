@@ -147,8 +147,7 @@ class NoteController: UIViewController {
     label.font = UIFont.boldSystemFont(ofSize: 16)
     
     label.isUserInteractionEnabled = true
-    label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleChangeCreationDate)))
-    
+
     return label
   }()
   
@@ -158,7 +157,6 @@ class NoteController: UIViewController {
     label.text = "Expires: "
     label.font = UIFont.boldSystemFont(ofSize: 16)
     label.isUserInteractionEnabled = true
-    label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleChangeExpirationDate)))
     return label
   }()
   
@@ -226,28 +224,10 @@ class NoteController: UIViewController {
     notificationCenter.addObserver(self, selector: #selector(handleAdjustForKeyBoard), name: Notification.Name.UIKeyboardWillChangeFrame, object: nil)
   }
   
-  @objc fileprivate func handleAdjustForKeyBoard(notification: Notification) {
-    let userInfo = notification.userInfo!
-    
-    let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-    let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
-    
-    if notification.name == Notification.Name.UIKeyboardWillHide {
-      textView.contentInset = UIEdgeInsets.zero
-    } else {
-      textView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height, right: 0)
-    }
-    
-    textView.scrollIndicatorInsets = textView.contentInset
-    
-    let selectedRange = textView.selectedRange
-    textView.scrollRangeToVisible(selectedRange)
-  }
-  
   override func viewWillDisappear(_ animated: Bool) {
     navigationController?.isToolbarHidden = true
   }
- 
+  
   override func viewDidLayoutSubviews() {
     // make note's text to run around image view
     var imageArea = view.convert(imageView.frame, to: textView)
@@ -256,38 +236,12 @@ class NoteController: UIViewController {
     textView.textContainer.exclusionPaths = [path]
     
   }
-  
-  //MARK:- User interaction and UI functions
-  
-  @objc fileprivate func handleChangeCreationDate(){
-    
-  }
-  
-  @objc private func datePickerValueChanged(datePicker: UIDatePicker) {
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateStyle = .medium
-    dateFormatter.timeStyle = .none
-    expirationDateTextField.text = dateFormatter.string(from: datePicker.date)
-  }
-  
-  @objc private func handleLocationDataChanged() {
-    print("location data changed")
-  }
-  
-  @objc fileprivate func handleChangeExpirationDate(){
-    print("Trying to change expiration date")
-  }
-  
-  @objc fileprivate func handleChangeLocationData() {
-    print("Trying to change location data")
-  }
   fileprivate func setupUI() {
   
     navigationItem.leftBarButtonItem =  UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: self, action: #selector(handleBack))
     navigationItem.title = "Create Note"
     view.backgroundColor = .darkWhite
     setupSaveButtonInNavbar(selector: #selector(handleSaveNote))
-    
     
     view.addSubview(messageLabel)
     messageLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: view.frame.width, height: 50)
@@ -307,7 +261,6 @@ class NoteController: UIViewController {
     latitudeStackView.anchor(top: messageLabel.bottomAnchor,left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 40)
     view.addSubview(titleStackView)
     
-    
     let longitudeStackView = UIStackView(arrangedSubviews: [longitude, longitudeLabel])
     longitudeStackView.distribution = .fillProportionally
     longitudeStackView.axis = .horizontal
@@ -319,7 +272,6 @@ class NoteController: UIViewController {
     view.addSubview(addressLabel)
     addressLabel.anchor(top: longitudeStackView.bottomAnchor,left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 8, paddingRight: 16, width: 0, height: 40)
     addressLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-    
     
     view.addSubview(getButton)
     getButton.anchor(top: addressLabel.bottomAnchor,left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 30)
@@ -334,7 +286,6 @@ class NoteController: UIViewController {
     
     view.addSubview(expirationDateStackView)
     
-    
     let datesStackView = UIStackView(arrangedSubviews: [creationDateLabel, expirationDateStackView])
     
     datesStackView.distribution = .fillProportionally
@@ -345,8 +296,6 @@ class NoteController: UIViewController {
     
     datesStackView.anchor(top: titleStackView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: paddingLeft , paddingBottom: 0, paddingRight: 8, width: 0, height: 40)
     
-    
-
     view.addSubview(textView)
     
     textView.anchor(top: datesStackView.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
@@ -355,16 +304,9 @@ class NoteController: UIViewController {
     view.addSubview(imageView)
     
     imageView.anchor(top: textView.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 16, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 100, height: 100)
-  
-   
-  }
-  
-  @objc fileprivate func handleBack(){
-    navigationController?.popViewController(animated: true)
   }
   
   //MARK:- Core Data Operations
-  
   private func createNote() {
     print("Trying to create note ...")
     let context = CoreDataManager.shared.persistentContainer.viewContext
@@ -407,19 +349,8 @@ class NoteController: UIViewController {
     bar.items = [imageBtn, space,locationBtn]
     textView.inputAccessoryView = bar
   }
-  
 
-  @objc private func handleSaveNote() {
-    // tap on Save button
-    if self.note == nil {
-      createNote()
-    } else {
-      saveNoteChanges()
-    }
-    navigationController?.popViewController(animated: true)
-  }
-  
-  private func saveNoteChanges() {
+  fileprivate func saveNoteChanges() {
     print("Trying to save note changes...")
 
     let context = CoreDataManager.shared.persistentContainer.viewContext
@@ -483,25 +414,6 @@ class NoteController: UIViewController {
     }
     configureGetButton()
   }
-  
-  func startLocationManager() {
-    if CLLocationManager.locationServicesEnabled() {
-      locationManager.delegate = self
-      locationManager.desiredAccuracy =
-      kCLLocationAccuracyNearestTenMeters
-      locationManager.startUpdatingLocation()
-      updatingLocation = true
-    }
-  }
-  
-  func stopLocationManager() {
-    if updatingLocation {
-      locationManager.stopUpdatingLocation()
-      locationManager.delegate = nil
-      updatingLocation = false
-    }
-  }
-  
   func configureGetButton() {
     if updatingLocation {
       getButton.setTitle("Stop", for: .normal)
@@ -510,18 +422,46 @@ class NoteController: UIViewController {
     }
   }
 
-  //MARK:- Handling Permissions
-  func showLocationServicesDeniedAlert() {
-    let alertController = UIAlertController(title: "Location Services Disabled", message: "Please, enable location services for this app in settings.", preferredStyle: .alert)
+  //MARK:- Actions
+  
+  @objc fileprivate func handleAdjustForKeyBoard(notification: Notification) {
+    let userInfo = notification.userInfo!
     
-    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-    alertController.addAction(okAction)
+    let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+    let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
     
-    present(alertController, animated: true, completion: nil)
+    if notification.name == Notification.Name.UIKeyboardWillHide {
+      textView.contentInset = UIEdgeInsets.zero
+    } else {
+      textView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height, right: 0)
+    }
+    
+    textView.scrollIndicatorInsets = textView.contentInset
+    
+    let selectedRange = textView.selectedRange
+    textView.scrollRangeToVisible(selectedRange)
   }
   
-
-  //MARK:- Actions
+  @objc private func datePickerValueChanged(datePicker: UIDatePicker) {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateStyle = .medium
+    dateFormatter.timeStyle = .none
+    expirationDateTextField.text = dateFormatter.string(from: datePicker.date)
+  }
+  @objc fileprivate func handleBack(){
+    navigationController?.popViewController(animated: true)
+  }
+  
+  @objc private func handleSaveNote() {
+    // tap on Save button
+    if self.note == nil {
+      createNote()
+    } else {
+      saveNoteChanges()
+    }
+    navigationController?.popViewController(animated: true)
+  }
+  
   @objc fileprivate func handleSelectLocation() {
     print("Trying to select location")
     
@@ -549,10 +489,6 @@ class NoteController: UIViewController {
       showLocationServicesDeniedAlert()
       return
     }
-//    locationManager.delegate = self
-//    locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-//    locationManager.startUpdatingLocation()
-    
     if updatingLocation {
       stopLocationManager()
     } else {

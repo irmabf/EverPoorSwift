@@ -1,11 +1,11 @@
-////
-////  MapController.swift
-////  NotesCD
-////
-////  Created by Irma Blanco on 27/08/2018.
-////  Copyright © 2018 Irma Blanco. All rights reserved.
-////
 //
+//  MapController.swift
+//  NotesCD
+//
+//  Created by Irma Blanco on 28/08/2018.
+//  Copyright © 2018 Irma Blanco. All rights reserved.
+//
+
 import UIKit
 import MapKit
 import CoreData
@@ -33,13 +33,13 @@ class MapViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupUI()
-//    mapView.mapType = .hybrid
-//    let scale = MKScaleView(mapView: mapView)
-//    scale.scaleVisibility = .visible
-//    mapView.addSubview(scale)
-//    scale.anchor(top: mapView.topAnchor, left: mapView.leftAnchor, bottom: nil, right: mapView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 10)
-//    mapView.showsCompass = true
-//    mapView.showsScale = true
+    //    mapView.mapType = .hybrid
+    //    let scale = MKScaleView(mapView: mapView)
+    //    scale.scaleVisibility = .visible
+    //    mapView.addSubview(scale)
+    //    scale.anchor(top: mapView.topAnchor, left: mapView.leftAnchor, bottom: nil, right: mapView.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 10)
+    //    mapView.showsCompass = true
+    //    mapView.showsScale = true
   }
   
   //MARK:- UI Custom Functions
@@ -62,7 +62,7 @@ class MapViewController: UIViewController {
     let region = MKCoordinateRegionMakeWithDistance(
       mapView.userLocation.coordinate, 1, 1)
     mapView.setRegion(mapView.regionThatFits(region),
-      animated: true)
+                      animated: true)
   }
   
   @objc fileprivate func handleShowLocations() {
@@ -70,9 +70,3 @@ class MapViewController: UIViewController {
   }
   
 }
-
-
-
-
-
-
