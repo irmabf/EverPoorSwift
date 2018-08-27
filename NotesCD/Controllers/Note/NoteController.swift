@@ -25,6 +25,8 @@ class NoteController: UIViewController {
   var performingReverseGeocoding = false
   var lastGeocodingError: Error?
   
+  //Images
+  var images = [Image]()
   
   var note: Note? {
     
@@ -43,6 +45,14 @@ class NoteController: UIViewController {
       
       if let expirationDate = note?.expirationDate {
         expirationDateTextField.text = dateFormatter.string(from: expirationDate)
+      }
+      
+      if let noteText = note?.text {
+        self.textView.text = noteText
+      }
+      
+      if let noteImages = note?.images {
+        self.images = noteImages.allObjects as! [Image]
       }
      
     }
@@ -182,7 +192,6 @@ class NoteController: UIViewController {
   
   let textView: UITextView = {
     let textView = UITextView()
-    textView.text = ""
     textView.backgroundColor = .white
     textView.textColor = .darkGrey
     textView.font = UIFont.boldSystemFont(ofSize: 16)
@@ -385,15 +394,11 @@ class NoteController: UIViewController {
     //Sync view with core data model
     let newNote = NSEntityDescription.insertNewObject(forEntityName: "Note", into: context)
     
-    //Get the value from the titleTextField and set it as the newNote property
-    //the newNoteProperty will put the object in the NSEntity waiting for the save
-//    newNote.setValue(titleTextField.text, forKey: "title")
-//    newNote.setValue(expirationDatePicker.date, forKey: "expirationDate")
+    
     newNote.setValue(self.titleTextField.text, forKey: "title")
     newNote.setValue(Date(), forKey: "creationDate")
-    
     newNote.setValue(self.expirationDatePicker.date, forKey: "expirationDate")
-    
+    newNote.setValue(self.textView.text, forKey: "text")
 
     let defaultNotebook = CoreDataManager.shared.getDefaultNotebook()
 
@@ -450,6 +455,7 @@ class NoteController: UIViewController {
     //sync view with model
     note?.title = titleTextField.text
     note?.expirationDate = expirationDatePicker.date
+    note?.text = textView.text
 
     //perform save in core data
     do {
