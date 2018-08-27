@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B71845E021347879004D2A02 /* NoteController+CLLocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71845DF21347879004D2A02 /* NoteController+CLLocationManagerDelegate.swift */; };
+		B71845E221347B06004D2A02 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71845E121347B06004D2A02 /* MapController.swift */; };
+		B71845E5213493F1004D2A02 /* MapController+MKMapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71845E4213493F1004D2A02 /* MapController+MKMapViewDelegate.swift */; };
+		B71845EB2134A7EF004D2A02 /* NoteController+helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71845EA2134A7EF004D2A02 /* NoteController+helpers.swift */; };
 		B7406D7021248ED50074CFE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7406D6F21248ED50074CFE2 /* AppDelegate.swift */; };
 		B7406D7221248ED50074CFE2 /* NoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7406D7121248ED50074CFE2 /* NoteController.swift */; };
 		B7406D8221248EF50074CFE2 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7406D8121248EF50074CFE2 /* Launch Screen.storyboard */; };
@@ -50,6 +54,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B71845DF21347879004D2A02 /* NoteController+CLLocationManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteController+CLLocationManagerDelegate.swift"; sourceTree = "<group>"; };
+		B71845E121347B06004D2A02 /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
+		B71845E4213493F1004D2A02 /* MapController+MKMapViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapController+MKMapViewDelegate.swift"; sourceTree = "<group>"; };
+		B71845EA2134A7EF004D2A02 /* NoteController+helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteController+helpers.swift"; sourceTree = "<group>"; };
 		B7406D6C21248ED50074CFE2 /* NotesCD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotesCD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7406D6F21248ED50074CFE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B7406D7121248ED50074CFE2 /* NoteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteController.swift; sourceTree = "<group>"; };
@@ -105,6 +113,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B71845E321347B12004D2A02 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				B71845E121347B06004D2A02 /* MapController.swift */,
+				B71845E4213493F1004D2A02 /* MapController+MKMapViewDelegate.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
 		B7406D6321248ED50074CFE2 = {
 			isa = PBXGroup;
 			children = (
@@ -219,9 +236,12 @@
 			children = (
 				B7406D7121248ED50074CFE2 /* NoteController.swift */,
 				B76FCECA2124C2BF00B7F242 /* NoteControllerDelegate.swift */,
+				B71845DF21347879004D2A02 /* NoteController+CLLocationManagerDelegate.swift */,
+				B71845EA2134A7EF004D2A02 /* NoteController+helpers.swift */,
 				B748168F21286B46005E7AB3 /* NoteListController */,
 				B748CD03212F303F00D99977 /* MoveNotes */,
 				B748CD102133117200D99977 /* Location */,
+				B71845E321347B12004D2A02 /* Map */,
 			);
 			path = Note;
 			sourceTree = "<group>";
@@ -335,6 +355,7 @@
 				B748CD162133217900D99977 /* LocationController+UITextFieldDelegate.swift in Sources */,
 				B780CAFD2124AB0C00BD8EFD /* NoteListController.swift in Sources */,
 				B7ED7BC52129C852009DC01A /* NotebookController.swift in Sources */,
+				B71845E221347B06004D2A02 /* MapController.swift in Sources */,
 				B7406D8E212490350074CFE2 /* UIColor+rgb.swift in Sources */,
 				B748CCFA212C6ABE00D99977 /* Notebook+CoreDataManager.swift in Sources */,
 				B7406D96212490940074CFE2 /* CustomNavigationController.swift in Sources */,
@@ -344,6 +365,7 @@
 				B76FCECB2124C2BF00B7F242 /* NoteControllerDelegate.swift in Sources */,
 				B7F184F12128CDBC00630ADA /* NotebookListController+UITableViewController.swift in Sources */,
 				B748CD02212F2E0800D99977 /* MoveNotesController.swift in Sources */,
+				B71845E5213493F1004D2A02 /* MapController+MKMapViewDelegate.swift in Sources */,
 				B7ED7BCC2129CDB3009DC01A /* NotebookListController+NotebookControllerDelegate.swift in Sources */,
 				B748CD25213362EB00D99977 /* CurrentLocation+CLLocationManagerDelegate .swift in Sources */,
 				B748CD0F2133116A00D99977 /* LocationController.swift in Sources */,
@@ -362,6 +384,8 @@
 				B7406D7021248ED50074CFE2 /* AppDelegate.swift in Sources */,
 				B7406D93212490350074CFE2 /* UIView+helpers.swift in Sources */,
 				B7406D91212490350074CFE2 /* UView+constraints.swift in Sources */,
+				B71845E021347879004D2A02 /* NoteController+CLLocationManagerDelegate.swift in Sources */,
+				B71845EB2134A7EF004D2A02 /* NoteController+helpers.swift in Sources */,
 				B748CD1821332ABF00D99977 /* LocationControllerDelegate.swift in Sources */,
 				B76FCED42124CCE800B7F242 /* NotebookListCustomCell.swift in Sources */,
 				B748CD142133204200D99977 /* LocationController+MKMapViewDelegate.swift in Sources */,

@@ -2,8 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key></key>
+	<string></string>
+	<key>CFBundleGetInfoString</key>
+	<string></string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>We would like access to your gps</string>
+	<string>We would like to access to the GPS coordinates to handle your location.</string>
+	<key>CFBundleDisplayName</key>
+	<string></string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -27,6 +33,7 @@
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
+		<string>location-services</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
