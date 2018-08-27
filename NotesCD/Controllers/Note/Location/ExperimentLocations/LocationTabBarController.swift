@@ -10,20 +10,14 @@ import UIKit
 
 class LocationTabBarController: UITabBarController {
   
+
+  
   //  Custom Functions
   func setupViewControllers() {
-    //home
-    let locationController = templateNavController(unselectedImage: #imageLiteral(resourceName: "map-unselected"), selectedImage: #imageLiteral(resourceName: "map-selected"), rootViewController: CurrentLocationController())
+    let locationController = CurrentLocationController()
     
-    
-    let tagLocationController = templateNavController(unselectedImage: #imageLiteral(resourceName: "tag-unselected"), selectedImage: #imageLiteral(resourceName: "tag-selected"), rootViewController: LocationsDetailController())
-    //search
-    
-  
-  
     tabBar.tintColor = .creamYellow
-    
-    viewControllers = [locationController, tagLocationController]
+    viewControllers = [locationController]
     
     //modify tab bar item insets
     guard let items = tabBar.items else { return }
@@ -44,4 +38,15 @@ class LocationTabBarController: UITabBarController {
     navController.tabBarItem.selectedImage = selectedImage
     return navController
   }
+  
+  fileprivate func setupUI() {
+    
+  }
 }
+
+
+
+
+
+
+

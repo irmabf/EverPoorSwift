@@ -68,14 +68,20 @@ class CurrentLocationController: UIViewController {
   
   let tagButton: UIButton = {
     let btn = UIButton()
+    btn.backgroundColor = .darkRed
     btn.setTitle("Tag Location", for: .normal)
-    btn.setTitleColor(.onixGrey, for: .normal)
+    btn.setTitleColor(.darkWhite, for: .normal)
+    btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+    btn.addTarget(self, action: #selector(handleGoToLocationsDetail), for: .touchUpInside)
     return btn
   }()
   let getButton: UIButton = {
     let btn = UIButton()
+    btn.setTitleColor(.darkWhite, for: .normal)
+    btn.backgroundColor = .darkGreen
     btn.setTitle("Get my location", for: .normal)
-    btn.setTitleColor(.onixGrey, for: .normal)
+    btn.setTitleColor(.darkWhite, for: .normal)
+    btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
     btn.addTarget(self, action: #selector(handleGetLocation), for: .touchUpInside)
     return btn
   }()
@@ -85,9 +91,28 @@ class CurrentLocationController: UIViewController {
     super.viewDidLoad()
     view.backgroundColor = .white
     setupUI()
+    navigationItem.title = "Choose location"
     updateLabels()
   }
   
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    navigationController?.isNavigationBarHidden = true
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    navigationController?.isNavigationBarHidden = false
+  }
+  
+  @objc fileprivate func handleGoToLocationsDetail() {
+    let locationsDetail = LocationsDetailController()
+   
+    let navController = UINavigationController(rootViewController: locationsDetail)
+    present(navController, animated: true, completion: nil)
+    
+    
+  }
   //MARK:- Action handlers
   @objc fileprivate func handleGetLocation() {
     let authStatus = CLLocationManager.authorizationStatus()
