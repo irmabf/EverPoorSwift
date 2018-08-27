@@ -35,7 +35,7 @@ class NoteListController: UITableViewController, NoteControllerDelegate {
     notebooks = CoreDataManager.shared.fetchNotebooks()
     
     sortNotebooks()
-    
+
     setupUI()
     tableView.register(NoteLisCustomCell.self, forCellReuseIdentifier: cellId)
   }

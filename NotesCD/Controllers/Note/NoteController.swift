@@ -153,7 +153,9 @@ class NoteController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupUI()
+    textView.becomeFirstResponder()
     setupToolbar()
+    
     
     let notificationCenter = NotificationCenter.default
     notificationCenter.addObserver(self, selector: #selector(handleAdjustForKeyBoard), name: Notification.Name.UIKeyboardWillHide, object: nil)
@@ -313,6 +315,7 @@ class NoteController: UIViewController {
   
   fileprivate func setupToolbar() {
     let bar = UIToolbar()
+    
     bar.barTintColor = .darkGrey
     bar.isTranslucent = false
     let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
