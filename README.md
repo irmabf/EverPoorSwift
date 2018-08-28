@@ -5,7 +5,7 @@
 Esta aplicación ha sido realizada con Swift4.
 
 ![](rootScreen.png)
-![](rootScreen.png)
+
 
 
 ## Usage example
