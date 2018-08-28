@@ -138,7 +138,6 @@ class NoteController: UIViewController {
   lazy var notebookLabel: UILabel = {
     let label = UILabel()
     label.isUserInteractionEnabled = true
-    label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectNotebook)))
     label.text = "inBook: No notebook"
     label.font = UIFont.boldSystemFont(ofSize: 14)
     label.textColor = .darkOrange
@@ -179,7 +178,6 @@ class NoteController: UIViewController {
  
   //MARK:- Core Data Operations
   func createNote() {
-    print("Trying to create note ...")
     let context = CoreDataManager.shared.persistentContainer.viewContext
     
     //Sync view with core data model
@@ -215,8 +213,6 @@ class NoteController: UIViewController {
   }
 
   fileprivate func saveNoteChanges() {
-    print("Trying to save note changes...")
-
     let context = CoreDataManager.shared.persistentContainer.viewContext
     //sync view with model
     note?.title = titleTextField.text
@@ -279,23 +275,11 @@ class NoteController: UIViewController {
   }
   
   @objc func handleSelectLocation() {
-    print("Trying to select location")
-    
     let mapVC = MapViewController()
     
     mapVC.title = "Select location"
     navigationController?.pushViewController(mapVC, animated: true)
   }
-  
-  @objc fileprivate func handleSelectNotebook(){
-    print("Trying to select a notebook")
-  }
-  
- 
-  @objc fileprivate func handleGoToLocationsDetail() {
-    print("Trying to go to locations")
-  }
-  
   @objc fileprivate func handleCloseKeyboard() {
     if titleTextField.isFirstResponder {
       titleTextField.resignFirstResponder()
@@ -306,8 +290,6 @@ class NoteController: UIViewController {
   }
   
   @objc func handleGetPicture() {
-    print("Trying to get picture...")
-    
     let imagePicker = UIImagePickerController()
     
     imagePicker.delegate = self
@@ -336,13 +318,10 @@ class NoteController: UIViewController {
   }
   
   @objc func handleLaunchGetLocation() {
-    print("Trying to launch get Location Screen")
-
     let currentLocationController = CurrentLocationController()
 //    let navController = UINavigationController(rootViewController: currentLocationController)
 //    present(navController, animated: true, completion: nil)
    navigationController?.pushViewController(currentLocationController, animated: true)
-    
   }
 }
 

@@ -50,8 +50,6 @@ class NotebookController: UIViewController  {
   //MARK:- Actions
 
   @objc fileprivate func handleSave() {
-    print("Trying to save  notebook")
-    
     if notebook == nil {
       createNotebook()
     }else {

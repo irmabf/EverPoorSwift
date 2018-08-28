@@ -14,8 +14,6 @@ extension NoteListController {
   }
   
   func didEditNote(note: Note) {
-    print("Trying to update note in notebook list...")
-    
     let notebook = note.notebook!
     let notebookIndex = notebooks.index(of: notebook)
     let notes = notebook.notes?.allObjects as! [Note]

@@ -14,7 +14,6 @@ extension NotebookListController: MoveNotesControllerDelegate {
   }
   
   func didMoveNotes(to notebook: Notebook) {
-    print("Trying to move notes")
     if let delegate = self.delegate {
       delegate.didChangeNotebookList()
     }

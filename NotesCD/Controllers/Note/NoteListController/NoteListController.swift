@@ -62,20 +62,13 @@ class NoteListController: UITableViewController, NoteControllerDelegate {
   
   //MARK:- Notebook Actions
   @objc private func handleManageNotebooks() {
-    
-    print("Trying to launch manage notebooks...")
-    
     let notebookListController = NotebookListController()
     notebookListController.delegate = self
     let navController = UINavigationController(rootViewController: notebookListController)
     present(navController, animated: true, completion: nil)
-    
-    
   }
   
   @objc fileprivate func handleAddNotebook() {
-    print("Trying to launch add notebook")
-    
     let notebookController = NotebookController()
    
     let navController = UINavigationController(rootViewController: notebookController)
@@ -93,10 +86,7 @@ class NoteListController: UITableViewController, NoteControllerDelegate {
   // MARK: - Action handlers
   
   @objc private func handleResetData() {
-    print("Trying to reset model...")
     let alertController = UIAlertController(title: "Reset App", message: "Are you sure you want to loose all your data?", preferredStyle: .alert)
-//    let actionAlert = UIAlertController(title: "Are you sure you want to reset?", message: nil, preferredStyle: .actionSheet)
-    
     let okAction = UIAlertAction(title: "Yes, delete", style: .default) { (okAction) in
       CoreDataManager.shared.resetCoreData {
         self.reloadNoteList()
@@ -105,13 +95,10 @@ class NoteListController: UITableViewController, NoteControllerDelegate {
     let cancelAction = UIAlertAction(title: "No way", style: .destructive) { (cancelAction) in
       print("Reset action was canceled...")
     }
-
-    
     alertController.addAction(okAction)
     alertController.addAction(cancelAction)
     
    present(alertController, animated: true, completion: nil)
-    
   }
   
   func reloadNoteList(){

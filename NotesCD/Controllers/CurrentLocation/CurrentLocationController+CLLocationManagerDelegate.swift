@@ -44,7 +44,6 @@ extension CurrentLocationController: CLLocationManagerDelegate {
       lastLocationError = nil
       location = newLocation
       if newLocation.horizontalAccuracy <= locationManager.desiredAccuracy {
-        print("*** We're done!")
         stopLocationManager()
         if distance > 0 {
           performingReverseGeocoding = false
@@ -52,8 +51,6 @@ extension CurrentLocationController: CLLocationManagerDelegate {
       }
       updateLabels()
       if !performingReverseGeocoding {
-        print("*** Going to geocode")
-        
         performingReverseGeocoding = true
         
         geocoder.reverseGeocodeLocation(newLocation, completionHandler: {
@@ -72,7 +69,6 @@ extension CurrentLocationController: CLLocationManagerDelegate {
     } else if distance < 1 {
       let timeInterval = newLocation.timestamp.timeIntervalSince(location!.timestamp)
       if timeInterval > 10 {
-        print("*** Force done!")
         stopLocationManager()
         updateLabels()
       }

@@ -148,8 +148,6 @@ class CurrentLocationController: UIViewController {
   }
   
   @objc fileprivate func handleGetLocation(){
-    print("Get location")
-    
     // Handling Permissions
     let authStatus = CLLocationManager.authorizationStatus()
     if authStatus == .notDetermined {

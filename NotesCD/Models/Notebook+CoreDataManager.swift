@@ -14,8 +14,6 @@ extension CoreDataManager {
   //MARK:- Fetch Notebooks
   
   func fetchNotebooks() -> [Notebook] {
-    print("Try to fetch all notebooks")
-    
     let context = persistentContainer.viewContext
     
     let request = NSFetchRequest<Notebook>(entityName: "Notebook")
@@ -102,7 +100,6 @@ extension CoreDataManager {
       print("Failed to delete single notebook:", delErr)
     }
   }
-
 }
 
 

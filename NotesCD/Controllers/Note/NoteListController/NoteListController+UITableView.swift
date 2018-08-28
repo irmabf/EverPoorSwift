@@ -72,8 +72,6 @@ extension NoteListController {
   
 
   fileprivate func moveNoteHandler(action: UITableViewRowAction, indexPath: IndexPath) {
-    
-    print("Trying to move a single note")
     let notebook = self.notebooks[indexPath.section]
     let notes = notebook.notes?.allObjects
     
@@ -89,7 +87,6 @@ extension NoteListController {
     
   }
   fileprivate func deleteNoteHandler(action: UITableViewRowAction, indexPath: IndexPath) {
-    print("Trying to delete a single note...")
     //get the indexpath of the note to delete
     let note = getNoteAtIndexPath(indexPath: indexPath)
     

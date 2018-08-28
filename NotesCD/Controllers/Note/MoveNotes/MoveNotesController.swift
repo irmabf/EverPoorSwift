@@ -68,17 +68,13 @@ class MoveNotesController: UIViewController {
   }
   
   @objc fileprivate func handleCancel() {
-    print("Trying to cancel")
     dismiss(animated: true, completion: nil)
   }
   @objc fileprivate func handleMoveNotes() {
-    print("Trying to move notes")
     let newNotebook = notebooks![selectedNotebookRow]
 //    delegate?.didSelectNotebook(notebook: newNotebook)
 //    dismiss(animated: true, completion: nil)
-    
     if let notesToMove = notes {
-      
       for note in notesToMove {
         note.notebook = newNotebook
       }

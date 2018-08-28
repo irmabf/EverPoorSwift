@@ -73,13 +73,9 @@ extension NotebookListController {
   }
   
   private func deleteNotebookHandler(action: UITableViewRowAction, indexPath: IndexPath) {
-    print("Trying to delete notebook...")
- 
     let notebook = self.notebooks[indexPath.row]
     
     if notebook.isDefault {
-      print("Cannot delete a default notebook")
-      
       let alertController = UIAlertController(title: "Alert", message: "You cannot delete a default notebook", preferredStyle: .actionSheet)
       
       let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -119,8 +115,6 @@ extension NotebookListController {
   }
   
   fileprivate func moveNotesHandler(action: UITableViewRowAction, indexPath: IndexPath) {
-    print("Trying to move notes")
-    
     let notebook = notebooks[indexPath.row]
     let notesToMove = notebook.notes?.allObjects
     
@@ -132,13 +126,7 @@ extension NotebookListController {
       present(navController, animated: true, completion: nil)
     }
   }
-
-  fileprivate func okActionHandler() {
-    print("Trying to delete selected notebook")
-  }
   private func setAsDefaultHandler(action: UITableViewRowAction, indexPath: IndexPath) {
-    print("Trying to set default notebook...")
-    
     let notebook = notebooks[indexPath.row]
     CoreDataManager.shared.setDefault(notebook: notebook)
     tableView.reloadData()

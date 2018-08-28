@@ -12,8 +12,6 @@ import CoreData
 extension CoreDataManager {
   
   func fetchNotes() -> [Note] {
-    print("Trying to fetch notes...")
-    
     let context = persistentContainer.viewContext
     let fetchRequest = NSFetchRequest<Note>(entityName: "Note")
     
@@ -27,7 +25,6 @@ extension CoreDataManager {
   }
   
   func deleteNotes(completion: CleanAfterReset) {
-    print("Trying to delete notes...")
     let context = persistentContainer.viewContext
     let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: Note.fetchRequest())
     
