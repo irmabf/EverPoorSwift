@@ -53,6 +53,10 @@ class NoteController: UIViewController {
       if let noteText = note?.text {
         self.textView.text = noteText
       }
+      
+      if let imageData = note?.image {
+        imageView.image = UIImage(data: imageData)
+      }
     }
   }
   
@@ -186,11 +190,9 @@ class NoteController: UIViewController {
     return textView
   }()
   
-  var imageView: UIImageView = {
-    let iv = UIImageView()
-    iv.image = #imageLiteral(resourceName: "placeholder")
+  lazy var imageView: UIImageView = {
+    let iv = UIImageView(image: #imageLiteral(resourceName: "placeholder"))
     iv.contentMode = .scaleAspectFill
-    iv.translatesAutoresizingMaskIntoConstraints = false
     return iv
   }()
   
@@ -303,7 +305,7 @@ class NoteController: UIViewController {
 
     view.addSubview(imageView)
     
-    imageView.anchor(top: textView.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 16, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 100, height: 100)
+    imageView.anchor(top: textView.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 16, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 80, height: 80)
   }
   
   //MARK:- Core Data Operations
@@ -320,6 +322,12 @@ class NoteController: UIViewController {
     newNote.setValue(self.expirationDatePicker.date, forKey: "expirationDate")
     newNote.setValue(self.textView.text, forKey: "text")
  
+    if let image = imageView.image {
+      let imageData = UIImageJPEGRepresentation(image, 0.8)
+      newNote.setValue(imageData, forKey: "image")
+    }
+    
+    
     let defaultNotebook = CoreDataManager.shared.getDefaultNotebook()
 
     newNote.setValue(defaultNotebook, forKey: "notebook")
@@ -358,6 +366,11 @@ class NoteController: UIViewController {
     note?.title = titleTextField.text
     note?.expirationDate = expirationDatePicker.date
     note?.text = textView.text
+    
+    if let image = imageView.image {
+      let imageData = UIImageJPEGRepresentation(image, 0.8)
+      note?.image = imageData
+    }
 
     //perform save in core data
     do {
@@ -421,7 +434,7 @@ class NoteController: UIViewController {
       getButton.setTitle("Get My Location", for: .normal)
     }
   }
-
+  
   //MARK:- Actions
   
   @objc fileprivate func handleAdjustForKeyBoard(notification: Notification) {
@@ -518,7 +531,9 @@ class NoteController: UIViewController {
     print("Trying to get picture...")
     
     let imagePicker = UIImagePickerController()
+    
     imagePicker.delegate = self
+    imagePicker.allowsEditing = true
     
     let actionSheetAlert = UIAlertController(title: NSLocalizedString("Add photo", comment: "Add photo"), message: nil, preferredStyle: .actionSheet)
     
