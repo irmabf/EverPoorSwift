@@ -239,78 +239,9 @@ class NoteController: UIViewController {
     textView.textContainer.exclusionPaths = [path]
     
   }
-  fileprivate func setupUI() {
-  
-    navigationItem.leftBarButtonItem =  UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: self, action: #selector(handleBack))
-    navigationItem.title = "Create Note"
-    view.backgroundColor = .darkWhite
-    setupSaveButtonInNavbar(selector: #selector(handleSaveNote))
-    
-    view.addSubview(messageLabel)
-    messageLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: view.frame.width, height: 50)
  
-    let titleStackView = UIStackView(arrangedSubviews: [titleLabel, titleTextField, notebookLabel])
-    
-    titleStackView.distribution = .fillProportionally
-    titleStackView.axis = .horizontal
-    titleStackView.spacing = 10
-    
-    let latitudeStackView = UIStackView(arrangedSubviews: [latitude, latitudeLabel])
-    latitudeStackView.distribution = .fillProportionally
-    latitudeStackView.axis = .horizontal
-    latitudeStackView.spacing = 10
-    view.addSubview(latitudeStackView)
-    
-    latitudeStackView.anchor(top: messageLabel.bottomAnchor,left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 40)
-    view.addSubview(titleStackView)
-    
-    let longitudeStackView = UIStackView(arrangedSubviews: [longitude, longitudeLabel])
-    longitudeStackView.distribution = .fillProportionally
-    longitudeStackView.axis = .horizontal
-    longitudeStackView.spacing = 10
-    view.addSubview(longitudeStackView)
-    
-    longitudeStackView.anchor(top: latitudeStackView.bottomAnchor,left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 40)
-    
-    view.addSubview(addressLabel)
-    addressLabel.anchor(top: longitudeStackView.bottomAnchor,left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 8, paddingRight: 16, width: 0, height: 40)
-    addressLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-    
-    view.addSubview(getButton)
-    getButton.anchor(top: addressLabel.bottomAnchor,left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 30)
-    
-    titleStackView.anchor(top: getButton.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 8, width: 0, height: 40)
-    
-    let expirationDateStackView = UIStackView(arrangedSubviews: [expirationDateLabel, expirationDateTextField])
-    
-    expirationDateStackView.distribution = .fillProportionally
-    expirationDateStackView.axis = .horizontal
-    expirationDateStackView.spacing = 1
-    
-    view.addSubview(expirationDateStackView)
-    
-    let datesStackView = UIStackView(arrangedSubviews: [creationDateLabel, expirationDateStackView])
-    
-    datesStackView.distribution = .fillProportionally
-    datesStackView.axis = .horizontal
-    datesStackView.spacing = 1
-    view.addSubview(datesStackView)
-    
-    
-    datesStackView.anchor(top: titleStackView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: paddingLeft , paddingBottom: 0, paddingRight: 8, width: 0, height: 40)
-    
-    view.addSubview(textView)
-    
-    textView.anchor(top: datesStackView.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-    
-
-    view.addSubview(imageView)
-    
-    imageView.anchor(top: textView.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 16, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 80, height: 80)
-  }
-  
   //MARK:- Core Data Operations
-  private func createNote() {
+  func createNote() {
     print("Trying to create note ...")
     let context = CoreDataManager.shared.persistentContainer.viewContext
     
@@ -322,7 +253,7 @@ class NoteController: UIViewController {
     newNote.setValue(Date(), forKey: "creationDate")
     newNote.setValue(self.expirationDatePicker.date, forKey: "expirationDate")
     newNote.setValue(self.textView.text, forKey: "text")
- 
+    
     if let image = imageView.image {
       let imageData = UIImageJPEGRepresentation(image, 0.8)
       newNote.setValue(imageData, forKey: "image")
@@ -330,12 +261,12 @@ class NoteController: UIViewController {
     
     
     let defaultNotebook = CoreDataManager.shared.getDefaultNotebook()
-
+    
     newNote.setValue(defaultNotebook, forKey: "notebook")
     
     note?.title = self.titleTextField.text
     note?.expirationDate = self.expirationDatePicker.date
-   
+    
     //Now we save the context and with that the newNote
     do {
       try context.save()
@@ -344,19 +275,6 @@ class NoteController: UIViewController {
     } catch let createError {
       print("Failed to create a new note:", createError)
     }
-  }
-  
-  fileprivate func setupToolbar() {
-    let bar = UIToolbar()
-    
-    bar.barTintColor = .darkGrey
-    bar.isTranslucent = false
-    let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-    let imageBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "photo-camera-icon").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleGetPicture))
-    let locationBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "location-placeholder").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleSelectLocation))
-    bar.sizeToFit()
-    bar.items = [imageBtn, space,locationBtn]
-    textView.inputAccessoryView = bar
   }
 
   fileprivate func saveNoteChanges() {
@@ -436,6 +354,7 @@ class NoteController: UIViewController {
     }
   }
   
+  
   //MARK:- Actions
   
   @objc fileprivate func handleAdjustForKeyBoard(notification: Notification) {
@@ -462,11 +381,11 @@ class NoteController: UIViewController {
     dateFormatter.timeStyle = .none
     expirationDateTextField.text = dateFormatter.string(from: datePicker.date)
   }
-  @objc fileprivate func handleBack(){
+  @objc func handleBack(){
     navigationController?.popViewController(animated: true)
   }
   
-  @objc private func handleSaveNote() {
+  @objc func handleSaveNote() {
     // tap on Save button
     if self.note == nil {
       createNote()
@@ -476,7 +395,7 @@ class NoteController: UIViewController {
     navigationController?.popViewController(animated: true)
   }
   
-  @objc fileprivate func handleSelectLocation() {
+  @objc func handleSelectLocation() {
     print("Trying to select location")
     
     let mapVC = MapViewController()
@@ -528,7 +447,7 @@ class NoteController: UIViewController {
     }
   }
   
-  @objc private func handleGetPicture() {
+  @objc func handleGetPicture() {
     print("Trying to get picture...")
     
     let imagePicker = UIImagePickerController()
@@ -557,7 +476,6 @@ class NoteController: UIViewController {
     
     present(actionSheetAlert, animated: true, completion: nil)
   }
-  
 }
 
 

@@ -63,7 +63,7 @@ class NotebookController: UIViewController  {
     dismiss(animated: true, completion: nil)
   }
   
-  fileprivate func createNotebook(){
+  func createNotebook(){
     
     let context = CoreDataManager.shared.persistentContainer.viewContext
     
@@ -96,7 +96,7 @@ class NotebookController: UIViewController  {
     }
   }
   
-  fileprivate func setupUI(){
+  func setupUI(){
     view.backgroundColor = .darkWhite
     
     navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icon-cancel").withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(handleCancel))
