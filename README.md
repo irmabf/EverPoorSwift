@@ -4,7 +4,10 @@
 
 Esta aplicación ha sido realizada con Swift4.
 
-![](rootScreen.png)
+![](main-screen.png)
+![](notebooks.png)
+![](create-note.png)
+![](create-notebook.png)
 
 
 
