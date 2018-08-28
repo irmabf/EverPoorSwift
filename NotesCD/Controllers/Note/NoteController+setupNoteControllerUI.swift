@@ -20,7 +20,7 @@ extension NoteController {
     
     view.addSubview(getLocationButton)
     
-    getLocationButton.anchor(top: view.topAnchor,left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
+    getLocationButton.anchor(top: view.topAnchor,left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 8, paddingRight: 8, width: 0, height: 50)
     
     
     let titleStackView = UIStackView(arrangedSubviews: [titleLabel, titleTextField, notebookLabel])

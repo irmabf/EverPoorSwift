@@ -18,8 +18,6 @@ extension CurrentLocationController {
       view.addSubview(messageLabel)
       messageLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: view.frame.width, height: 50)
       
-     
-      
       let latitudeStackView = UIStackView(arrangedSubviews: [latitude, latitudeLabel])
       latitudeStackView.distribution = .fillProportionally
       latitudeStackView.axis = .horizontal
@@ -38,10 +36,24 @@ extension CurrentLocationController {
       longitudeStackView.anchor(top: latitudeStackView.bottomAnchor,left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 40)
       
       view.addSubview(addressLabel)
-      addressLabel.anchor(top: longitudeStackView.bottomAnchor,left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 8, paddingRight: 16, width: 0, height: 40)
+      addressLabel.anchor(top: longitudeStackView.bottomAnchor,left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 16, paddingRight: 16, width: 0, height: 50)
       addressLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+    
+      let buttonsStackView = UIStackView(arrangedSubviews: [getButton, tagButton])
+      buttonsStackView.distribution = .fillProportionally
+      buttonsStackView.axis = .vertical
+      buttonsStackView.spacing = 10
+      view.addSubview(buttonsStackView)
       
-      view.addSubview(getButton)
-      getButton.anchor(top: addressLabel.bottomAnchor,left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 30)
+      buttonsStackView.anchor(top: addressLabel.bottomAnchor,left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 100)
   }
 }
+
+
+
+
+
+
+
+
+

@@ -79,9 +79,22 @@ class CurrentLocationController: UIViewController {
   
   let getButton: UIButton = {
     let btn = UIButton()
+    btn.setCornerRadius(amount: 2.0, withBorderAmount: 2.0, andColor: .darkGreen)
     btn.setTitleColor(.darkWhite, for: .normal)
     btn.backgroundColor = .darkGreen
-    btn.setTitle("Get my location", for: .normal)
+    btn.setTitle("Get My Location", for: .normal)
+    btn.setTitleColor(.darkWhite, for: .normal)
+    btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+    btn.addTarget(self, action: #selector(handleGetLocation), for: .touchUpInside)
+    return btn
+  }()
+  
+  let tagButton: UIButton = {
+    let btn = UIButton()
+    btn.setCornerRadius(amount: 2.0, withBorderAmount: 2.0, andColor: .darkRed)
+    btn.setTitleColor(.darkWhite, for: .normal)
+    btn.backgroundColor = .darkRed
+    btn.setTitle("Tag Location", for: .normal)
     btn.setTitleColor(.darkWhite, for: .normal)
     btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
     btn.addTarget(self, action: #selector(handleGetLocation), for: .touchUpInside)
