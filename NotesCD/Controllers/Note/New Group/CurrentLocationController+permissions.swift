@@ -1,5 +1,5 @@
 //
-//  NoteController+permissions.swift
+//  CurrentLocationController+permissions.swift
 //  NotesCD
 //
 //  Created by Irma Blanco on 28/08/2018.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension NoteController {
+extension CurrentLocationController {
   //MARK:- Handling Permissions
   func showLocationServicesDeniedAlert() {
     let alertController = UIAlertController(title: "Location Services Disabled", message: "Please, enable location services for this app in settings.", preferredStyle: .alert)

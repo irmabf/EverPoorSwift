@@ -1,14 +1,14 @@
 //
-//  NoteController+CLLocationManagerDelegate.swift
+//  CurrentLocationController+CLLocationManagerDelegate.swift
 //  NotesCD
 //
-//  Created by Irma Blanco on 27/08/2018.
+//  Created by Irma Blanco on 28/08/2018.
 //  Copyright © 2018 Irma Blanco. All rights reserved.
 //
 
 import CoreLocation
 
-extension NoteController: CLLocationManagerDelegate {
+extension CurrentLocationController: CLLocationManagerDelegate {
   
   //MARK:- didFailWithError
   func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -79,14 +79,6 @@ extension NoteController: CLLocationManagerDelegate {
     }
   }
 }
-
-
-
-
-
-
-
-
 
 
 

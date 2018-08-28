@@ -1,5 +1,5 @@
 //
-//  NoteController+locationManager.swift
+//  CurrentLocationController+LocationManager.swift
 //  NotesCD
 //
 //  Created by Irma Blanco on 28/08/2018.
@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-extension NoteController {
+extension CurrentLocationController {
   func startLocationManager() {
     if CLLocationManager.locationServicesEnabled() {
       locationManager.delegate = self
@@ -28,3 +28,4 @@ extension NoteController {
     }
   }
 }
+

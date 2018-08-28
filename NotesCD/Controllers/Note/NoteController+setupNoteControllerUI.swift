@@ -10,15 +10,18 @@ import UIKit
 
 extension NoteController {
   
-  func setupUI() {
+  func setupNoteControllerUI() {
     
     navigationItem.leftBarButtonItem =  UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .plain, target: self, action: #selector(handleBack))
     navigationItem.title = "Create Note"
     view.backgroundColor = .darkWhite
     setupSaveButtonInNavbar(selector: #selector(handleSaveNote))
     
-    view.addSubview(messageLabel)
-    messageLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: view.frame.width, height: 50)
+    
+    view.addSubview(getLocationButton)
+    
+    getLocationButton.anchor(top: view.topAnchor,left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
+    
     
     let titleStackView = UIStackView(arrangedSubviews: [titleLabel, titleTextField, notebookLabel])
     
@@ -26,31 +29,9 @@ extension NoteController {
     titleStackView.axis = .horizontal
     titleStackView.spacing = 10
     
-    let latitudeStackView = UIStackView(arrangedSubviews: [latitude, latitudeLabel])
-    latitudeStackView.distribution = .fillProportionally
-    latitudeStackView.axis = .horizontal
-    latitudeStackView.spacing = 10
-    view.addSubview(latitudeStackView)
-    
-    latitudeStackView.anchor(top: messageLabel.bottomAnchor,left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 40)
     view.addSubview(titleStackView)
     
-    let longitudeStackView = UIStackView(arrangedSubviews: [longitude, longitudeLabel])
-    longitudeStackView.distribution = .fillProportionally
-    longitudeStackView.axis = .horizontal
-    longitudeStackView.spacing = 10
-    view.addSubview(longitudeStackView)
-    
-    longitudeStackView.anchor(top: latitudeStackView.bottomAnchor,left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 40)
-    
-    view.addSubview(addressLabel)
-    addressLabel.anchor(top: longitudeStackView.bottomAnchor,left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 8, paddingRight: 16, width: 0, height: 40)
-    addressLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-    
-    view.addSubview(getButton)
-    getButton.anchor(top: addressLabel.bottomAnchor,left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 30)
-    
-    titleStackView.anchor(top: getButton.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 8, width: 0, height: 40)
+    titleStackView.anchor(top: getLocationButton.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 8, width: 0, height: 40)
     
     let expirationDateStackView = UIStackView(arrangedSubviews: [expirationDateLabel, expirationDateTextField])
     
