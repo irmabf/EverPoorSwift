@@ -153,14 +153,8 @@
 		B7406D8521248FBF0074CFE2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B7E688792134BFED00E9585A /* MapController+MKMapViewDelegate.swift */,
-				B7E688772134BFC900E9585A /* MapController.swift */,
-				B76118652135986600109417 /* CurrentLocationController.swift */,
-				B761186821359ACA00109417 /* CurrentLocationController+setupCurrentLocationControllerUI.swift */,
-				B761186A21359B8000109417 /* CurrentLocationController+permissions.swift */,
-				B761186C21359BA800109417 /* CurrentLocationController+LocationManager.swift */,
-				B761186E21359BD300109417 /* CurrentLocationController+helperFunctions.swift */,
-				B761187021359BFE00109417 /* CurrentLocationController+CLLocationManagerDelegate.swift */,
+				B76118742135E02F00109417 /* Map */,
+				B76118752135E04000109417 /* CurrentLocation */,
 				B780CAFF2124AB1D00BD8EFD /* Notebook */,
 				B780CAFB2124AAFA00BD8EFD /* Note */,
 			);
@@ -210,6 +204,28 @@
 				B7406D95212490940074CFE2 /* CustomNavigationController.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		B76118742135E02F00109417 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				B7E688792134BFED00E9585A /* MapController+MKMapViewDelegate.swift */,
+				B7E688772134BFC900E9585A /* MapController.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		B76118752135E04000109417 /* CurrentLocation */ = {
+			isa = PBXGroup;
+			children = (
+				B76118652135986600109417 /* CurrentLocationController.swift */,
+				B761186821359ACA00109417 /* CurrentLocationController+setupCurrentLocationControllerUI.swift */,
+				B761186A21359B8000109417 /* CurrentLocationController+permissions.swift */,
+				B761186C21359BA800109417 /* CurrentLocationController+LocationManager.swift */,
+				B761186E21359BD300109417 /* CurrentLocationController+helperFunctions.swift */,
+				B761187021359BFE00109417 /* CurrentLocationController+CLLocationManagerDelegate.swift */,
+			);
+			path = CurrentLocation;
 			sourceTree = "<group>";
 		};
 		B76FCEC52124B2AA00B7F242 /* Models */ = {
