@@ -1,9 +1,6 @@
 # Everpoor
 > Aplicación para crear notas y libros de notas que trata de imitar algunas de las funcionalidades de EverNote.
 
-
-Esta aplicación ha sido realizada con Swift4.
-
 ![](main-screen.png)
 ![](notebooks.png)
 ![](create-note.png)
