@@ -8,7 +8,7 @@
 
 
 
-## Usage example
+## Uso
 
 Esta aplicación utiliza el framework CoreData para guardar en la memoria del dispositivo notebooks y notas. Cada nota pertenercerá a un libro de notas y un libro de notas puede tener una o varias notas.
 
