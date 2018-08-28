@@ -196,13 +196,13 @@
 			path = MoveNotes;
 			sourceTree = "<group>";
 		};
-		B748CD102133117200D99977 /* Map */ = {
+		B748CD102133117200D99977 /* Maps */ = {
 			isa = PBXGroup;
 			children = (
 				B7E688772134BFC900E9585A /* MapController.swift */,
 				B7E688792134BFED00E9585A /* MapController+MKMapViewDelegate.swift */,
 			);
-			name = Map;
+			name = Maps;
 			path = Location;
 			sourceTree = "<group>";
 		};
@@ -214,7 +214,7 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		B76118672135986C00109417 /* Location */ = {
+		B76118672135986C00109417 /* CurrentLocation */ = {
 			isa = PBXGroup;
 			children = (
 				B76118652135986600109417 /* CurrentLocationController.swift */,
@@ -224,7 +224,7 @@
 				B761186E21359BD300109417 /* CurrentLocationController+helperFunctions.swift */,
 				B761187021359BFE00109417 /* CurrentLocationController+CLLocationManagerDelegate.swift */,
 			);
-			name = Location;
+			name = CurrentLocation;
 			path = "New Group";
 			sourceTree = "<group>";
 		};
@@ -250,9 +250,9 @@
 				B71845EA2134A7EF004D2A02 /* NoteController+helperFunctions.swift */,
 				B748168F21286B46005E7AB3 /* NoteListController */,
 				B748CD03212F303F00D99977 /* MoveNotes */,
-				B748CD102133117200D99977 /* Map */,
+				B748CD102133117200D99977 /* Maps */,
 				B7611863213595A000109417 /* NoteController+setupToolbar.swift */,
-				B76118672135986C00109417 /* Location */,
+				B76118672135986C00109417 /* CurrentLocation */,
 			);
 			path = Note;
 			sourceTree = "<group>";
