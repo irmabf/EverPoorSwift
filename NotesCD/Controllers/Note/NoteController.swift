@@ -193,6 +193,7 @@ class NoteController: UIViewController {
   lazy var imageView: UIImageView = {
     let iv = UIImageView(image: #imageLiteral(resourceName: "placeholder"))
     iv.contentMode = .scaleAspectFill
+    iv.clipsToBounds = true
     return iv
   }()
   
