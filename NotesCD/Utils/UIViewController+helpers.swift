@@ -17,6 +17,7 @@ extension UIViewController {
     tableView.tableFooterView = UIView()
     view.backgroundColor = .darkWhite
   }
+  
   func setupPlusButtonInNavBar(selector: Selector) {
     navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icon-add").withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: selector)
   }

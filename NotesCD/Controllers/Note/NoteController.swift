@@ -52,9 +52,10 @@ class NoteController: UIViewController {
   
   let getLocationButton: UIButton = {
     let btn = UIButton()
+    btn.setCornerRadius(amount: 2.0, withBorderAmount: 2.0, andColor: .darkOrange)
     btn.setTitleColor(.darkWhite, for: .normal)
     btn.backgroundColor = .goldenOrange
-    btn.setTitle("Got to get my location", for: .normal)
+    btn.setTitle("Go To Get My Location", for: .normal)
     btn.setTitleColor(.darkWhite, for: .normal)
     btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
     btn.addTarget(self, action: #selector(handleLaunchGetLocation), for: .touchUpInside)
