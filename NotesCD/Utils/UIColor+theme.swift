@@ -27,6 +27,8 @@ extension UIColor {
   
   static let darkGreen = UIColor.rgb(red: 64, green: 122, blue: 82)
   
+  static let patinaGreen = UIColor.rgb(red: 64, green: 122, blue: 82)
+  
   static let creamYellow = UIColor.rgb(red: 245, green: 215, blue: 110)
   
 }

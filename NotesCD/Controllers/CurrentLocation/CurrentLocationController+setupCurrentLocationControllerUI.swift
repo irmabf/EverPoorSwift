@@ -39,13 +39,13 @@ extension CurrentLocationController {
       addressLabel.anchor(top: longitudeStackView.bottomAnchor,left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 16, paddingRight: 16, width: 0, height: 50)
       addressLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
     
-      let buttonsStackView = UIStackView(arrangedSubviews: [getButton, tagButton])
+      let buttonsStackView = UIStackView(arrangedSubviews: [getButton])
       buttonsStackView.distribution = .fillProportionally
       buttonsStackView.axis = .vertical
       buttonsStackView.spacing = 10
       view.addSubview(buttonsStackView)
       
-      buttonsStackView.anchor(top: addressLabel.bottomAnchor,left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 100)
+      buttonsStackView.anchor(top: addressLabel.bottomAnchor,left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 50)
   }
 }
 
