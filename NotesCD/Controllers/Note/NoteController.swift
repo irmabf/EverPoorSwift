@@ -295,14 +295,9 @@ class NoteController: UIViewController {
     imagePicker.delegate = self
     imagePicker.allowsEditing = true
     
-    let actionSheetAlert = UIAlertController(title: NSLocalizedString("Add photo", comment: "Add photo"), message: nil, preferredStyle: .actionSheet)
+    let actionSheetAlert = UIAlertController(title: NSLocalizedString("Add photo", comment: "Choose the picture"), message: nil, preferredStyle: .actionSheet)
     
-    let useCamera = UIAlertAction(title: "Camera", style: .default) { (alertAction) in
-      imagePicker.sourceType = .camera
-      self.present(imagePicker, animated: true, completion: nil)
-    }
-    
-    let usePhotoLibrary = UIAlertAction(title: "Photo Library", style: .default) { (alertAction) in
+    let usePhotoLibraryAction = UIAlertAction(title: "Photo Library", style: .default) { (alertAction) in
       
       imagePicker.sourceType = .photoLibrary
       self.present(imagePicker, animated: true, completion: nil)
@@ -310,8 +305,7 @@ class NoteController: UIViewController {
     
     let cancel = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
     
-    actionSheetAlert.addAction(useCamera)
-    actionSheetAlert.addAction(usePhotoLibrary)
+    actionSheetAlert.addAction(usePhotoLibraryAction)
     actionSheetAlert.addAction(cancel)
     
     present(actionSheetAlert, animated: true, completion: nil)
@@ -319,8 +313,6 @@ class NoteController: UIViewController {
   
   @objc func handleLaunchGetLocation() {
     let currentLocationController = CurrentLocationController()
-//    let navController = UINavigationController(rootViewController: currentLocationController)
-//    present(navController, animated: true, completion: nil)
    navigationController?.pushViewController(currentLocationController, animated: true)
   }
 }
